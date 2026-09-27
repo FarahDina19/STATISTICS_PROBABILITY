@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Processing Data Using Microsoft Excel</title>
+  <meta name="description" content="Syllabus 4.5: construct a frequency table, bar chart, pie chart, histogram and ogive, and calculate central tendency and dispersion, all using Microsoft Excel." />
+  <style>
+    :root {
+      --bg: #f4faf6; --card: #ffffff; --ink: #14231a; --muted: #57685e; --line: #dbe9df; --accent: #1a7340;
+      --rule: #fff8d6; --rule-line: #e9c84b;
+      --ok: #1f7a4d; --ok-soft: #e2f6ea; --bad: #b3261e; --bad-soft: #fde7e5;
+      --ribbon: #f1f8f4; --cell: #ffffff; --cellhead: #eaf3ed;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f1713; --card: #16211a; --ink: #eaf5ee; --muted: #a9bcae; --line: #2a3a2f; --accent: #6fd39a;
+        --rule: #332c14; --rule-line: #8a7424;
+        --ok: #7fe3b0; --ok-soft: #15302a; --bad: #ff9d95; --bad-soft: #3a1f1d;
+        --ribbon: #1b271e; --cell: #16211a; --cellhead: #1f2e24;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f1713; --card: #16211a; --ink: #eaf5ee; --muted: #a9bcae; --line: #2a3a2f; --accent: #6fd39a;
+      --rule: #332c14; --rule-line: #8a7424;
+      --ok: #7fe3b0; --ok-soft: #15302a; --bad: #ff9d95; --bad-soft: #3a1f1d;
+      --ribbon: #1b271e; --cell: #16211a; --cellhead: #1f2e24;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .page { max-width: 920px; margin: 0 auto; padding: 64px 16px 40px; }
+
+    .hero { border-radius: 20px; padding: 28px 22px; color: #fff; background: linear-gradient(135deg, #1a7340, #21a15a 55%, #0c5e33); }
+    .kicker { margin: 0 0 4px; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .9; }
+    .hero h1 { margin: 0 0 8px; font-size: clamp(26px, 5vw, 40px); line-height: 1.15; }
+    .lead { margin: 0; max-width: 62ch; }
+    .syllabus { margin-top: 14px; padding: 10px 14px; border-radius: 12px; background: rgba(255, 255, 255, .16); font-size: 15px; }
+    .syllabus p { margin: 2px 0; }
+    .jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .jump a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: rgba(255, 255, 255, .18); }
+    .jump a:hover, .jump a:focus-visible { background: rgba(255, 255, 255, .32); }
+
+    .topic { margin-top: 40px; scroll-margin-top: 16px; }
+    .topic > h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; font-size: clamp(20px, 3vw, 26px); }
+    .num { display: inline-grid; place-items: center; min-width: 44px; height: 34px; padding: 0 8px; flex: none; border-radius: 999px; background: var(--accent); color: #06341c; font-size: 15px; font-weight: 800; }
+    .dest { margin: 0 0 12px; color: var(--muted); font-weight: 600; }
+
+    .box { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+    .box h3 { margin: 0 0 6px; font-size: 18px; }
+    .box p { margin: 0 0 8px; }
+    .box ol, .box ul { margin: 6px 0; padding-left: 22px; }
+    .box li { margin-bottom: 6px; }
+
+    button { font: inherit; }
+    .btn, .pick button { font-size: 14px; font-weight: 600; cursor: pointer; border-radius: 999px; padding: 7px 12px; border: 2px solid var(--line); background: var(--card); color: var(--ink); }
+    .btn.primary { border-color: var(--accent); background: var(--accent); color: #06341c; }
+    .btn:hover { border-color: var(--accent); }
+
+    /* --- Mock Excel ribbon + spreadsheet --- */
+    .ribbon { background: var(--ribbon); border: 1px solid var(--line); border-radius: 10px 10px 0 0; padding: 8px 10px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 13px; font-weight: 700; }
+    .ribbon span { padding: 5px 10px; border-radius: 6px; color: var(--muted); }
+    .ribbon span.active { background: var(--accent); color: #06341c; }
+    .sheet-wrap { overflow-x: auto; border: 1px solid var(--line); border-top: none; border-radius: 0 0 10px 10px; }
+    table.sheet { border-collapse: collapse; width: 100%; font-size: 14px; }
+    table.sheet th, table.sheet td { border: 1px solid var(--line); padding: 6px 10px; text-align: center; white-space: nowrap; }
+    table.sheet thead th { background: var(--cellhead); font-weight: 700; }
+    table.sheet td.rowhead { background: var(--cellhead); font-weight: 700; }
+    table.sheet td.formula-cell { font-family: "Cambria Math", Georgia, serif; color: var(--accent); }
+
+    .fx { display: flex; align-items: center; gap: 8px; background: var(--cellhead); border: 1px solid var(--line); border-radius: 8px 8px 0 0; padding: 6px 10px; font-size: 13px; }
+    .fx b { color: var(--accent); font-family: Georgia, serif; }
+    .fx code { flex: 1; overflow-x: auto; }
+
+    /* --- Simple CSS bar chart / pie chart mockups --- */
+    .barchart { display: flex; align-items: flex-end; gap: 10px; height: 140px; margin: 12px 0; padding: 0 4px; }
+    .barchart .bar { flex: 1; background: var(--accent); border-radius: 6px 6px 0 0; position: relative; min-width: 24px; }
+    .barchart .bar span { position: absolute; top: -20px; left: 0; right: 0; text-align: center; font-size: 12px; font-weight: 700; }
+    .barchart .bar em { position: absolute; bottom: -20px; left: 0; right: 0; text-align: center; font-size: 12px; font-style: normal; color: var(--muted); }
+
+    .pie { width: 160px; height: 160px; border-radius: 50%; margin: 10px auto; }
+    .piekey { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; font-size: 13px; }
+    .piekey i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
+
+    .ogive-wrap svg { width: 100%; height: 180px; }
+    .ogive-wrap .axis { stroke: var(--line); stroke-width: 1; }
+    .ogive-wrap .line { fill: none; stroke: var(--accent); stroke-width: 3; }
+    .ogive-wrap .dot { fill: var(--accent); }
+    .ogive-wrap text { fill: var(--muted); font-size: 10px; }
+
+    table.ref { width: 100%; border-collapse: collapse; background: var(--card); font-size: 15px; }
+    table.ref th, table.ref td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+    table.ref thead th { background: var(--rule); }
+    table.ref code { color: var(--accent); font-weight: 700; }
+
+    .checklist { list-style: none; margin: 0; padding: 0; }
+    .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent); margin-top: 2px; flex: none; }
+    .checklist li.done span { text-decoration: line-through; color: var(--muted); }
+
+    details.check { margin-top: 12px; border: 1px dashed var(--accent); border-radius: 12px; padding: 8px 12px; }
+    details.check summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+
+    footer.note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 40px; }
+    @media (max-width: 560px) { .barchart { height: 110px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="kicker">Unit 4 · Statistics &amp; Probability · Syllabus 4.5</p>
+      <h1>Processing Data by Using Microsoft Excel 📊🖱️</h1>
+      <p class="lead">Everything from 4.1 (tables &amp; charts) and 4.2 (central tendency &amp; dispersion) — but built with a few clicks in Excel instead of by hand.</p>
+      <div class="syllabus">
+        <p><b>Learning outcome:</b> Construct graphical data, central tendency and dispersion using Microsoft Excel.</p>
+        <p><b>15.</b> Show how to construct table, bar chart, pie chart, histogram and ogive using Microsoft Excel.</p>
+      </div>
+      <nav class="jump" aria-label="Jump to a subtopic">
+        <a href="#table">4.5.1 Frequency table</a>
+        <a href="#charts">4.5.2 Bar &amp; pie chart</a>
+        <a href="#histogram">4.5.3 Histogram &amp; ogive</a>
+        <a href="#stats">4.5.4 Central tendency &amp; dispersion</a>
+        <a href="#formulas">Formula sheet</a>
+        <a href="#practice">Try it yourself</a>
+      </nav>
+    </header>
+
+    <!-- ================= 4.5.1 FREQUENCY TABLE ================= -->
+    <section id="table" class="topic">
+      <h2><span class="num">4.5.1</span> Build a frequency table in Excel</h2>
+      <p class="dest">Turn a raw list of numbers into a frequency table with a running total.</p>
+      <div class="box">
+        <h3>Steps</h3>
+        <ol>
+          <li>Type the raw data down one column, for example resistor readings in <b>A2:A21</b>.</li>
+          <li>In another column, list the classes or values you want to count (e.g. class midpoints or exact values).</li>
+          <li>Next to each class, use <code>=COUNTIF(A$2:A$21, C2)</code> for exact values, or the array formula <code>=FREQUENCY(A2:A21, bins)</code> for grouped classes.</li>
+          <li>Add a cumulative frequency column with a running total: <code>=SUM(D$2:D2)</code> copied down.</li>
+        </ol>
+        <div class="fx"><b>fx</b><code>=COUNTIF($A$2:$A$21,C2)</code></div>
+        <div class="sheet-wrap">
+          <table class="sheet">
+            <thead><tr><th></th><th>A<br>Reading (Ω)</th><th>B</th><th>C<br>Class</th><th>D<br>Frequency</th><th>E<br>Cumulative F</th></tr></thead>
+            <tbody>
+              <tr><td class="rowhead">1</td><td>96</td><td></td><td>95–99</td><td class="formula-cell">4</td><td class="formula-cell">4</td></tr>
+              <tr><td class="rowhead">2</td><td>101</td><td></td><td>100–104</td><td class="formula-cell">9</td><td class="formula-cell">13</td></tr>
+              <tr><td class="rowhead">3</td><td>103</td><td></td><td>105–109</td><td class="formula-cell">5</td><td class="formula-cell">18</td></tr>
+              <tr><td class="rowhead">4</td><td>98</td><td></td><td>110–114</td><td class="formula-cell">2</td><td class="formula-cell">20</td></tr>
+              <tr><td class="rowhead">⋮</td><td>⋮</td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="dest" style="margin-top:8px">💡 <code>FREQUENCY</code> is an <b>array formula</b>: select the whole output range first, type the formula, then press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd> (or just <kbd>Enter</kbd> in newer Excel).</p>
+      </div>
+    </section>
+
+    <!-- ================= 4.5.2 BAR & PIE CHART ================= -->
+    <section id="charts" class="topic">
+      <h2><span class="num">4.5.2</span> Bar chart &amp; pie chart</h2>
+      <p class="dest">Both charts start the same way — the chart type is the only real choice.</p>
+      <div class="box">
+        <h3>Steps</h3>
+        <ol>
+          <li>Select the class/value column and the frequency column together.</li>
+          <li>Go to the <b>Insert</b> tab.</li>
+          <li>In the <b>Charts</b> group, pick <b>Bar/Column chart</b> for a bar chart (gaps between bars), or <b>Pie chart</b> to show parts of the whole.</li>
+          <li>Use <b>Chart Design → Add Chart Element</b> to add a title and axis/data labels.</li>
+        </ol>
+        <div class="ribbon"><span>Home</span><span class="active">Insert</span><span>Page Layout</span><span>Formulas</span><span>Data</span></div>
+        <div class="box" style="border-radius:0 0 10px 10px;border-top:none;margin-bottom:0">
+          <p style="margin:0 0 10px;font-weight:700">Bar chart — outages per week</p>
+          <div class="barchart">
+            <div class="bar" style="height:30%"><span>3</span><em>0</em></div>
+            <div class="bar" style="height:60%"><span>6</span><em>1</em></div>
+            <div class="bar" style="height:100%"><span>10</span><em>2</em></div>
+            <div class="bar" style="height:45%"><span>4</span><em>3</em></div>
+            <div class="bar" style="height:15%"><span>1</span><em>4</em></div>
+          </div>
+          <p style="margin:20px 0 16px;font-weight:700">Pie chart — energy used by appliance</p>
+          <div class="pie" style="background: conic-gradient(#1a7340 0 40%, #21a15a 40% 65%, #7fd7a0 65% 85%, #c8ecd6 85% 100%)"></div>
+          <div class="piekey">
+            <span><i style="background:#1a7340"></i>Aircon 40%</span>
+            <span><i style="background:#21a15a"></i>Fridge 25%</span>
+            <span><i style="background:#7fd7a0"></i>Lights 20%</span>
+            <span><i style="background:#c8ecd6"></i>Others 15%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4.5.3 HISTOGRAM & OGIVE ================= -->
+    <section id="histogram" class="topic">
+      <h2><span class="num">4.5.3</span> Histogram &amp; ogive</h2>
+      <p class="dest">A histogram shows the shape of grouped data; an ogive shows the running total.</p>
+      <div class="box">
+        <h3>Steps</h3>
+        <ol>
+          <li>Build the grouped frequency table first (see 4.5.1), using class boundaries as the bin edges.</li>
+          <li><b>Histogram:</b> select the class and frequency columns → <b>Insert → Insert Statistic Chart → Histogram</b> (or make a column chart and set <b>Gap Width to 0%</b> in Format Data Series, since histogram bars must touch).</li>
+          <li><b>Ogive:</b> select the upper class boundary and cumulative frequency columns → <b>Insert → Line chart</b>. The ogive always starts at 0 and only goes up.</li>
+        </ol>
+        <p style="margin:0 0 6px;font-weight:700">Histogram (touching bars)</p>
+        <div class="barchart" style="gap:0">
+          <div class="bar" style="height:30%;border-radius:0"><span>4</span><em>95–99</em></div>
+          <div class="bar" style="height:70%;border-radius:0"><span>9</span><em>100–104</em></div>
+          <div class="bar" style="height:40%;border-radius:0"><span>5</span><em>105–109</em></div>
+          <div class="bar" style="height:16%;border-radius:0"><span>2</span><em>110–114</em></div>
+        </div>
+        <p style="margin:24px 0 6px;font-weight:700">Ogive (cumulative frequency curve)</p>
+        <div class="ogive-wrap">
+          <svg viewBox="0 0 300 160" preserveAspectRatio="none">
+            <line class="axis" x1="30" y1="10" x2="30" y2="140"></line>
+            <line class="axis" x1="30" y1="140" x2="290" y2="140"></line>
+            <polyline class="line" points="30,140 95,120 160,68 225,28 290,10"></polyline>
+            <circle class="dot" cx="30" cy="140" r="3"></circle>
+            <circle class="dot" cx="95" cy="120" r="3"></circle>
+            <circle class="dot" cx="160" cy="68" r="3"></circle>
+            <circle class="dot" cx="225" cy="28" r="3"></circle>
+            <circle class="dot" cx="290" cy="10" r="3"></circle>
+            <text x="30" y="155">94.5</text><text x="95" y="155">99.5</text><text x="160" y="155">104.5</text><text x="225" y="155">109.5</text><text x="290" y="155">114.5</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4.5.4 CENTRAL TENDENCY & DISPERSION ================= -->
+    <section id="stats" class="topic">
+      <h2><span class="num">4.5.4</span> Central tendency &amp; dispersion</h2>
+      <p class="dest">One function per measure — Excel does the arithmetic for you.</p>
+      <div class="box">
+        <h3>Try it: type your own data</h3>
+        <label style="display:block;font-size:14px;font-weight:650;margin-bottom:6px">Data (comma-separated)<br>
+          <input id="exNums" type="text" value="96, 101, 103, 98, 108, 112, 99, 101, 104, 97" style="width:100%;padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--ink);margin-top:4px" autocomplete="off" spellcheck="false">
+        </label>
+        <button type="button" id="exCalc" class="btn primary">Calculate like Excel would</button>
+        <div class="sheet-wrap" style="margin-top:12px">
+          <table class="sheet">
+            <thead><tr><th></th><th>Measure</th><th>Excel formula</th><th>Result</th></tr></thead>
+            <tbody id="exResults">
+              <tr><td class="rowhead">1</td><td>Mean</td><td class="formula-cell">=AVERAGE(A2:A11)</td><td id="exMean"></td></tr>
+              <tr><td class="rowhead">2</td><td>Mode</td><td class="formula-cell">=MODE.SNGL(A2:A11)</td><td id="exMode"></td></tr>
+              <tr><td class="rowhead">3</td><td>Median</td><td class="formula-cell">=MEDIAN(A2:A11)</td><td id="exMedian"></td></tr>
+              <tr><td class="rowhead">4</td><td>Range</td><td class="formula-cell">=MAX(A2:A11)-MIN(A2:A11)</td><td id="exRange"></td></tr>
+              <tr><td class="rowhead">5</td><td>Variance (sample)</td><td class="formula-cell">=VAR.S(A2:A11)</td><td id="exVar"></td></tr>
+              <tr><td class="rowhead">6</td><td>Std. deviation (sample)</td><td class="formula-cell">=STDEV.S(A2:A11)</td><td id="exSd"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="exError" style="color:var(--bad);font-weight:650"></p>
+      </div>
+    </section>
+
+    <!-- ================= FORMULA SHEET ================= -->
+    <section id="formulas" class="topic">
+      <h2><span class="num">✓</span> Excel formula sheet</h2>
+      <p class="dest">Keep this page open in a second tab while you practise.</p>
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>What you want</th><th>Excel formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Count how many times a value appears</td><td><code>=COUNTIF(range, value)</code></td><td>Ungrouped data</td></tr>
+            <tr><td>Count values in each class</td><td><code>=FREQUENCY(data, bins)</code></td><td>Array formula — grouped data</td></tr>
+            <tr><td>Running total (cumulative frequency)</td><td><code>=SUM(D$2:D2)</code></td><td>Copy the formula down the column</td></tr>
+            <tr><td>Bar / column chart</td><td>Insert → Charts → Bar/Column</td><td>Use for discrete or qualitative data</td></tr>
+            <tr><td>Pie chart</td><td>Insert → Charts → Pie</td><td>Shows parts of a whole (angle = share × 360°)</td></tr>
+            <tr><td>Histogram</td><td>Insert → Statistic Chart → Histogram, or Gap Width = 0%</td><td>Bars touch — grouped continuous data</td></tr>
+            <tr><td>Ogive</td><td>Insert → Line chart (upper boundary vs cumulative frequency)</td><td>Always increases</td></tr>
+            <tr><td>Mean</td><td><code>=AVERAGE(range)</code></td><td>&nbsp;</td></tr>
+            <tr><td>Mode</td><td><code>=MODE.SNGL(range)</code></td><td>Use <code>MODE.MULT</code> if there is more than one mode</td></tr>
+            <tr><td>Median</td><td><code>=MEDIAN(range)</code></td><td>&nbsp;</td></tr>
+            <tr><td>Range</td><td><code>=MAX(range)-MIN(range)</code></td><td>&nbsp;</td></tr>
+            <tr><td>Variance</td><td><code>=VAR.S(range)</code> or <code>=VAR.P(range)</code></td><td>Sample (S) vs whole population (P)</td></tr>
+            <tr><td>Standard deviation</td><td><code>=STDEV.S(range)</code> or <code>=STDEV.P(range)</code></td><td>Square root of the variance</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= PRACTICE CHECKLIST ================= -->
+    <section id="practice" class="topic">
+      <h2><span class="num">🎮</span> Try it yourself</h2>
+      <p class="dest">Open Excel (or a free alternative like Google Sheets) and work through this checklist with your own data.</p>
+      <div class="box">
+        <ul class="checklist" id="checklist">
+          <li><input type="checkbox"><span>Type 15–20 raw values into column A.</span></li>
+          <li><input type="checkbox"><span>Build a frequency table with <code>COUNTIF</code> or <code>FREQUENCY</code>.</span></li>
+          <li><input type="checkbox"><span>Add a cumulative frequency column with a running <code>SUM</code>.</span></li>
+          <li><input type="checkbox"><span>Insert a bar chart from your frequency table.</span></li>
+          <li><input type="checkbox"><span>Insert a pie chart from a "share of total" table.</span></li>
+          <li><input type="checkbox"><span>Turn your frequency table into a histogram (gap width 0%).</span></li>
+          <li><input type="checkbox"><span>Turn your cumulative table into an ogive (line chart).</span></li>
+          <li><input type="checkbox"><span>Calculate mean, mode, median, range, variance and standard deviation with formulas.</span></li>
+        </ul>
+        <details class="check">
+          <summary>Why use Excel instead of doing it by hand?</summary>
+          <p>Excel formulas update automatically when the data changes, so you can check your by-hand answers instantly and explore "what if a value changes?" without redoing every calculation.</p>
+        </details>
+      </div>
+    </section>
+
+    <footer class="note">Unit 4 · Statistics &amp; Probability — Syllabus 4.5 · Works offline</footer>
+  </main>
+
+  <script>
+    (function () {
+      function fmt(n) { return Number.isFinite(n) ? (Math.round(n * 10000) / 10000).toString() : '—'; }
+      function mode(nums) {
+        const counts = new Map();
+        nums.forEach(n => counts.set(n, (counts.get(n) || 0) + 1));
+        let best = null, bestCount = 0;
+        counts.forEach((c, v) => { if (c > bestCount) { best = v; bestCount = c; } });
+        return bestCount > 1 ? best : null;
+      }
+      function median(nums) {
+        const s = [...nums].sort((a, b) => a - b), n = s.length;
+        return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
+      }
+      function calc() {
+        const raw = document.getElementById('exNums').value;
+        const nums = raw.split(',').map(s => Number(s.trim())).filter(n => Number.isFinite(n));
+        const err = document.getElementById('exError');
+        if (nums.length < 2) { err.textContent = 'Enter at least two numbers, separated by commas.'; return; }
+        err.textContent = '';
+        const n = nums.length;
+        const mean = nums.reduce((a, b) => a + b, 0) / n;
+        const varSample = nums.reduce((a, b) => a + (b - mean) ** 2, 0) / (n - 1);
+        document.getElementById('exMean').textContent = fmt(mean);
+        const m = mode(nums);
+        document.getElementById('exMode').textContent = m === null ? 'No mode' : fmt(m);
+        document.getElementById('exMedian').textContent = fmt(median(nums));
+        document.getElementById('exRange').textContent = fmt(Math.max(...nums) - Math.min(...nums));
+        document.getElementById('exVar').textContent = fmt(varSample);
+        document.getElementById('exSd').textContent = fmt(Math.sqrt(varSample));
+      }
+      document.getElementById('exCalc').addEventListener('click', calc);
+      calc();
+      document.querySelectorAll('#checklist input[type=checkbox]').forEach(function (box) {
+        box.addEventListener('change', function () { box.closest('li').classList.toggle('done', box.checked); });
+      });
+    })();
+  </script>
+</body>
+</html>
