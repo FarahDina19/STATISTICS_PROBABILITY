@@ -89,7 +89,17 @@
         { id: 'probability-lab', title: 'Probability Lab', url: 'probability-lab.html',
           tag: 'Lab', word: 'experiment', c1: '#e6d3f0', c2: '#d6ecf0',
           blurb: 'Syllabus 4.4: binomial distribution, binomial probability, normal distribution, normal table use and normal probability with guided visuals.',
-          how: 'Press Next › to go one slide at a time (or use the ← → keys). The topic tabs jump to Binomial, Normal, Advanced, Practice or Tips.' }
+          how: 'Press Next › to go one slide at a time (or use the ← → keys). The topic tabs jump to Binomial, Normal, Advanced, Practice or Tips.' },
+        { id: 'excel-processing', title: 'Processing Data Using Microsoft Excel', url: 'excel-processing.html',
+          tag: 'Notes', word: 'excel', c1: '#dff3e6', c2: '#c8ecd6',
+          blurb: 'Syllabus 4.5: construct a frequency table, bar chart, pie chart, histogram and ogive, and calculate central tendency and dispersion, all using Microsoft Excel.',
+          how: 'Follow the ribbon steps for each chart, then type your own data into the central tendency and dispersion calculator.',
+          sections: [
+            { label: '4.5.1 Frequency table', hash: 'table' },
+            { label: '4.5.2 Bar & pie chart', hash: 'charts' },
+            { label: '4.5.3 Histogram & ogive', hash: 'histogram' },
+            { label: '4.5.4 Central tendency & dispersion', hash: 'stats' }
+          ] }
       ]
     }
   ];
