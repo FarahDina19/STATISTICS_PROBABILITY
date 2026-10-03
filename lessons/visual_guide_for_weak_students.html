@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Guide - Probability for Weak Students</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+
+        nav {
+            background: #f8f9fa;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        nav button {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        nav button.active {
+            background: #667eea;
+            color: white;
+        }
+        nav button:hover { transform: translateY(-2px); }
+
+        .content {
+            padding: 40px;
+            display: none;
+        }
+        .content.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .example-box {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .analogy-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        h2 { color: #667eea; margin: 20px 0 15px 0; font-size: 1.8em; }
+        h3 { color: #764ba2; margin: 15px 0 10px 0; font-size: 1.3em; }
+
+        .formula {
+            background: #e8eaf6;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+            font-size: 1.1em;
+        }
+
+        .check { color: #4caf50; font-weight: bold; }
+        .wrong { color: #f44336; font-weight: bold; }
+
+        ul { margin-left: 20px; }
+        li { margin: 8px 0; }
+
+        .visual {
+            background: white;
+            border: 2px dashed #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+
+        .tip-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .important {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+
+        .chatgpt-prompt {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            nav { gap: 5px; }
+            nav button { padding: 8px 15px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Probability Made Easy</h1>
+            <p>Visual Guide for Understanding Binomial & Normal Distributions</p>
+        </header>
+
+        <nav>
+            <button class="nav-btn active" data-tab="binomial">📊 Binomial</button>
+            <button class="nav-btn" data-tab="normal">🔔 Normal</button>
+            <button class="nav-btn" data-tab="zscore">📐 Z-Score</button>
+            <button class="nav-btn" data-tab="mistakes">⚠️ Mistakes</button>
+            <button class="nav-btn" data-tab="formulas">📋 Formulas</button>
+            <button class="nav-btn" data-tab="prompts">🤖 ChatGPT Prompts</button>
+        </nav>
+
+        <!-- BINOMIAL TAB -->
+        <div id="binomial" class="content active">
+            <h2>📊 Binomial Distribution - EASY EXPLANATION</h2>
+
+            <div class="section">
+                <h3>What is Binomial? 🎯</h3>
+                <p><strong>Simple Definition:</strong> Counting successes in a fixed number of independent trials.</p>
+                <div class="tip-box">
+                    <strong>Think of it this way:</strong> You're counting something with YES/NO answers:
+                    <ul style="margin: 10px 0;">
+                        <li>✅ YES = Success</li>
+                        <li>❌ NO = Failure</li>
+                        <li>You do it a FIXED NUMBER OF TIMES</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="analogy-card">
+                <h3>🏀 Real Example 1: Basketball Free Throws</h3>
+                <p>A basketball player makes 70% of free throws.</p>
+                <ul>
+                    <li>💪 She takes <strong>10 shots</strong> (fixed n = 10)</li>
+                    <li>🎯 Each shot: MAKE (success, p = 0.7) or MISS (failure, 1-p = 0.3)</li>
+                    <li>🤔 Question: How many baskets will she probably make?</li>
+                </ul>
+                <div class="formula">P(X = k) = ¹⁰Cₖ × (0.7)^k × (0.3)^(10-k)</div>
+                <div class="tip-box">
+                    Expected: 10 × 0.7 = 7 baskets (on average)
+                </div>
+            </div>
+
+            <div class="analogy-card">
+                <h3>🏭 Real Example 2: Quality Control</h3>
+                <p>A factory makes light bulbs with 5% defective rate.</p>
+                <ul>
+                    <li>📦 Check <strong>20 bulbs</strong> (n = 20)</li>
+                    <li>🔴 Each bulb: GOOD (success) or DEFECTIVE (failure, p = 0.05)</li>
+                    <li>❓ Question: What's probability of exactly 1 defective?</li>
+                </ul>
+                <div class="formula">P(X = 1) = ²⁰C₁ × (0.05)¹ × (0.95)¹⁹</div>
+            </div>
+
+            <div class="analogy-card">
+                <h3>🪙 Simplest Example: Coin Flips</h3>
+                <div class="visual">
+Flip fair coin 5 times
+Find: P(exactly 3 heads)
+
+n = 5 (trials)
+p = 0.5 (probability of heads)
+k = 3 (wanted heads)
+
+P(X=3) = ⁵C₃ × (0.5)³ × (0.5)²
+       = 10 × 0.125 × 0.25
+       = 0.3125 (31.25% chance)
+
+Meaning: In many experiments of 5 flips,
+about 31% will have exactly 3 heads
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>📖 The Formula Breakdown</h3>
+                <table>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Meaning</th>
+                        <th>Example (basketball)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>n</strong></td>
+                        <td>Number of trials</td>
+                        <td>10 shots</td>
+                    </tr>
+                    <tr>
+                        <td><strong>p</strong></td>
+                        <td>Probability of success</td>
+                        <td>0.7 (70% make)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>k</strong></td>
+                        <td>Number of successes</td>
+                        <td>7 baskets</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ⁿCₖ</strong></td>
+                        <td>Ways to arrange k successes</td>
+                        <td>¹⁰C₇ = 120 ways</td>
+                    </tr>
+                    <tr>
+                        <td><strong>p^k</strong></td>
+                        <td>Prob. of k successes</td>
+                        <td>(0.7)⁷</td>
+                    </tr>
+                    <tr>
+                        <td><strong>(1-p)^(n-k)</strong></td>
+                        <td>Prob. of failures</td>
+                        <td>(0.3)³</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- NORMAL TAB -->
+        <div id="normal" class="content">
+            <h2>🔔 Normal Distribution - EASY EXPLANATION</h2>
+
+            <div class="section">
+                <h3>What is Normal Distribution? 📊</h3>
+                <p><strong>Simple Definition:</strong> A bell-shaped curve that describes measurements.</p>
+                <div class="tip-box">
+                    <strong>Use it when:</strong>
+                    <ul>
+                        <li>📏 Measuring something (height, weight, time)</li>
+                        <li>📈 Data makes a bell shape</li>
+                        <li>🔄 Symmetric (same left and right)</li>
+                        <li>🎯 Most values in the middle, fewer at extremes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="analogy-card">
+                <h3>📚 Real Example 1: Test Scores</h3>
+                <p>Class test scores follow normal distribution:</p>
+                <ul>
+                    <li>📊 Average (mean) = 70%</li>
+                    <li>📉 Spread (SD) = 10%</li>
+                    <li>❓ Question: What % scored between 60% and 80%?</li>
+                </ul>
+                <div class="visual">
+ANSWER: About 68%
+
+Why? Because 60% = 70% - 10% (one SD below)
+     And 80% = 70% + 10% (one SD above)
+
+One SD on each side of mean = 68% of data
+                </div>
+            </div>
+
+            <div class="analogy-card">
+                <h3>🚚 Real Example 2: Delivery Time</h3>
+                <p>Pizza delivery time:</p>
+                <ul>
+                    <li>⏱️ Average = 30 minutes</li>
+                    <li>📊 Standard deviation = 5 minutes</li>
+                    <li>❓ Question: Probability of delivery in ≤ 35 minutes?</li>
+                </ul>
+                <div class="formula">z = (35 - 30) / 5 = 1</div>
+                <div class="tip-box">
+                    <strong>Result:</strong> 84.13% of deliveries arrive by 35 minutes
+                </div>
+            </div>
+
+            <div class="analogy-card">
+                <h3>📏 Real Example 3: Height</h3>
+                <p>Student heights:</p>
+                <ul>
+                    <li>📏 Average = 165 cm</li>
+                    <li>📊 SD = 8 cm</li>
+                    <li>❓ Question: % taller than 173 cm?</li>
+                </ul>
+                <div class="visual">
+z = (173 - 165) / 8 = 1
+
+P(X > 173) = 1 - 0.8413 = 0.1587
+
+Answer: About 15.87% are taller
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>🌟 The Magic 68-95-99.7 Rule</h3>
+                <div class="visual">
+Within 1 standard deviation: 68% of data
+    ▒▒▒▒▒▒▒▒▒ 68% ▒▒▒▒▒▒▒▒▒
+    μ-σ      μ      μ+σ
+
+Within 2 standard deviations: 95% of data
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒ 95% ▒▒▒▒▒▒▒▒▒▒▒▒▒
+    μ-2σ     μ      μ+2σ
+
+Within 3 standard deviations: 99.7% of data
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ 99.7% ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+    μ-3σ     μ      μ+3σ
+                </div>
+                <div class="tip-box">
+                    <strong>Example:</strong> Test scores: μ=70, σ=10
+                    <ul>
+                        <li>68% score between 60-80</li>
+                        <li>95% score between 50-90</li>
+                        <li>99.7% score between 40-100</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Z-SCORE TAB -->
+        <div id="zscore" class="content">
+            <h2>📐 Z-Score: The Translator Tool</h2>
+
+            <div class="section">
+                <h3>What is a Z-Score? 🔧</h3>
+                <p><strong>Definition:</strong> A z-score tells you how many standard deviations a value is away from the mean.</p>
+                <div class="tip-box">
+                    <strong>Think of it as:</strong> A "translation" from your original units to "how many SDs"
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h3>🔄 The Translation Process</h3>
+                <div class="visual">
+ORIGINAL QUESTION:
+Test score = 75 out of 100
+Doesn't tell us much by itself!
+
+TRANSLATION:
+Mean = 70, SD = 5
+z = (75 - 70) / 5 = 1
+
+MEANING:
+z = 1 → "1 standard deviation ABOVE the mean"
+
+THIS MEANS:
+✓ Your score is 1 SD better than average
+✓ 84.13% of people score below you
+                </div>
+            </div>
+
+            <div class="analogy-card">
+                <h3>Why Z-Scores Matter? 🎯</h3>
+                <p>Compare apples to apples:</p>
+                <ul>
+                    <li>❌ Test 1: Score 75 out of 100</li>
+                    <li>❌ Test 2: Score 45 out of 50</li>
+                    <li>🤔 Which is better? Can't compare directly!</li>
+                </ul>
+                <p><strong>✅ Solution: Use z-scores!</strong></p>
+                <ul>
+                    <li>Test 1: z = (75-70)/5 = 1.0</li>
+                    <li>Test 2: z = (45-40)/4 = 1.25</li>
+                    <li>✓ Test 2 is better (higher z-score)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>📊 Z-Score Table (Φ(z))</h3>
+                <p>After you calculate z, you use a table to find the probability:</p>
+                <table>
+                    <tr>
+                        <th>z value</th>
+                        <th>Φ(z) (left area)</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>0.00</td>
+                        <td>0.5000</td>
+                        <td>50% below mean</td>
+                    </tr>
+                    <tr>
+                        <td>1.00</td>
+                        <td>0.8413</td>
+                        <td>84.13% below this point</td>
+                    </tr>
+                    <tr>
+                        <td>-1.00</td>
+                        <td>0.1587</td>
+                        <td>15.87% below this point</td>
+                    </tr>
+                    <tr>
+                        <td>2.00</td>
+                        <td>0.9772</td>
+                        <td>97.72% below this point</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="important">
+                <strong>💡 KEY INSIGHT:</strong> The table gives you the area to the LEFT of z
+                <ul style="margin: 10px 0;">
+                    <li>For right area: 1 - Φ(z)</li>
+                    <li>For area between: Φ(z₂) - Φ(z₁)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MISTAKES TAB -->
+        <div id="mistakes" class="content">
+            <h2>⚠️ Common Mistakes - Learn to AVOID Them</h2>
+
+            <div class="section">
+                <h3>❌ MISTAKE 1: Using σ² Instead of σ</h3>
+                <div class="wrong">WRONG:</div>
+                <pre>z = (x - μ) / σ²</pre>
+                <div class="check">CORRECT:</div>
+                <pre>z = (x - μ) / σ</pre>
+                <div class="important">
+                    <strong>Hint:</strong> The second number is VARIANCE (σ²)
+                    <ul style="margin: 10px 0;">
+                        <li>If N(30, 25), then σ² = 25</li>
+                        <li>You need σ = √25 = 5</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>❌ MISTAKE 2: Forgetting to Add Probabilities</h3>
+                <div class="wrong">WRONG:</div>
+                <pre>P(X ≤ 3) = P(X = 3)</pre>
+                <div class="check">CORRECT:</div>
+                <pre>P(X ≤ 3) = P(X=0) + P(X=1) + P(X=2) + P(X=3)</pre>
+                <div class="tip-box">
+                    <strong>Remember:</strong> "At most 3" means 0, 1, 2, AND 3
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>❌ MISTAKE 3: Reading Normal Table Wrong</h3>
+                <div class="wrong">WRONG:</div>
+                <pre>Using right-tail area when table gives left area</pre>
+                <div class="check">CORRECT:</div>
+                <pre>Φ(z) is ALWAYS left area
+For right area: 1 - Φ(z)
+For middle area: Φ(z₂) - Φ(z₁)</pre>
+                <div class="tip-box">
+                    <strong>The table always shows area to the LEFT</strong>
+                    <ul style="margin: 10px 0;">
+                        <li>Φ(1) = 0.8413 means 84.13% to the left</li>
+                        <li>So 15.87% to the right</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>❌ MISTAKE 4: Confusing p and (1-p)</h3>
+                <div class="wrong">WRONG:</div>
+                <pre>Using success probability when you need failure probability</pre>
+                <div class="check">CORRECT:</div>
+                <pre>P(X = k) = ⁿCₖ × p^k × (1-p)^(n-k)
+                        ↑          ↑ successes
+                        └─ failures (1-p)</pre>
+                <div class="tip-box">
+                    <strong>Tip:</strong> If p = 0.7 (success)
+                    <ul style="margin: 10px 0;">
+                        <li>Then 1-p = 0.3 (failure)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>❌ MISTAKE 5: Forgetting Independence</h3>
+                <div class="wrong">WRONG:</div>
+                <pre>Using binomial when events are NOT independent</pre>
+                <div class="check">CORRECT:</div>
+                <p>Check: Does each trial affect the next?</p>
+                <div class="important">
+                    <strong>Examples:</strong>
+                    <ul>
+                        <li>✅ Drawing WITH replacement (binomial OK)</li>
+                        <li>❌ Drawing WITHOUT replacement (binomial NOT OK)</li>
+                        <li>✅ Coin flips (independent)</li>
+                        <li>❌ Drawing cards from deck without replacing (dependent)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULAS TAB -->
+        <div id="formulas" class="content">
+            <h2>📋 All Formulas Summary</h2>
+
+            <div class="section">
+                <h3>Binomial Formulas</h3>
+                <div class="formula"><strong>Main Formula:</strong> P(X = k) = ⁿCₖ × p^k × (1-p)^(n-k)</div>
+                <div class="formula"><strong>Expected Value:</strong> E(X) = np</div>
+                <div class="formula"><strong>Variance:</strong> Var(X) = np(1-p)</div>
+                <div class="formula"><strong>Standard Deviation:</strong> SD = √[np(1-p)]</div>
+                <div class="formula"><strong>Combination:</strong> ⁿCₖ = n! / [k!(n-k)!]</div>
+            </div>
+
+            <div class="section">
+                <h3>Normal Formulas</h3>
+                <div class="formula"><strong>Z-Score:</strong> z = (x - μ) / σ</div>
+                <div class="formula"><strong>Cumulative Probability:</strong> P(X ≤ x) = Φ(z)</div>
+                <div class="formula"><strong>Right Tail:</strong> P(X > x) = 1 - Φ(z)</div>
+                <div class="formula"><strong>Range Probability:</strong> P(a ≤ X ≤ b) = Φ(z_b) - Φ(z_a)</div>
+            </div>
+
+            <div class="section">
+                <h3>When to Use Each Formula</h3>
+                <table>
+                    <tr>
+                        <th>Question Type</th>
+                        <th>Formula</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>Exactly k successes</td>
+                        <td>P(X=k) = ⁿCₖ p^k (1-p)^(n-k)</td>
+                        <td>3 heads in 5 flips</td>
+                    </tr>
+                    <tr>
+                        <td>At most k successes</td>
+                        <td>Sum P(X=0) to P(X=k)</td>
+                        <td>0-3 baskets in 10 shots</td>
+                    </tr>
+                    <tr>
+                        <td>Average successes</td>
+                        <td>E(X) = np</td>
+                        <td>Expected heads in 5 flips</td>
+                    </tr>
+                    <tr>
+                        <td>Convert measurement to z</td>
+                        <td>z = (x-μ)/σ</td>
+                        <td>Score of 75 vs mean 70</td>
+                    </tr>
+                    <tr>
+                        <td>Probability ≤ value</td>
+                        <td>Φ(z) from table</td>
+                        <td>Height ≤ 170 cm</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- CHATGPT PROMPTS TAB -->
+        <div id="prompts" class="content">
+            <h2>🤖 ChatGPT Prompts for Diagrams</h2>
+            <p>Copy and paste these into ChatGPT to generate helpful diagrams:</p>
+
+            <div class="section">
+                <h3>Prompt 1: Basketball Free Throws</h3>
+                <div class="chatgpt-prompt">
+                    "Create a diagram showing a basketball player taking 10 shots. Use green circles for made shots (7 total) and red circles for misses (3 total). At the top write 'p = 0.7' and below show a bar chart of P(X=k) for k=0 to 10. Make it colorful for teaching."
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prompt 2: Normal Distribution Bell Curve</h3>
+                <div class="chatgpt-prompt">
+                    "Draw a bell curve (normal distribution) centered at μ=30. Mark vertical lines at ±σ (29-31), ±2σ (28-32), and ±3σ (27-33). Shade regions: center 68% in light blue, next 27% in lighter blue, outer 5% in very light blue. Label percentages. Example: Delivery time with μ=30min, σ=1min."
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prompt 3: Z-Score Translator</h3>
+                <div class="chatgpt-prompt">
+                    "Create an illustration showing z-score transformation. Left side: 'Score 75 (out of 100)'. Middle: formula z=(x-μ)/σ. Right side: 'z=1.0 (1 SD above mean)'. Show a scale below with mean at 70, marked at 65, 70, 75, 80, 85 with z values 0, 0, 1, 2. Use warm colors above mean."
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prompt 4: All Coin Flip Outcomes</h3>
+                <div class="chatgpt-prompt">
+                    "Show all 32 possible sequences of 5 coin flips. Color heads gold, tails silver. Group by: 0H (1 way), 1H (5 ways), 2H (10 ways), 3H (10 ways), 4H (5 ways), 5H (1 way). Below show bar chart P(X=k). Title: '5 Fair Coin Flips - All Possible Outcomes'. Make colorful and countable."
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prompt 5: 68-95-99.7 Rule Visualization</h3>
+                <div class="chatgpt-prompt">
+                    "Draw a bell curve with three shaded regions: (1) Center ±1σ shaded blue labeled '68%', (2) ±2σ shaded lighter blue labeled '95%', (3) ±3σ shaded lightest blue labeled '99.7%'. Mark: mean, +σ, +2σ, +3σ with dashed lines. Example: test scores μ=70, σ=10. Values: 50, 60, 70, 80, 90, 100 on x-axis."
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prompt 6: Cumulative vs Individual Probability</h3>
+                <div class="chatgpt-prompt">
+                    "Two side-by-side bar charts: LEFT - Binomial bars k=0,1,2,3,4,5 with bar k=2 highlighted red (P(X=2)). RIGHT - Same bars but k=0,1,2 all highlighted in light red (P(X≤2)). Arrow between says 'Cumulative = Add bars'. Caption: 'Individual vs Cumulative Probability'. Use simple colors for weak students."
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prompt 7: Normal Distribution Areas</h3>
+                <div class="chatgpt-prompt">
+                    "Show a bell curve. Shade 'left area' from -∞ to 35 minutes in blue (area=0.8413). Add vertical dashed line at 35. Mark: μ=30 in center, σ=5 on scale. Show z=1 label. Title: 'P(X≤35) = 0.8413' (84.13% arrive by 35 minutes). Example: delivery time. For teaching."
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prompt 8: Decision Tree - Which Distribution?</h3>
+                <div class="chatgpt-prompt">
+                    "Create a flowchart: 'What type of data?' → 'Can count in whole numbers?' YES→'Binomial' (examples: heads, defects), NO→'Normal' (examples: height, weight). For Binomial box: list 'Fixed n? Two outcomes? Same p? Independent?' For Normal box: 'Bell-shaped? Symmetric?' Use green for Binomial path, blue for Normal path. For teaching weak students."
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📚 Probability Lab Visual Guide | For Weak Students</p>
+            <p>All formulas are correct and match the syllabus sections 4.4.1-4.4.5</p>
+            <p>✅ Last verified: 2024 | Use with the interactive Probability Lab</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all buttons and contents
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+
+                // Add active to clicked button and corresponding content
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
