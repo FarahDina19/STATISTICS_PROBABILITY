@@ -28,7 +28,8 @@ https://dina85hai.github.io/STATISTICS_PROBABILITY/
 
 | File | What it is |
 |---|---|
-| `index.html` | Landing page (learning path, progress) |
+| `index.html` | Landing page (interactive coin-flip hero, learning path, progress) |
+| `public/coin-flip.js` | Fair coin flips, session counters and percentage bars; honours reduced motion |
 | `statistics-notes.html` | Statistics notes (formulas are rendered by `src/statistics.ts`) |
 | `presentation.html` | Probability slides (styles compiled by Tailwind) |
 | `lessons/*.html` | Stand-alone lesson pages, copied to the site as they are |
@@ -58,3 +59,12 @@ npm run dev        # http://localhost:3000
 npm run typecheck  # check the TypeScript files
 npm run build      # output in dist/
 ```
+
+To preview the coin-flip hero, open http://localhost:3000 after starting the dev server.
+Try **Flip once** and **Flip 10 times**: each result updates the Heads/Tails counts and
+bars (observed percentages, not guaranteed 50/50 results). Counts reset on reload.
+Check a phone-sized viewport and your device's reduced-motion setting; flips still
+work without the coin animation. The heading and **Start Learning** link remain visible.
+For a production preview, run `npm run build` then `npm run preview` and open the URL
+printed in the terminal. The plain HTML/CSS/JavaScript needs no runtime backend and is
+included in the existing GitHub Pages build.
