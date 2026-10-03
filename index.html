@@ -50,9 +50,12 @@
       position: relative;
       overflow: hidden;
       border-radius: 18px;
-      aspect-ratio: 16 / 9;
-      min-height: 320px;
-      max-height: 560px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .85fr);
+      align-items: center;
+      gap: 28px;
+      padding: 76px 28px 60px;
+      min-height: 480px;
       width: 100%;
       background: var(--blush-2);
       isolation: isolate;
@@ -72,7 +75,6 @@
     }
 
     .brand {
-      position: absolute; inset: 0;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; color: #fff; padding: 0 16px;
       text-shadow: 0 1px 3px rgba(90, 35, 52, .55), 0 2px 18px rgba(122, 58, 77, .55);
@@ -86,6 +88,36 @@
       font-size: clamp(34px, 7vw, 76px);
       line-height: .8; margin-top: -.05em; opacity: .92;
     }
+    .brand .cta { margin-top: 28px; text-shadow: none; }
+    .coin-demo {
+      padding: 22px; border: 1px solid var(--line); border-radius: 18px;
+      background: var(--card); color: var(--ink); text-align: center;
+    }
+    .coin-demo h2 { margin: 0 0 8px; font-size: 20px; }
+    .coin-demo p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .coin {
+      display: grid; place-items: center; width: 86px; height: 86px; margin: 16px auto;
+      border: 5px double var(--accent); border-radius: 50%; background: var(--cream);
+      color: var(--accent); font-size: 22px; font-weight: 700;
+      box-shadow: 0 6px 0 var(--blush-3);
+    }
+    .coin-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .coin-controls[hidden] { display: none; }
+    .coin-controls button {
+      min-height: 44px; padding: 8px 14px; border: 1px solid var(--accent); border-radius: 999px;
+      background: var(--accent); color: var(--on-accent); font: 700 14px 'Quicksand', system-ui, sans-serif;
+      cursor: pointer;
+    }
+    .coin-controls button:disabled { opacity: .6; cursor: wait; }
+    .coin-controls button:focus-visible, .brand .cta:focus-visible {
+      outline: 3px solid var(--ink); outline-offset: 3px;
+    }
+    .coin-demo .coin-status { min-height: 3em; margin: 12px 0; }
+    .coin-stat { margin-top: 12px; text-align: left; }
+    .coin-stat-label { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+    .coin-bar { height: 12px; margin-top: 6px; overflow: hidden; border-radius: 999px; background: var(--blush-2); }
+    .coin-bar-fill { height: 100%; width: 0; border-radius: inherit; background: var(--accent); transition: width .2s ease; }
+    .coin-stat:last-child .coin-bar-fill { background: var(--muted); }
 
     .top-right {
       position: absolute; top: 14px; right: 16px;
@@ -195,10 +227,16 @@
 
     footer { text-align: center; color: var(--muted); font-size: 13px; padding: 40px 16px 28px; }
 
-    @media (max-width: 560px) {
-      .hero { aspect-ratio: 4 / 5; max-height: 520px; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: minmax(0, 1fr); padding: 76px 16px 60px; gap: 28px; }
+      .coin-demo { width: 100%; max-width: 400px; margin: 0 auto; padding: 18px; }
     }
-    @media (prefers-reduced-motion: reduce) { .bokeh span { animation: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .bokeh span { animation: none; }
+      .coin-bar-fill, .brand .cta { transition: none; }
+      .brand .cta:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -209,7 +247,32 @@
       <div class="brand">
         <h1>statistics + probability</h1>
         <div class="script">collections</div>
+        <a class="cta" href="#collection">Start Learning →</a>
       </div>
+
+      <section class="coin-demo" aria-labelledby="coin-title">
+        <h2 id="coin-title">A little chance, a little discovery</h2>
+        <p>Each fair flip has a 50% chance of Heads or Tails. What will you get?</p>
+        <div id="hero-coin" class="coin" aria-hidden="true">H / T</div>
+        <div id="coin-controls" class="coin-controls" hidden>
+          <button id="flip-once" type="button">Flip once</button>
+          <button id="flip-ten" type="button">Flip 10 times</button>
+        </div>
+        <p id="coin-status" class="coin-status" role="status" aria-live="polite" aria-atomic="true">Ready to explore? Flip the coin.</p>
+        <noscript><p>Enable JavaScript to flip the coin. You can still start learning below.</p></noscript>
+        <div class="coin-stat">
+          <div class="coin-stat-label"><span>Heads: <b id="heads-count">0</b></span><span id="heads-percent">0%</span></div>
+          <div id="heads-bar" class="coin-bar" role="meter" aria-label="Heads percentage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="coin-bar-fill"></div>
+          </div>
+        </div>
+        <div class="coin-stat">
+          <div class="coin-stat-label"><span>Tails: <b id="tails-count">0</b></span><span id="tails-percent">0%</span></div>
+          <div id="tails-bar" class="coin-bar" role="meter" aria-label="Tails percentage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="coin-bar-fill"></div>
+          </div>
+        </div>
+      </section>
 
       <div class="top-right">
         <a class="signin" href="probability-practice.html">Practice</a>
@@ -286,5 +349,6 @@
     <footer>statistics + probability collections</footer>
   </main>
   <script src="./learner.js" data-lesson="home"></script>
+  <script src="./coin-flip.js" defer></script>
 </body>
 </html>
