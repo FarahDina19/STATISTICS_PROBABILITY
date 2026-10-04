@@ -248,6 +248,10 @@ P(X=3) = ⁵C₃ × (0.5)³ × (0.5)²
 Meaning: In many experiments of 5 flips,
 about 31% will have exactly 3 heads
                 </div>
+                <div class="chatgpt-prompt">
+                    <strong>🤖 Diagram prompt: Exactly 3 heads</strong>
+                    <p>Show all 32 equally likely sequences of 5 independent fair coin flips. Label each coin H or T and highlight the 10 sequences with exactly 3 heads. Show ⁵C₃ = 10 and P(X=3) = 10/32 = 0.3125 (31.25%). Use gold for heads and silver for tails, with text labels.</p>
+                </div>
             </div>
 
             <div class="section">
@@ -340,6 +344,10 @@ One SD on each side of mean = 68% of data
                 <div class="tip-box">
                     <strong>Result:</strong> 84.13% of deliveries arrive by 35 minutes
                 </div>
+                <div class="chatgpt-prompt">
+                    <strong>🤖 Diagram prompt: Normal cumulative probability</strong>
+                    <p>Draw two aligned bell curves for normally distributed delivery time with μ=30 minutes and σ=5 minutes, and for standard normal Z. Mark X=35 and Z=1, showing z=(35−30)/5=1. Shade the area to the left of each cutoff. Label P(X≤35) = P(Z≤1) ≈ 0.8413: about 84.13% arrive by 35 minutes. Explain that probability is shaded area, not curve height.</p>
+                </div>
             </div>
 
             <div class="analogy-card">
@@ -381,6 +389,10 @@ Within 3 standard deviations: 99.7% of data
                         <li>95% score between 50-90</li>
                         <li>99.7% score between 40-100</li>
                     </ul>
+                </div>
+                <div class="chatgpt-prompt">
+                    <strong>🤖 Diagram prompt: 68-95-99.7 rule</strong>
+                    <p>Draw three side-by-side normal bell curves for test scores with μ=70 and σ=10. Mark 40, 50, 60, 70, 80, 90, 100 on each axis. Shade 60–80 (μ±σ), 50–90 (μ±2σ), and 40–100 (μ±3σ), respectively. Label the shaded areas approximately 68%, 95%, and 99.7%. Use clear text labels as well as colour.</p>
                 </div>
             </div>
         </div>
@@ -502,6 +514,10 @@ THIS MEANS:
                 <div class="tip-box">
                     <strong>Remember:</strong> "At most 3" means 0, 1, 2, AND 3
                 </div>
+                <div class="chatgpt-prompt">
+                    <strong>🤖 Diagram prompt: Cumulative vs individual probability</strong>
+                    <p>For X counting heads in 5 independent fair coin flips, draw two bar charts with identical axes k=0,1,2,3,4,5 and heights 1/32, 5/32, 10/32, 10/32, 5/32, 1/32. On the left highlight only k=3: P(X=3)=10/32=0.3125. On the right highlight k=0 through 3: P(X≤3)=26/32=0.8125. Label “Exactly 3: one bar” and “At most 3: add four bars”. Use text labels as well as colour.</p>
+                </div>
             </div>
 
             <div class="section">
@@ -616,7 +632,7 @@ For middle area: Φ(z₂) - Φ(z₁)</pre>
         <!-- CHATGPT PROMPTS TAB -->
         <div id="prompts" class="content">
             <h2>🤖 ChatGPT Prompts for Diagrams</h2>
-            <p>Copy and paste these into ChatGPT to generate helpful diagrams:</p>
+            <p>Copy and paste these into ChatGPT to generate helpful diagrams. Prompts 4–7 also appear beside the matching examples in the Binomial, Normal, and Common Mistakes tabs. Read the example, sketch or generate the diagram, then check its labels and probabilities against the calculation.</p>
 
             <div class="section">
                 <h3>Prompt 1: Basketball Free Throws</h3>
@@ -642,28 +658,28 @@ For middle area: Φ(z₂) - Φ(z₁)</pre>
             <div class="section">
                 <h3>Prompt 4: All Coin Flip Outcomes</h3>
                 <div class="chatgpt-prompt">
-                    "Show all 32 possible sequences of 5 coin flips. Color heads gold, tails silver. Group by: 0H (1 way), 1H (5 ways), 2H (10 ways), 3H (10 ways), 4H (5 ways), 5H (1 way). Below show bar chart P(X=k). Title: '5 Fair Coin Flips - All Possible Outcomes'. Make colorful and countable."
+                    "Show all 32 equally likely sequences of 5 independent fair coin flips. Label each coin H or T and highlight the 10 sequences with exactly 3 heads. Show ⁵C₃ = 10 and P(X=3) = 10/32 = 0.3125 (31.25%). Use gold for heads and silver for tails, with text labels."
                 </div>
             </div>
 
             <div class="section">
                 <h3>Prompt 5: 68-95-99.7 Rule Visualization</h3>
                 <div class="chatgpt-prompt">
-                    "Draw a bell curve with three shaded regions: (1) Center ±1σ shaded blue labeled '68%', (2) ±2σ shaded lighter blue labeled '95%', (3) ±3σ shaded lightest blue labeled '99.7%'. Mark: mean, +σ, +2σ, +3σ with dashed lines. Example: test scores μ=70, σ=10. Values: 50, 60, 70, 80, 90, 100 on x-axis."
+                    "Draw three side-by-side normal bell curves for test scores with μ=70 and σ=10. Mark 40, 50, 60, 70, 80, 90, 100 on each axis. Shade 60–80 (μ±σ), 50–90 (μ±2σ), and 40–100 (μ±3σ), respectively. Label the shaded areas approximately 68%, 95%, and 99.7%. Use clear text labels as well as colour."
                 </div>
             </div>
 
             <div class="section">
                 <h3>Prompt 6: Cumulative vs Individual Probability</h3>
                 <div class="chatgpt-prompt">
-                    "Two side-by-side bar charts: LEFT - Binomial bars k=0,1,2,3,4,5 with bar k=2 highlighted red (P(X=2)). RIGHT - Same bars but k=0,1,2 all highlighted in light red (P(X≤2)). Arrow between says 'Cumulative = Add bars'. Caption: 'Individual vs Cumulative Probability'. Use simple colors for weak students."
+                    "For X counting heads in 5 independent fair coin flips, draw two bar charts with identical axes k=0,1,2,3,4,5 and heights 1/32, 5/32, 10/32, 10/32, 5/32, 1/32. On the left highlight only k=3: P(X=3)=10/32=0.3125. On the right highlight k=0 through 3: P(X≤3)=26/32=0.8125. Label “Exactly 3: one bar” and “At most 3: add four bars”. Use text labels as well as colour."
                 </div>
             </div>
 
             <div class="section">
                 <h3>Prompt 7: Normal Distribution Areas</h3>
                 <div class="chatgpt-prompt">
-                    "Show a bell curve. Shade 'left area' from -∞ to 35 minutes in blue (area=0.8413). Add vertical dashed line at 35. Mark: μ=30 in center, σ=5 on scale. Show z=1 label. Title: 'P(X≤35) = 0.8413' (84.13% arrive by 35 minutes). Example: delivery time. For teaching."
+                    "Draw two aligned bell curves for normally distributed delivery time with μ=30 minutes and σ=5 minutes, and for standard normal Z. Mark X=35 and Z=1, showing z=(35−30)/5=1. Shade the area to the left of each cutoff. Label P(X≤35) = P(Z≤1) ≈ 0.8413: about 84.13% arrive by 35 minutes. Explain that probability is shaded area, not curve height."
                 </div>
             </div>
 
