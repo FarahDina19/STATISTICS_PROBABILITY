@@ -51,6 +51,20 @@ Push to `main` and the site redeploys.
 In the statistics notes, each worked example starts with its formula (`class="formula"`), and
 every step is typeset with KaTeX via `<span class="tex" data-tex="...">`.
 
+## GitHub Pages deployment
+
+In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**,
+not **Deploy from a branch**. The existing `.github/workflows/deploy.yml` builds
+the site with Vite, uploads `dist/` as the `github-pages` artifact, and deploys it.
+No additional workflow is needed.
+
+Branch publishing also starts GitHub's automatic Jekyll **pages build and deployment**
+workflow, which is not the Vite build. If its `deploy` job reports
+`No artifacts named "github-pages" were found` while **Deploy to GitHub Pages**
+succeeds, check the publishing source above. Changing this setting requires a
+repository administrator, maintainer, or someone with permission to manage Pages;
+the workflow's `GITHUB_TOKEN` cannot change it.
+
 ## Local development
 
 ```
