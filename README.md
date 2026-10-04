@@ -82,3 +82,9 @@ work without the coin animation. The heading and **Start Learning** link remain 
 For a production preview, run `npm run build` then `npm run preview` and open the URL
 printed in the terminal. The plain HTML/CSS/JavaScript needs no runtime backend and is
 included in the existing GitHub Pages build.
+
+## Probability Lab diagrams
+
+Probability Lab includes 14 supplied diagrams beside the matching guided explanations and examples, plus a Diagrams reference tab. Images open at full size and load lazily; each includes descriptive alternative text, a teaching caption, and an optional copyable ChatGPT prompt. The original artwork is preserved, with visible notes identifying illustration errors and rounding conventions.
+
+Assets are in `public/probability-images/`; placement and captions are in `public/probability-diagrams.js`, with responsive styles in `public/probability-diagrams.css`. Vite copies these assets into `dist/`.
