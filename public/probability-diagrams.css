@@ -11,3 +11,5 @@
 .diagram-copy-status{display:block;margin-top:8px;color:#a7f3d0}
 .diagram-reference{background:#192237}
 @media(max-width:600px){.lesson-diagram{padding:10px;margin:20px 0}.lesson-diagram figcaption,.diagram-note{font-size:14px}.diagram-prompt{padding:10px}}
+
+.lesson-diagram figure{margin:18px 0 0}.diagram-formula{padding:14px 18px;margin:16px 0;border-left:4px solid #6ee7b7;background:#113b35;color:#effff7;border-radius:8px;font:20px/1.8 Georgia,serif;overflow-wrap:anywhere}.diagram-prompt{padding:16px;border:1px solid #69738c;border-radius:10px;margin:16px 0}.diagram-prompt h4{margin:0 0 8px;font-size:17px}.diagram-prompt button{max-width:100%;white-space:normal}
