@@ -20,9 +20,8 @@ https://dina85hai.github.io/STATISTICS_PROBABILITY/
    syllabus 4.3 subtopics with interactive destination examples → Practice (`lessons/probability-practice.html`): every exercise on one page,
    grouped by skill and ordered from easy to hard
 
-3. **Probability Lab**: Guided binomial and normal distributions (`lessons/probability-lab.html`) as a slide show like the
-   presentation: every guided step and explorer is one slide (Previous / Next, ← → keys, `#7` opens slide 7 and
-   `#normal` opens a topic), with interactive graphs and step-by-step calculations.
+3. **Probability Lab**: Guided binomial and normal distributions (`lessons/probability-lab.html`) in topic tabs,
+   with diagrams beside explanations, interactive graphs and step-by-step calculations.
 
 ## Files
 
@@ -85,6 +84,6 @@ included in the existing GitHub Pages build.
 
 ## Probability Lab diagrams
 
-Probability Lab includes 14 supplied diagrams beside the matching guided explanations and examples, plus a Diagrams reference tab. Images open at full size and load lazily; each includes descriptive alternative text, a teaching caption, and an optional copyable ChatGPT prompt. The original artwork is preserved, with visible notes identifying illustration errors and rounding conventions.
+Probability Lab places eight diagram topics beside their matching explanations: three-coin outcomes, probability table and bars, model choice, exact/cumulative binomial selections, normal SD bands, raw/z axes, normal regions, and table lookup. All nine original reference cards remain in the Diagrams tab, including the expected-count example, with teaching captions, quick questions and feedback.
 
-Assets are in `public/probability-images/`; placement and captions are in `public/probability-diagrams.js`, with responsive styles in `public/probability-diagrams.css`. Vite copies these assets into `dist/`.
+Reference cards, explicit insertion slots and their cloning logic live in `lessons/probability-lab.html`; there are no duplicate element IDs. Most artwork is inline SVG; the empirical-rule card reuses the accurate `public/probability-images/normal-bell-curve.svg`. The calculator charts redraw on tab activation and resize. The normal table uses cumulative left areas Φ(z); notes distinguish other table conventions and rounded empirical-rule percentages. Vite publishes the lesson and assets in `dist/`.
