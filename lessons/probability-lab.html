@@ -8,6 +8,10 @@ body{background:linear-gradient(135deg,#7544d6 0%,#a92c75 48%,#2864af 100%);back
 header{background:#171527ed;border-color:#8062a9}.brand{font-size:26px}.brand span{color:#c4b5fd}.wrap{max-width:1240px}.badge,.pill{background:#382553;color:#eee4ff;border-color:#9576be}
 main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172a47ed);border:1px solid #b397e3;padding:38px}.hero p{font-size:21px}
 .card{background:#1e293bf5;border:1px solid #8863b3;box-shadow:0 10px 30px #1511261f}.formula{background:#123c36;color:#91f2c4;border-color:#34d399;font-size:23px}.step{background:#192236;border-color:#3a4d74}.step strong,.card h3,.card p,.card li,.card h2{color:#f8fafc}.formula,.result,.error,.notice,.chart-legend,.summary-list .step{color:#f8fafc}.result,.stats strong{color:#6ee7b7}.step,.controls label{color:#e2e8f0}.controls input,select{background:#111c30;color:#fff;border-color:#8290aa}.canvas,.chart{background:#f8faff;border:3px solid #566889}.notice{background:#493915;color:#ffebbd}.diagram-card{background:#1e293bf5;border-color:#7d6bb9}.diagram-figure{background:#101c2f;border-color:#4d5d82}.diagram-rule{background:#3d2c0d;border-left-color:#fbbf24;color:#fff3c4}.diagram-prompt{background:#12273d;border-color:#6780b6;color:#e9f2ff}.diagram-feedback{background:#123d2b;border-color:#5cd6a3;color:#d9fff0}.good{background:#123d2b!important;color:#c6ffe0!important;border-color:#6ee7b7!important}.bad{background:#49212d!important;color:#ffe1e6!important;border-color:#fda4af!important}.good+.feedback{color:#d0ffe1}.diagram-grid{margin-top:18px}.button,.primary,.action-btn{background:#342646;border-color:#997dbf;color:#fff}.button:hover,.primary:hover,.action-btn:hover{background:#533569;border-color:#f0abdc}.type-badge{display:inline-flex;align-items:center;gap:6px;background:#382553;color:#f2ebff;border:1px solid #9a7cd1;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}.nav button{background:#2a2440;border-color:#8c74b8;color:#f5eaff}.nav button[aria-selected=true]{background:#4b34a3;border-color:#d8c4ff;color:#fff}.summary-list .step{background:#192236;border:1px solid #3a4d74}.choices button{background:#24314f;border-color:#6b7da6;color:#ebf3ff}.choices button:hover{background:#334a77}.small{color:#cbd5e1}footer{color:#f0e9ff}.card p,.card li{color:#edf3f8}.card h2,.card h3{color:#fff}.small,.step .small{color:#cbd5e1}.quizfeedback{background:#162338;border:1px solid #4d5d82;color:#ebf3ff}.deck .off{display:none!important}.deck .guidefoot,.deck .chapterbar,.deck footer{display:none!important}.deck .guidebody{min-height:0}.deck .grid.one{grid-template-columns:1fr}.deck main{min-height:0;padding-bottom:120px}.deck .panel.active{animation:slidein .25s ease}@keyframes slidein{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}@media(max-width:720px){body{font-size:17px}.hero{padding:24px}.hero p{font-size:18px}.outcomes{grid-template-columns:repeat(2,1fr)}.guideboxgrid{grid-template-columns:1fr}.guidebody{min-height:0}.nav{grid-template-columns:repeat(2,1fr)}.diagram-grid{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.grid > *,.diagram-grid > *,.diagram-header h3,.controls > *{min-width:0}.grid > [data-diagram-slot] > .diagram-card{height:100%}
+.controls input,.controls select{min-width:0;width:100%}
+canvas{height:250px}.diagram-card h3{color:#f8fafc}
+.diagram-figure img{width:100%;height:auto}
 </style><link rel="stylesheet" href="./probability-diagrams.css?v=2"></head><body>
 <header><div class="wrap"><div class="top"><div class="brand">◈ Probability<span>Lab</span></div><span class="badge">4.4 · 4.4.1–4.4.5</span></div><nav role="tablist" aria-label="Learning sections">
 <button type="button" role="tab" aria-selected="true" data-tab="intro">Intro</button>
@@ -21,11 +25,44 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
 <button type="button" role="tab" aria-selected="false" data-tab="diagrams">Diagrams</button>
 </nav></div></header>
 <main class="wrap">
-<section id="intro" class="panel active" role="tabpanel" aria-labelledby="tab-intro"><div class="hero"><div class="eyebrow">Topic 4.4 · Binomial + Normal</div><h1>PROBABILITY<br>LEVEL UP! 🎲</h1><p>Count successes or measure values. Choose the right model, then read the diagram and match it to the formula.</p></div><div class="grid"><div class="card"><h2>First, ask the right question</h2><div class="summary-list"><div class="step"><strong>Count?</strong><p>If the answer is a whole number like 0, 1, 2, 3, use a binomial model.</p></div><div class="step"><strong>Measure?</strong><p>If the answer is a continuous value like time, height or score, use a normal model.</p></div><div class="step"><strong>Look for the chart</strong><p>Bar charts fit counts; bell curves fit measurements.</p></div></div></div><div class="card"><h2>Fast check</h2><div class="formula">Binomial: X ∼ B(n, p) &nbsp; &nbsp; Normal: X ∼ N(μ, σ²)</div><p>For binomial questions, the variable is discrete and the probabilities add across count values. For normal questions, probability is an area under a curve, not a single point.</p><div class="actions"><button type="button" data-go="binomial" class="primary">Go to binomial →</button></div></div></div></section>
-<section id="easy" class="panel" role="tabpanel" aria-labelledby="tab-easy"><div class="eyebrow">Quick guide · Easy understanding</div><h1>Probability distributions, made easy 🌱</h1><div class="grid"><div class="card"><h2>Binomial picture</h2><p>When a random variable counts successes in n independent trials with fixed p, it is binomial.</p><div class="formula">P(X = k) = <sup>n</sup>C<sub>k</sub> p<sup>k</sup>(1-p)<sup>n-k</sup></div><div class="controls"><label>n<input id="en" type="number" min="0" max="60" step="1" value="5"></label><label>p<input id="ep" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k<input id="ek" type="number" min="0" max="60" step="1" value="2"></label></div><div class="actions"><button id="easyBinomialBtn" type="button" class="primary">Calculate</button></div><div id="easyBinomOut" class="result" aria-live="polite">P(X=2) = 10 × 0.5² × 0.5³ = 0.3125</div></div><div class="card"><h2>Normal picture</h2><p>When values are measured and form a bell-shaped pattern, use a normal model.</p><div class="formula">z = (x − μ) / σ</div><div class="controls"><label>Mean μ<input id="emu" type="number" value="30"></label><label>SD σ<input id="esigma" type="number" min="0.01" step="0.01" value="5"></label><label>Cutoff x<input id="exval" type="number" value="35"></label></div><div class="actions"><button id="easyZBtn" type="button" class="primary">Convert to z</button></div><div id="easyZOut" class="result" aria-live="polite">z = (35 − 30)/5 = 1</div></div></div><div class="card"><h2>Spot the idea</h2><p>Choose the correct statement.</p><div class="choices"><button type="button" data-easy-quiz="a">A. Binomial counts whole numbers and normal measures values.</button><button type="button" data-easy-quiz="b">B. Binomial always gives a bell curve.</button><button type="button" data-easy-quiz="c">C. Normal counts successes in fixed trials.</button></div><div id="easyQuizOut" class="quizfeedback" aria-live="polite">Pilih jawapan yang betul.</div></div></section>
-<section id="binomial" class="panel" role="tabpanel" aria-labelledby="tab-binomial"><div class="eyebrow">4.4.1–4.4.2 · Counting successes</div><h1>4.4.1 Binomial distribution</h1><p>Use X ∼ B(n, p) when you count the number of successes in a fixed number of independent trials. Each trial has two possible outcomes: success or failure.</p><div class="grid"><div class="card"><h3>4.4.1 The core count</h3><div class="controls"><label>n<input id="bn" type="number" min="0" max="60" step="1" value="3"></label><label>p<input id="bp" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k<input id="bk" type="number" min="0" max="60" step="1" value="2"></label></div><div class="formula">P(X = k) = <sup>n</sup>C<sub>k</sub> × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div><p id="bError" class="error" role="status"></p><div id="bFlow"></div><div id="bResult" class="result" aria-live="polite"></div></div><div class="card"><h3>4.4.2 Binomial bars</h3><canvas id="binChart" role="img" aria-label="Binomial distribution chart"></canvas><p id="bSummary"></p><small>For a binomial model, total probability is 1, and all bars represent count values k = 0, 1, 2, ..., n.</small></div></div><div class="card"><h3>Build a quick understanding</h3><p>Three fair tosses have 8 equally likely sequences. The counts of heads are 0, 1, 2, 3.</p><div class="outcomes"><div class="outcome"><strong>1</strong><span>0 heads</span></div><div class="outcome"><strong>3</strong><span>1 head</span></div><div class="outcome"><strong>3</strong><span>2 heads</span></div><div class="outcome"><strong>1</strong><span>3 heads</span></div></div><div class="formula">P(X = 0) = 1/8, &nbsp; P(X = 1) = 3/8, &nbsp; P(X = 2) = 3/8, &nbsp; P(X = 3) = 1/8</div><div class="small">This is a valid binomial distribution with n = 3 and p = 0.5.</div></div></section>
-<section id="normal" class="panel" role="tabpanel" aria-labelledby="tab-normal"><div class="eyebrow">4.4.3–4.4.5 · Continuous measurements</div><h1>4.4.3 Normal distribution</h1><p>A symmetric bell curve centred at the mean μ. The standard deviation σ controls its spread. We write X ∼ N(μ, σ²), then use z-scores and the normal table to find probabilities.</p><div class="grid"><div class="card"><h3>4.4.5 Turn a measurement into a z-score</h3><div class="controls"><label>Mean μ<input id="nm" type="number" value="30" min="-10000" max="10000"></label><label>Std. deviation σ<input id="ns" type="number" value="5" min="0.01" max="10000"></label><label>Cutoff x<input id="nx" type="number" value="35" min="-10000" max="10000"></label></div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; P(X ≤ x) = Φ(z)</div><p>A z-score tells you how many standard deviations a value is above or below the mean.</p><p id="nError" class="error" role="status"></p><div id="nFlow"></div><div id="nResult" class="result" aria-live="polite"></div></div><div class="card"><h3>4.4.5 Probability is area</h3><canvas id="normalChart" role="img" aria-label="Normal density curve with cumulative probability shaded"></canvas><p id="nSummary"></p><small>For a continuous distribution, P(X = x) = 0. Therefore &lt; and ≤ give the same probability.</small></div></div><div class="card"><h3>4.4.4 Your standard normal table</h3><p>This table gives <b>Φ(z) = P(Z ≤ z)</b>, the area to the left. Choose the row for the units and tenths, then the column for the hundredths. For z = 1.23, use row 1.2 and column .03. For negative values, use Φ(−a) = 1 − Φ(a).</p><div class="controls"><label>Look up z (−3.49 to 3.49)<input id="tableZ" type="number" min="-3.49" max="3.49" step="0.01" value="1.23"></label><p id="tableResult" aria-live="polite"></p></div><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></div></section>
-<section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced"><div class="eyebrow">Advanced · Combine the pieces</div><h1>Beyond “exactly one value”</h1><div class="grid"><div class="card"><h3>Exact, at most, and at least</h3><p>Binomial questions can ask for exactly one value or a whole range of values. Add probabilities carefully.</p><div class="formula">P(X = k) = <sup>n</sup>C<sub>k</sub>p<sup>k</sup>(1 − p)<sup>n-k</sup><br>P(X ≤ a) = Σ<sub>k=0}^{a} P(X = k)<br>P(X ≥ a) = Σ<sub>k=a}^{n} P(X = k)</div><div class="controls"><label>n<input id="an" type="number" min="0" max="60" step="1" value="3"></label><label>p<input id="ap" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>Lower/upper boundaries<input id="aa" type="number" min="0" max="60" step="1" value="2"></label><label>Upper bound<input id="ab" type="number" min="0" max="60" step="1" value="3"></label></div><div id="aBin" class="result" aria-live="polite"></div></div><div class="card"><h3>Normal ranges</h3><p>Normal probability for a range is the area between two z-scores.</p><div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div><div class="controls"><label>Mean μ<input id="am" type="number" value="30"></label><label>SD σ<input id="as" type="number" step="0.01" value="5"></label><label>Lower x<input id="al" type="number" value="25"></label><label>Upper x<input id="au" type="number" value="35"></label></div><div id="aNormal" class="result" aria-live="polite"></div></div></div></section>
+<section id="intro" class="panel active" role="tabpanel" aria-labelledby="tab-intro">
+  <div class="hero"><div class="eyebrow">Topic 4.4 · Binomial + Normal</div><h1>PROBABILITY<br>LEVEL UP! 🎲</h1><p>Count successes or measure values. Check the model assumptions, then read the diagram and match it to the formula.</p></div>
+  <div class="grid">
+    <div class="card"><h2>First, ask the right question</h2><div class="summary-list">
+      <div class="step"><strong>Count?</strong><p>A binomial model fits counts of successes when n is fixed, trials are independent, each has success/failure outcomes, and p stays the same.</p></div>
+      <div class="step"><strong>Measure?</strong><p>A normal model can fit continuous measurements with an approximately symmetric, bell-shaped distribution. Not every measurement is normal.</p></div>
+      <div class="step"><strong>Look for the chart</strong><p>Discrete probabilities are bars; normal probabilities are areas under a bell curve. The chart alone does not establish the model.</p></div>
+    </div></div>
+    <div data-diagram-slot="decision"></div>
+  </div>
+  <div class="card"><h2>Fast check</h2><div class="formula">Binomial: X ∼ B(n, p) &nbsp; &nbsp; Normal: X ∼ N(μ, σ²)</div><p>For binomial questions, the variable is discrete and the probabilities add across count values. For normal questions, probability is an area under a curve, not a single point.</p><div class="actions"><button type="button" data-go="binomial" class="primary">Go to binomial →</button></div></div>
+</section>
+<section id="easy" class="panel" role="tabpanel" aria-labelledby="tab-easy"><div class="eyebrow">Quick guide · Easy understanding</div><h1>Probability distributions, made easy 🌱</h1><div class="grid">
+  <div class="card"><h2>Binomial picture</h2><p>A binomial variable counts successes in fixed n independent trials, each with two outcomes and the same success probability p.</p><div class="formula">P(X = k) = <sup>n</sup>C<sub>k</sub> p<sup>k</sup>(1-p)<sup>n-k</sup></div><div class="controls"><label>n<input id="en" type="number" min="0" max="60" step="1" value="5"></label><label>p<input id="ep" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k<input id="ek" type="number" min="0" max="60" step="1" value="2"></label></div><div class="actions"><button id="easyBinomialBtn" type="button" class="primary">Calculate</button></div><div id="easyBinomOut" class="result" aria-live="polite">P(X=2) = 10 × 0.5² × 0.5³ = 0.3125</div></div>
+  <div class="card"><h2>Normal picture</h2><p>A normal model can fit measured values with an approximately symmetric, bell-shaped distribution; not all measurements meet this assumption.</p><div class="formula">z = (x − μ) / σ</div><div class="controls"><label>Mean μ<input id="emu" type="number" value="30"></label><label>SD σ<input id="esigma" type="number" min="0.01" step="0.01" value="5"></label><label>Cutoff x<input id="exval" type="number" value="35"></label></div><div class="actions"><button id="easyZBtn" type="button" class="primary">Convert to z</button></div><div id="easyZOut" class="result" aria-live="polite">z = (35 − 30)/5 = 1</div></div>
+  </div><div class="card"><h2>Spot the idea</h2><p>Choose the correct statement.</p><div class="choices"><button type="button" data-easy-quiz="a">A. Under their assumptions, binomial counts successes and normal models bell-shaped measurements.</button><button type="button" data-easy-quiz="b">B. Binomial always gives a bell curve.</button><button type="button" data-easy-quiz="c">C. Normal counts successes in fixed trials.</button></div><div id="easyQuizOut" class="quizfeedback" aria-live="polite">Pilih jawapan yang betul.</div></div></section>
+<section id="binomial" class="panel" role="tabpanel" aria-labelledby="tab-binomial">
+  <div class="eyebrow">4.4.1–4.4.2 · Counting successes</div><h1>4.4.1 Binomial distribution</h1><p>Use X ∼ B(n, p) to count successes in fixed n independent trials, each with success/failure outcomes and the same p.</p>
+  <div class="grid">
+    <div class="card"><h3>Start with three fair coin tosses</h3><p>Let X count heads. Each of the 8 sequences has probability 1/8. Grouping by X gives 1, 3, 3, 1 sequences.</p><div class="outcomes"><div class="outcome"><strong>1</strong><span>0 heads</span></div><div class="outcome"><strong>3</strong><span>1 head</span></div><div class="outcome"><strong>3</strong><span>2 heads</span></div><div class="outcome"><strong>1</strong><span>3 heads</span></div></div><p>The three sequences with two heads give P(X=2)=3/8.</p></div>
+    <div data-diagram-slot="outcomes"></div>
+    <div class="card"><h3>From sequences to probabilities</h3><p>Divide each group count by 8: the table and bars describe this same three-flip distribution.</p><div class="formula">P(X = 0) = 1/8, &nbsp; P(X = 1) = 3/8, &nbsp; P(X = 2) = 3/8, &nbsp; P(X = 3) = 1/8</div><p>The probabilities sum to 1. Here n=3 and p=0.5; the middle bars are three times the outer bars.</p></div>
+    <div data-diagram-slot="probability-bars"></div>
+  </div>
+  <div class="grid"><div class="card"><h3>4.4.1 The core count</h3><div class="controls"><label>n<input id="bn" type="number" min="0" max="60" step="1" value="3"></label><label>p<input id="bp" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k<input id="bk" type="number" min="0" max="60" step="1" value="2"></label></div><div class="formula">P(X = k) = <sup>n</sup>C<sub>k</sub> × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div><p id="bError" class="error" role="status"></p><div id="bFlow"></div><div id="bResult" class="result" aria-live="polite"></div></div><div class="card"><h3>4.4.2 Binomial bars</h3><canvas id="binChart" role="img" aria-label="Binomial distribution chart"></canvas><p id="bSummary"></p><small>For a binomial model, total probability is 1, and all bars represent count values k = 0, 1, 2, ..., n.</small></div></div>
+</section>
+<section id="normal" class="panel" role="tabpanel" aria-labelledby="tab-normal">
+  <div class="eyebrow">4.4.3–4.4.5 · Continuous measurements</div><h1>4.4.3 Normal distribution</h1><p>A symmetric bell curve centred at the mean μ. The standard deviation σ controls its spread. We write X ∼ N(μ, σ²), then use z-scores and the normal table to find probabilities.</p>
+  <div class="grid"><div class="card"><h3>Read the mean and SD first</h3><p>The mean is the centre; σ measures horizontal spread. For a normal model, approximately 68%, 95%, and 99.7% of values lie within 1σ, 2σ, and 3σ of μ.</p><p>Example: test marks with μ=70 and σ=10 have about 68% of marks between 60 and 80. These percentages are rounded empirical-rule values.</p></div><div data-diagram-slot="empirical-rule"></div></div>
+  <div class="grid"><div class="card"><h3>4.4.5 Turn a measurement into a z-score</h3><p>The calculator starts with <strong>delivery times: μ=30 minutes, σ=5 minutes</strong>. A delivery taking 35 minutes is one SD above the mean.</p><div class="controls"><label>Mean μ<input id="nm" type="number" value="30" min="-10000" max="10000"></label><label>Std. deviation σ<input id="ns" type="number" value="5" min="0.01" max="10000"></label><label>Cutoff x<input id="nx" type="number" value="35" min="-10000" max="10000"></label></div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; P(X ≤ x) = Φ(z)</div><p>A z-score tells you how many standard deviations a value is above or below the mean.</p><p id="nError" class="error" role="status"></p><div id="nFlow"></div><div id="nResult" class="result" aria-live="polite"></div></div><div><p><strong>Different example:</strong> the raw/z diagram uses test scores with μ=70 and σ=5, not the delivery-time model or the σ=10 empirical-rule example.</p><div data-diagram-slot="raw-z"></div></div></div>
+  <div class="grid"><div class="card"><h3>4.4.5 Probability is area</h3><p>The calculator shades the cumulative area to the left of its cutoff. A right tail uses 1−Φ(z); a between area subtracts two cumulative probabilities.</p><canvas id="normalChart" role="img" aria-label="Normal density curve with cumulative probability shaded"></canvas><p id="nSummary"></p><small>For a continuous distribution, P(X = x) = 0. Therefore &lt; and ≤ give the same probability. The plotted window shows μ±4σ; the calculated probability includes the full tails.</small></div><div data-diagram-slot="normal-regions"></div></div>
+  <div class="grid"><div class="card"><h3>4.4.4 Read a standard normal table</h3><p>This lesson uses <b>Φ(z) = P(Z ≤ z)</b>, the cumulative area to the left. Choose the row for the units and tenths, then the column for the hundredths. For z=1.23, use row 1.2 and column .03. For negative values, use Φ(−a)=1−Φ(a).</p><p>Other tables may give the right tail or the area between 0 and z. Check the heading and shaded diagram before using a table value.</p></div><div data-diagram-slot="table-lookup"></div></div>
+  <div class="card"><h3>Your standard normal table</h3><div class="controls"><label>Look up z (−3.49 to 3.49)<input id="tableZ" type="number" min="-3.49" max="3.49" step="0.01" value="1.23"></label><p id="tableResult" aria-live="polite"></p></div><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></div>
+</section>
+<section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced"><div class="eyebrow">Advanced · Combine the pieces</div><h1>Beyond “exactly one value”</h1>
+  <div class="grid"><div class="card"><h3>Exact, at most, and at least</h3><p>Binomial questions can ask for exactly one value or a whole range of values. Add probabilities carefully.</p><div class="formula">P(X = k) = <sup>n</sup>C<sub>k</sub>p<sup>k</sup>(1 − p)<sup>n-k</sup><br>P(X ≤ a) = Σ<sub>k=0</sub><sup>a</sup> P(X = k)<br>P(X ≥ a) = Σ<sub>k=a</sub><sup>n</sup> P(X = k)</div><div class="controls"><label>n<input id="an" type="number" min="0" max="60" step="1" value="3"></label><label>p<input id="ap" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>Lower/upper boundaries<input id="aa" type="number" min="0" max="60" step="1" value="2"></label><label>Upper bound<input id="ab" type="number" min="0" max="60" step="1" value="3"></label></div><div id="aBin" class="result" aria-live="polite"></div></div><div data-diagram-slot="binomial-selections"></div></div>
+  <div class="grid"><div class="card"><h3>Normal ranges</h3><p>Normal probability for a range is the area between two z-scores.</p><div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div><div class="controls"><label>Mean μ<input id="am" type="number" value="30"></label><label>SD σ<input id="as" type="number" step="0.01" value="5"></label><label>Lower x<input id="al" type="number" value="25"></label><label>Upper x<input id="au" type="number" value="35"></label></div><div id="aNormal" class="result" aria-live="polite"></div></div><div data-diagram-slot="normal-regions"></div></div>
+</section>
 <section id="practice" class="panel" role="tabpanel" aria-labelledby="tab-practice"><div class="eyebrow">Practice · Learn by doing</div><h1>Your next small win.</h1><div class="card"><div class="small">Choose the level and content family.</div><div class="controls"><label>Difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label><label>Family<select id="family"><option value="mixed">Mixed</option><option value="bin">Binomial</option><option value="norm">Normal</option></select></label></div><div id="problemTag" class="pill" style="margin-top:12px;display:inline-flex">Ready</div><p id="question" style="margin-top:16px">Pick a family and level to begin.</p><div class="controls"><label>Your answer<input id="answer" type="number" step="0.0001" value=""></label></div><div class="actions"><button type="button" class="primary" id="checkBtn">Check</button><button type="button" id="nextBtn">Next problem</button></div><div id="answerFeedback" class="quizfeedback" aria-live="polite">Waiting</div><div id="solution" hidden></div></div></section>
 <section id="tips" class="panel" role="tabpanel" aria-labelledby="tab-tips"><div class="eyebrow">Keep these nearby</div><h1>A little help goes a long way.</h1><div class="grid"><div class="card"><h2>Five common mistakes, fixed</h2><ol><li><b>Using variance in a z-score:</b> divide by σ, not σ². In N(30, 25), the SD is 5.</li><li><b>Confusing “exactly” with “at most”:</b> P(X ≤ 3) adds 0, 1, 2, 3, not only 3.</li><li><b>Reading the wrong tail:</b> Φ(z) is the left area. Right tail is 1 − Φ(z).</li><li><b>Mixing success and failure:</b> use p for success and 1 − p for failure.</li><li><b>Ignoring dependence:</b> without replacement is not binomial unless a special model is justified.</li></ol></div><div class="card"><h2>Eight diagram prompt ideas</h2><ol><li>Illustrate 10 shots with 70% success, distinguishing one actual outcome from the expected count.</li><li>Draw the 68–95–99.7 normal rule.</li><li>Turn a raw score into a z-score.</li><li>List all 8 sequences of 3 coin flips and group by heads count.</li><li>Explain a normal table lookup using z = 1.23.</li><li>Compare exact, at most, and at least bins.</li><li>Shade left, right, and between normal regions.</li><li>Choose binomial or normal using a decision tree and assumptions.</li></ol></div></div></section>
 <section id="summary" class="panel" role="tabpanel" aria-labelledby="tab-summary"><div class="eyebrow">Review summary · Your revision companion</div><h1>Probability Lab review summary</h1><p>Key content from the Complete Review Summary, built into this page so you can revise offline. Review the seven core formulas, connect them to everyday examples, and avoid five common mistakes.</p><div class="grid"><div class="card"><h2>Seven verified formulas</h2><h3>Binomial: count successes</h3><p>Use a fixed number n of independent trials, two outcomes per trial, and a constant success probability p. The count k is a whole number from 0 to n.</p><div class="formula">P(X = k) = <sup>n</sup>C<sub>k</sub> × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div><div class="formula">E(X) = np<br>Var(X) = np(1 − p)</div><p>E(X) is the expected count; Var(X) measures spread. The combination counts arrangements of successes, and 0! = 1.</p></div><div class="card"><h2>Normal: measure values</h2><p>Use a stated or justified normal model for continuous measurements. μ is the mean and σ is the standard deviation, with σ &gt; 0.</p><div class="formula">z = (x − μ) / σ → P(X ≤ x) = Φ(z)</div><div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div><p>Standardize each boundary: z<sub>a</sub> = (a − μ) / σ and z<sub>b</sub> = (b − μ) / σ. Φ(z) gives the area to the left; the right tail is 1 − Φ(z).</p></div><div class="card"><h2>Three binomial analogies</h2><ul><li><b>Basketball:</b> 10 independent free throws, each with a 70% success chance. The expected count is 7 makes, not a guaranteed result.</li><li><b>Quality control:</b> 20 independently checked bulbs with a 5% defect chance each. Exactly one defect has probability 20 × 0.05 × 0.95<sup>19</sup> ≈ 0.3774.</li><li><b>Coin flips:</b> exactly 3 heads in 5 independent fair flips has probability 10 × 0.5<sup>3</sup> × 0.5<sup>2</sup> = 0.3125, or 31.25%. There are 10 matching arrangements.</li></ul></div><div class="card"><h2>Three normal analogies</h2><p>Assuming each measurement follows the stated normal model:</p><ul><li><b>Test scores:</b> mean 70, SD 10. Scores from 60 to 80 have z-scores −1 to 1: about 68.27% of the area.</li><li><b>Delivery time:</b> mean 30 minutes, SD 5. Delivery within 35 minutes has z = 1: about 84.13%.</li><li><b>Height:</b> mean 165 cm, SD 8 cm. Taller than 173 cm has z = 1: about 15.87% in the right tail.</li></ul></div></div></section>
@@ -34,7 +71,7 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
   <h1>Diagram set: binomial and normal in one glance</h1>
   <div class="diagram-grid">
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="outcomes">
       <div class="diagram-header"><span class="diagram-badge">1</span><h3>8 hasil tiga lambungan syiling adil</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Three fair coin flips grouped by heads count">
@@ -47,18 +84,18 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
             <text x="80" y="160">3 kepala:</text><text x="210" y="160">HHH</text>
           </g>
           <g>
-            <rect x="34" y="175" width="96" height="18" rx="6" fill="#dfeaf8"/>
+            <rect x="34" y="211" width="96" height="18" rx="6" fill="#dfeaf8"/>
             <rect x="150" y="175" width="96" height="54" rx="6" fill="#dfeaf8"/>
             <rect x="266" y="175" width="96" height="54" rx="6" fill="#dfeaf8"/>
-            <rect x="382" y="175" width="96" height="18" rx="6" fill="#dfeaf8"/>
-            <text x="82" y="188" text-anchor="middle" font-size="14" fill="#172033">1</text>
-            <text x="198" y="188" text-anchor="middle" font-size="14" fill="#172033">3</text>
-            <text x="314" y="188" text-anchor="middle" font-size="14" fill="#172033">3</text>
-            <text x="430" y="188" text-anchor="middle" font-size="14" fill="#172033">1</text>
-            <text x="82" y="214" text-anchor="middle" font-size="14" fill="#172033">k=0</text>
-            <text x="198" y="214" text-anchor="middle" font-size="14" fill="#172033">k=1</text>
-            <text x="314" y="214" text-anchor="middle" font-size="14" fill="#172033">k=2</text>
-            <text x="430" y="214" text-anchor="middle" font-size="14" fill="#172033">k=3</text>
+            <rect x="382" y="211" width="96" height="18" rx="6" fill="#dfeaf8"/>
+            <text x="82" y="224" text-anchor="middle" font-size="14" fill="#172033">1</text>
+            <text x="198" y="224" text-anchor="middle" font-size="14" fill="#172033">3</text>
+            <text x="314" y="224" text-anchor="middle" font-size="14" fill="#172033">3</text>
+            <text x="430" y="224" text-anchor="middle" font-size="14" fill="#172033">1</text>
+            <text x="82" y="249" text-anchor="middle" font-size="14" fill="#172033">k=0</text>
+            <text x="198" y="249" text-anchor="middle" font-size="14" fill="#172033">k=1</text>
+            <text x="314" y="249" text-anchor="middle" font-size="14" fill="#172033">k=2</text>
+            <text x="430" y="249" text-anchor="middle" font-size="14" fill="#172033">k=3</text>
           </g>
         </svg>
       </div>
@@ -69,14 +106,13 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
       <div class="diagram-feedback"><strong>Maklum balas:</strong> Terdapat 3 jujukan: HHT, HTH, THH. Jadi P(X=2)=3/8. Ini merupakan taburan binomial untuk n=3, p=0.5.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="probability-bars">
       <div class="diagram-header"><span class="diagram-badge">2</span><h3>Jadual kebarangkalian dan batang</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 270" xmlns="http://www.w3.org/2000/svg" aria-label="Binomial probability table and bar chart for three fair coin flips">
           <rect width="520" height="270" fill="#f7faff"/>
           <g font-family="Arial" font-size="15" fill="#172033">
-            <rect x="40" y="38" width="180" height="120" fill="#ffffff" stroke="#b9c9dd"/>
-            <rect x="255" y="38" width="220" height="120" fill="#ffffff" stroke="#b9c9dd"/>
+            <rect x="40" y="38" width="180" height="160" fill="#ffffff" stroke="#b9c9dd"/>
             <text x="130" y="58" text-anchor="middle" font-size="16" font-weight="700">Jadual</text>
             <text x="80" y="86">k</text><text x="140" y="86">P(X=k)</text>
             <text x="80" y="110">0</text><text x="140" y="110">1/8</text>
@@ -84,12 +120,16 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
             <text x="80" y="158">2</text><text x="140" y="158">3/8</text>
             <text x="80" y="182">3</text><text x="140" y="182">1/8</text>
             <text x="365" y="58" text-anchor="middle" font-size="16" font-weight="700">Bar</text>
-            <rect x="285" y="182" width="24" height="22" fill="#7c5cff"/><text x="297" y="212">0</text>
-            <rect x="318" y="120" width="24" height="84" fill="#7c5cff"/><text x="330" y="212">1</text>
-            <rect x="351" y="120" width="24" height="84" fill="#7c5cff"/><text x="363" y="212">2</text>
-            <rect x="384" y="182" width="24" height="22" fill="#7c5cff"/><text x="396" y="212">3</text>
-            <text x="280" y="214" font-size="12">0</text><text x="325" y="214" font-size="12">1</text><text x="368" y="214" font-size="12">2</text><text x="411" y="214" font-size="12">3</text>
-            <text x="300" y="114" font-size="12">0.375</text><text x="333" y="114" font-size="12">0.375</text>
+            <line x1="270" y1="204" x2="475" y2="204" stroke="#172033"/>
+            <rect x="285" y="176" width="28" height="28" fill="#7c5cff"/>
+            <rect x="335" y="120" width="28" height="84" fill="#7c5cff"/>
+            <rect x="385" y="120" width="28" height="84" fill="#7c5cff"/>
+            <rect x="435" y="176" width="28" height="28" fill="#7c5cff"/>
+            <g text-anchor="middle" font-size="12">
+              <text x="299" y="223">0</text><text x="349" y="223">1</text><text x="399" y="223">2</text><text x="449" y="223">3</text>
+              <text x="299" y="170">0.125</text><text x="349" y="114">0.375</text><text x="399" y="114">0.375</text><text x="449" y="170">0.125</text>
+              <text x="374" y="245">k (heads)</text>
+            </g>
           </g>
         </svg>
       </div>
@@ -100,7 +140,7 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
       <div class="diagram-feedback"><strong>Maklum balas:</strong> P(X=1)=3/8 dan P(X=2)=3/8 kerana terdapat 3 jujukan untuk setiap kes itu. Dalam taburan simetri p=0.5, kebarangkalian pusat sama tinggi.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="decision">
       <div class="diagram-header"><span class="diagram-badge">3</span><h3>Keputusan: binomial atau normal?</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Decision diagram for choosing binomial versus normal">
@@ -116,18 +156,18 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
           <text x="120" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#163d2f">Kira x = 0,1,2,…,n</text>
           <text x="400" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">Ukuran berterusan</text>
           <text x="260" y="96" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">Bilang atau ukur?</text>
-          <text x="45" y="210" font-size="13" font-family="Arial" fill="#172033">Andaian binomial: n tetap, dua hasil, p sama, bebas.</text>
-          <text x="250" y="210" font-size="13" font-family="Arial" fill="#172033">Andaian normal: simetri, bell-shape, μ dan σ.</text>
+          <text x="260" y="210" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Andaian binomial: n tetap, dua hasil, p sama, bebas.</text>
+          <text x="260" y="235" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Andaian normal: ukuran berterusan, simetri, bell-shape.</text>
         </svg>
       </div>
       <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Binomial: kira bilangan kejayaan dalam jumlah trial tetap.</li><li>Normal: ukur nilai seperti masa, berat, markah.</li><li>Jika data bukan count, jangan pakai formula binomial.</li></ul>
+        <ul class="diagram-list"><li>Binomial: n tetap, dua hasil, p sama dan trial bebas.</li><li>Normal: ukuran berterusan dengan taburan simetri dan bell-shape.</li><li>Bukan semua count ialah binomial; bukan semua ukuran ialah normal.</li></ul>
       </div>
       <div class="diagram-prompt"><strong>Soalan cepat:</strong> Bilangan kepala dalam 5 lambungan syiling ialah binomial atau normal?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> Binomial, kerana x ialah bilangan kejayaan (heads) dalam 5 trial tetap. Normal sesuai untuk masa penghantaran, berat atau markah yang diukur.</div>
+      <div class="diagram-feedback"><strong>Maklum balas:</strong> Binomial jika 5 lambungan bebas mempunyai p yang sama. Normal boleh sesuai untuk masa penghantaran, berat atau markah jika taburannya simetri dan bell-shape.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="expected-count">
       <div class="diagram-header"><span class="diagram-badge">4</span><h3>10 ikon komponen: satu kemungkinan, bukan min</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg" aria-label="Ten shot icons showing one possible outcome versus expected count">
@@ -158,18 +198,34 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
       <div class="diagram-feedback"><strong>Maklum balas:</strong> Tidak. 7 masuk ialah hasil yang paling biasa dengan p=0.7, tetapi satu kemungkinan lain seperti 6 atau 8 juga boleh berlaku. E(X)=7 ialah jangkaan, bukan hasil wajib.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="binomial-selections">
       <div class="diagram-header"><span class="diagram-badge">5</span><h3>Palang binomial: tepat, paling banyak, sekurang-kurangnya</h3></div>
       <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Binomial bars highlighting exactly 2, at most 2, and at least 2 heads in three coin flips">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <g font-family="Arial" font-size="15" fill="#172033">
-            <rect x="70" y="165" width="50" height="50" fill="#cbd5e1"/><rect x="140" y="116" width="50" height="99" fill="#7c5cff"/><rect x="210" y="116" width="50" height="99" fill="#7c5cff"/><rect x="280" y="165" width="50" height="50" fill="#cbd5e1"/>
-            <text x="95" y="225">0</text><text x="165" y="225">1</text><text x="235" y="225">2</text><text x="305" y="225">3</text>
-            <rect x="360" y="110" width="22" height="105" fill="#16a34a"/><rect x="390" y="110" width="22" height="105" fill="#16a34a"/><rect x="420" y="160" width="22" height="55" fill="#f59e0b"/>
-            <text x="371" y="225">≤2</text><text x="405" y="225">≥2</text>
-            <text x="280" y="34" font-size="18" font-weight="700">P(X=2)=3/8 = 0.375</text>
-            <text x="355" y="92" font-size="13">warna</text>
+        <svg viewBox="0 0 520 290" xmlns="http://www.w3.org/2000/svg" aria-label="Three separate binomial charts on the same axes: exactly 2, at most 2, and at least 2 heads">
+          <rect width="520" height="290" fill="#f7faff"/>
+          <g font-family="Arial" font-size="14" fill="#172033" text-anchor="middle">
+            <text x="260" y="25">X ∼ B(3, 0.5) · Same axes: k=0…3, P=0…0.375</text>
+            <g transform="translate(20 0)" data-selection="exact">
+              <text x="75" y="55">Tepat 2: X=2</text>
+              <path d="M5 80V215H150" fill="none" stroke="#172033"/>
+              <rect x="20" y="170" width="24" height="45" fill="#cbd5e1"/><rect x="52" y="80" width="24" height="135" fill="#cbd5e1"/><rect x="84" y="80" width="24" height="135" fill="#7c5cff"/><rect x="116" y="170" width="24" height="45" fill="#cbd5e1"/>
+              <text x="32" y="234">0</text><text x="64" y="234">1</text><text x="96" y="234">2</text><text x="128" y="234">3</text>
+              <text x="75" y="265">3/8 = 0.375</text>
+            </g>
+            <g transform="translate(185 0)" data-selection="at-most">
+              <text x="75" y="55">Paling banyak 2: X≤2</text>
+              <path d="M5 80V215H150" fill="none" stroke="#172033"/>
+              <rect x="20" y="170" width="24" height="45" fill="#16a34a"/><rect x="52" y="80" width="24" height="135" fill="#16a34a"/><rect x="84" y="80" width="24" height="135" fill="#16a34a"/><rect x="116" y="170" width="24" height="45" fill="#cbd5e1"/>
+              <text x="32" y="234">0</text><text x="64" y="234">1</text><text x="96" y="234">2</text><text x="128" y="234">3</text>
+              <text x="75" y="265">7/8 = 0.875</text>
+            </g>
+            <g transform="translate(350 0)" data-selection="at-least">
+              <text x="75" y="55">Sekurang-kurangnya 2</text>
+              <path d="M5 80V215H150" fill="none" stroke="#172033"/>
+              <rect x="20" y="170" width="24" height="45" fill="#cbd5e1"/><rect x="52" y="80" width="24" height="135" fill="#cbd5e1"/><rect x="84" y="80" width="24" height="135" fill="#f59e0b"/><rect x="116" y="170" width="24" height="45" fill="#f59e0b"/>
+              <text x="32" y="234">0</text><text x="64" y="234">1</text><text x="96" y="234">2</text><text x="128" y="234">3</text>
+              <text x="75" y="265">X≥2: 1/2 = 0.5</text>
+            </g>
           </g>
         </svg>
       </div>
@@ -180,27 +236,10 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
       <div class="diagram-feedback"><strong>Maklum balas:</strong> P(X≤2)=P(0)+P(1)+P(2)=1/8+3/8+3/8=7/8. Ia bukan hanya P(X=2). Untuk P(X≥2)=P(2)+P(3)=3/8+1/8=1/2.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="empirical-rule">
       <div class="diagram-header"><span class="diagram-badge">6</span><h3>Lengkung normal: min, band SD, peraturan empirikal</h3></div>
       <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Normal distribution bell curve with empirical rule percentages">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <path d="M40 165 C100 100, 150 60, 260 60 C370 60, 420 100, 480 165 L480 165 C420 190, 370 220, 260 220 C150 220, 100 190, 40 165 Z" fill="#dbeafe" stroke="#2a5cc5" stroke-width="2"/>
-          <line x1="260" y1="52" x2="260" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-          <line x1="160" y1="52" x2="160" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-          <line x1="360" y1="52" x2="360" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-          <line x1="85" y1="52" x2="85" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-          <line x1="435" y1="52" x2="435" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-          <text x="260" y="238" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">μ</text>
-          <text x="160" y="238" text-anchor="middle" font-size="16" font-family="Arial" fill="#172033">μ−σ</text>
-          <text x="360" y="238" text-anchor="middle" font-size="16" font-family="Arial" fill="#172033">μ+σ</text>
-          <text x="85" y="238" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">μ−2σ</text>
-          <text x="435" y="238" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">μ+2σ</text>
-          <text x="105" y="95" font-size="16" font-family="Arial" fill="#17354b">68%</text>
-          <text x="155" y="80" font-size="16" font-family="Arial" fill="#17354b">95%</text>
-          <text x="360" y="78" font-size="16" font-family="Arial" fill="#17354b">99.7%</text>
-          <text x="260" y="44" text-anchor="middle" font-size="20" font-family="Arial" fill="#172033">Markah ujian: μ=70, σ=10</text>
-        </svg>
+        <img src="./probability-images/normal-bell-curve.svg" alt="Accurate normal density with SD bands: 68.27%, 95.45%, and 99.73% within one, two, and three SDs; rounded empirical rule 68%, 95%, 99.7%." width="960" height="720" loading="lazy">
       </div>
       <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
         <ul class="diagram-list"><li>68% berada dalam satu sisihan piawai min.</li><li>95% berada dalam dua sisihan piawai.</li><li>99.7% berada dalam tiga sisihan piawai.</li></ul>
@@ -209,7 +248,7 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
       <div class="diagram-feedback"><strong>Maklum balas:</strong> Kira-kira 68%. Ini ialah kawasan dari μ−σ kepada μ+σ, iaitu 70−10 hingga 70+10. Ini adalah peraturan empirikal normal.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="raw-z">
       <div class="diagram-header"><span class="diagram-badge">7</span><h3>Nilai mentah dan paksi z: piawaian</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Raw value and z-score axes showing standardization">
@@ -226,8 +265,8 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
           <text x="260" y="68" text-anchor="middle" font-size="15" fill="#172033">z=0</text>
           <text x="410" y="68" text-anchor="middle" font-size="15" fill="#172033">z=1</text>
           <path d="M70 190 L470 190" stroke="#1f2d4d"/>
-          <text x="110" y="44" font-size="13" fill="#1f2d4d">Nilai mentah</text>
-          <text x="390" y="44" font-size="13" fill="#1f2d4d">Skor z</text>
+          <text x="75" y="68" font-size="13" fill="#1f2d4d" text-anchor="end">Skor z</text>
+          <text x="260" y="254" font-size="13" fill="#1f2d4d" text-anchor="middle">Nilai mentah (markah)</text>
           <text x="260" y="150" text-anchor="middle" font-size="18" fill="#172033">z = (75 − 70)/5 = 1</text>
           <text x="260" y="235" text-anchor="middle" font-size="16" fill="#172033">μ = 70, σ = 5</text>
         </svg>
@@ -239,30 +278,15 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
       <div class="diagram-feedback"><strong>Maklum balas:</strong> z=(75−70)/5=1. Ini bermaksud 75 ialah satu sisihan piawai di atas min. Standardisasi menukar skala asal kepada unit sisihan piawai.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="normal-regions">
       <div class="diagram-header"><span class="diagram-badge">8</span><h3>Kawasan kiri, kanan dan antara pada lengkung normal</h3></div>
       <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Normal curves with left, right and between shaded regions">
+        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Separate normal density charts shading left of z=1, right of z=1, and between z=-1 and z=1">
           <rect width="520" height="260" fill="#f7faff"/>
-          <g transform="translate(0 0)">
-            <path d="M40 170 C90 110, 150 80, 200 80 C250 80, 295 110, 330 170 L330 170 C295 200, 250 220, 200 220 C150 220, 90 200, 40 170 Z" fill="#dbeafe" stroke="#2a5cc5" stroke-width="2"/>
-            <path d="M40 170 C90 110, 150 80, 200 80 C250 80, 295 110, 330 170 L330 170 L200 170 Z" fill="#60a5fa" opacity="0.7"/>
-            <line x1="200" y1="80" x2="200" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-            <text x="200" y="240" text-anchor="middle" font-size="14" fill="#172033">Kiri</text>
-          </g>
-          <g transform="translate(180 0)">
-            <path d="M40 170 C90 110, 150 80, 200 80 C250 80, 295 110, 330 170 L330 170 C295 200, 250 220, 200 220 C150 220, 90 200, 40 170 Z" fill="#dbeafe" stroke="#2a5cc5" stroke-width="2"/>
-            <path d="M200 80 C250 80, 295 110, 330 170 L330 170 L330 220 L200 220 Z" fill="#fca5a5" opacity="0.7"/>
-            <line x1="200" y1="80" x2="200" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-            <text x="200" y="240" text-anchor="middle" font-size="14" fill="#172033">Kanan</text>
-          </g>
-          <g transform="translate(360 0)">
-            <path d="M40 170 C90 110, 150 80, 200 80 C250 80, 295 110, 330 170 L330 170 C295 200, 250 220, 200 220 C150 220, 90 200, 40 170 Z" fill="#dbeafe" stroke="#2a5cc5" stroke-width="2"/>
-            <path d="M120 170 C150 110, 182 80, 200 80 C214 80, 234 100, 245 170 L245 170 C228 190, 214 220, 200 220 C170 220, 140 200, 120 170 Z" fill="#93c5fd" opacity="0.8"/>
-            <line x1="120" y1="80" x2="120" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-            <line x1="245" y1="80" x2="245" y2="220" stroke="#1f2d4d" stroke-dasharray="5 5"/>
-            <text x="200" y="240" text-anchor="middle" font-size="14" fill="#172033">Antara</text>
-          </g>
+          <text x="260" y="26" text-anchor="middle" font-family="Arial" font-size="16" fill="#172033">Delivery times: μ=30, σ=5 · x=25,35 → z=−1,1</text>
+          <g data-region="left" transform="translate(10 0)"></g>
+          <g data-region="right" transform="translate(180 0)"></g>
+          <g data-region="between" transform="translate(350 0)"></g>
         </svg>
       </div>
       <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
@@ -272,7 +296,7 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
       <div class="diagram-feedback"><strong>Maklum balas:</strong> P(X≤35) ialah seluruh kawasan di kiri 35; P(25≤X≤35) ialah kawasan antara 25 dan 35 sahaja. Jangan campuradukkan kawasan di bawah lengkung.</div>
     </article>
 
-    <article class="diagram-card">
+    <article class="diagram-card" data-diagram="table-lookup">
       <div class="diagram-header"><span class="diagram-badge">9</span><h3>Carian jadual normal: padanan jadual yang dipakai dalam pelajaran</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Standard normal table lookup matching the lesson convention">
@@ -280,17 +304,17 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
           <g font-family="Arial" font-size="14" fill="#172033">
             <rect x="60" y="40" width="390" height="170" fill="#ffffff" stroke="#b9c9dd"/>
             <text x="255" y="58" text-anchor="middle" font-size="17" font-weight="700">Jadual normal piawai: Φ(z)=P(Z≤z)</text>
-            <text x="110" y="88">z</text><text x="165" y="88">.00</text><text x="210" y="88">.01</text><text x="255" y="88">.02</text><text x="300" y="88">.03</text>
-            <text x="85" y="118">1.2</text><text x="160" y="118">0.8849</text><text x="205" y="118">0.8869</text><text x="250" y="118">0.8888</text><text x="295" y="118">0.8907</text>
-            <text x="85" y="146">1.3</text><text x="160" y="146">0.9032</text><text x="205" y="146">0.9049</text><text x="250" y="146">0.9066</text><text x="295" y="146">0.9082</text>
-            <rect x="295" y="111" width="54" height="18" fill="#dbeafe"/>
-            <text x="255" y="182" font-size="15" fill="#1d2d4d">Untuk z = 1.23, pilih baris 1.2 dan lajur .03.</text>
+            <text x="85" y="88">z</text><text x="148" y="88">.00</text><text x="210" y="88">.01</text><text x="272" y="88">.02</text><text x="334" y="88">.03</text>
+            <rect x="331" y="100" width="62" height="24" fill="#dbeafe"/>
+            <text x="85" y="118">1.2</text><text x="148" y="118">0.8849</text><text x="210" y="118">0.8869</text><text x="272" y="118">0.8888</text><text x="334" y="118">0.8907</text>
+            <text x="85" y="146">1.3</text><text x="148" y="146">0.9032</text><text x="210" y="146">0.9049</text><text x="272" y="146">0.9066</text><text x="334" y="146">0.9082</text>
+            <text x="255" y="182" text-anchor="middle" font-size="15" fill="#1d2d4d">Untuk z = 1.23, pilih baris 1.2 dan lajur .03.</text>
             <text x="255" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#1d2d4d">Φ(1.23)=0.8907</text>
           </g>
         </svg>
       </div>
       <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Jadual normal memberi kawasan ke kiri.</li><li>Baris ialah 1.2, lajur ialah .03.</li><li>Untuk z=1.23, baca 0.8907.</li></ul>
+        <ul class="diagram-list"><li>Jadual ini memberi kawasan kumulatif ke kiri.</li><li>Baris ialah 1.2, lajur ialah .03.</li><li>Untuk z=1.23, baca 0.8907.</li><li>Jadual lain mungkin memberi ekor kanan atau kawasan antara 0 dan z; semak konvensyen dahulu.</li></ul>
       </div>
       <div class="diagram-prompt"><strong>Soalan cepat:</strong> Apakah nilai Φ(1.23) mengikut jadual ini?</div>
       <div class="diagram-feedback"><strong>Maklum balas:</strong> Φ(1.23)=0.8907. Ini bermaksud P(Z≤1.23)=0.8907, iaitu 89.07% kawasan di kiri z=1.23.</div>
@@ -303,6 +327,31 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
 <script>
 'use strict';
 const $=id=>document.getElementById(id),fmt=(x,d=4)=>Number(x).toFixed(d),num=id=>$(id).value.trim()===''?NaN:Number($(id).value);
+function mountDiagrams(){
+  const ns='http://www.w3.org/2000/svg';
+  function svgElement(tag,attributes,text){const el=document.createElementNS(ns,tag);Object.entries(attributes).forEach(([key,value])=>el.setAttribute(key,value));if(text!==undefined)el.textContent=text;return el;}
+  const xx=z=>80+z*18,yy=z=>175-100*Math.exp(-z*z/2);
+  function densityPath(a,b){let path=`M${xx(a)} ${yy(a)}`;const steps=120;for(let i=1;i<=steps;i++){let z=a+(b-a)*i/steps;path+=`L${xx(z)} ${yy(z)}`;}return path;}
+  document.querySelectorAll('#diagrams [data-region]').forEach(group=>{
+    const region=group.dataset.region,a=region==='left'?-4:region==='right'?1:-1,b=region==='right'?4:1;
+    group.append(svgElement('path',{d:`M${xx(a)} 175L${xx(a)} ${yy(a)}${densityPath(a,b).replace(/^M[^L]+/,'')}L${xx(b)} 175Z`,fill:region==='right'?'#fca5a5':'#60a5fa'}));
+    group.append(svgElement('path',{d:densityPath(-4,4),fill:'none',stroke:'#2a5cc5','stroke-width':2}));
+    group.append(svgElement('path',{d:'M8 175H152',stroke:'#172033'}));
+    (region==='between'?[-1,1]:[1]).forEach(z=>{
+      group.append(svgElement('path',{d:`M${xx(z)} 175V${yy(z)}`,stroke:'#172033','stroke-dasharray':'4 4'}));
+      group.append(svgElement('text',{x:xx(z),y:194,'text-anchor':'middle',fill:'#172033','font-size':12},`z=${z}`));
+    });
+    const labels={left:['Kiri: Φ(1)','≈ 0.8413'],right:['Kanan: 1−Φ(1)','≈ 0.1587'],between:['Antara: Φ(1)−Φ(−1)','≈ 0.6827']};
+    labels[region].forEach((label,i)=>group.append(svgElement('text',{x:80,y:222+i*22,'text-anchor':'middle',fill:'#172033','font-family':'Arial','font-size':13},label)));
+  });
+  // Reference cards are the single source; clones contain no element IDs.
+  const cards=new Map([...document.querySelectorAll('#diagrams [data-diagram]')].map(card=>[card.dataset.diagram,card]));
+  document.querySelectorAll('[data-diagram-slot]').forEach(slot=>{
+    const clone=cards.get(slot.dataset.diagramSlot).cloneNode(true);
+    clone.removeAttribute('id');clone.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+    slot.replaceChildren(clone);
+  });
+}
 function choose(n,k){if(k<0||k>n)return 0;k=Math.min(k,n-k);let v=1;for(let i=1;i<=k;i++)v=v*(n-k+i)/i;return v;}
 function pmf(n,p,k){if(k<0||k>n)return 0;if(p===0)return k===0?1:0;if(p===1)return k===n?1:0;return choose(n,k)*p**k*(1-p)**(n-k);}
 function binRange(n,p,a,b){let s=0;for(let k=Math.max(0,a);k<=Math.min(n,b);k++)s+=pmf(n,p,k);return Math.min(1,Math.max(0,s));}
@@ -312,18 +361,69 @@ function normValid(m,s,...xs){return [m,s,...xs].every(Number.isFinite)&&Math.ab
 function inputBox(label,target,tolerance=.00015){const box=document.createElement('div');box.className='step';const lab=document.createElement('label');lab.textContent=label;const input=document.createElement('input');input.value=target;input.type='number';input.step='0.0001';const note=document.createElement('div');note.className='small';note.textContent=`≈ ${fmt(target,4)}`;box.append(lab,input,note);return box;}
 function fillBoxes(id,arr){$(id).replaceChildren(...arr.map(a=>inputBox(...a)));}
 function surface(id){let c=$(id),w=c.clientWidth||500,h=250,d=window.devicePixelRatio||1;c.width=w*d;c.height=h*d;let g=c.getContext('2d');g.scale(d,d);return {g,w,h};}
-function renderBin(){let n=num('bn'),p=num('bp'),k=num('bk');if(!binValid(n,p)||!Number.isInteger(k)||k<0||k>n){$('bError').textContent='Use whole-number n from 0 to 60, p from 0 to 1, and a whole-number k in range.';return;}$('bError').textContent='';let prob=pmf(n,p,k);$('bResult').innerHTML=`P(X = ${k}) = C(${n}, ${k}) × ${p}<sup>${k}</sup> × ${(1-p).toFixed(2)}<sup>${n-k}</sup> = ${fmt(prob,4)}`;let out='';for(let i=0;i<=n;i++){out+=`<div class="step"><strong>k=${i}</strong><span>${fmt(pmf(n,p,i),4)}</span></div>`;}$('bFlow').innerHTML=out;let canvas=$('binChart');let {g,w,h}=surface('binChart');g.clearRect(0,0,w,h);let pad={l:30,r:20,t:18,b:36};let barW=(w-pad.l-pad.r)/(n+1);let max=Math.max(...Array.from({length:n+1},(_,i)=>pmf(n,p,i)));for(let i=0;i<=n;i++){let val=pmf(n,p,i),x=pad.l+i*barW+4,y=h-pad.b-(val/max)*(h-pad.t-pad.b),bh=h-pad.b-y;g.fillStyle=i===k?'#f59e0b':'#7c5cff';g.fillRect(x,y,barW-8,bh);g.fillStyle='#1f2d4d';g.font='12px sans-serif';g.fillText(String(i),x+(barW-8)/2,h-pad.b+16);g.fillText(fmt(val,3),x+(barW-8)/2,Math.max(16,y-6));}g.fillStyle='#1f2d4d';g.font='13px sans-serif';g.fillText('k',w/2,h-8);g.fillStyle='#1f2d4d';g.fillText('Probability',12,20);$('bSummary').textContent=`For n=${n}, p=${p}, the bars sum to 1; the bar at k=${k} is the exact probability.`;}
-function renderNormal(){let m=num('nm'),s=num('ns'),x=num('nx');if(!normValid(m,s,x)){$('nError').textContent='Use finite μ and x and positive σ.';return;}$('nError').textContent='';let z=(x-m)/s;let p=phi(z);$('nResult').innerHTML=`z = (${x} − ${m}) / ${s} = ${fmt(z,3)}<br>P(X ≤ ${x}) = Φ(${fmt(z,3)}) ≈ ${fmt(p,4)}`;let left=30,right=470,base=188,scale=(right-left)/8;function xx(zv){return left+(zv+4)*scale;}function yy(zv){const d=Math.exp(-(zv*zv)/2)/Math.sqrt(2*Math.PI);return base-d*160;}let c=$('normalChart');let {g,w,h}=surface('normalChart');g.clearRect(0,0,w,h);g.strokeStyle='#0f172a';g.beginPath();for(let t=-4;t<=4;t+=0.05){let z0=t;let x0=xx(z0),y0=yy(z0);if(t===-4)g.moveTo(x0,y0);else g.lineTo(x0,y0);}g.stroke();g.beginPath();g.moveTo(left,base);g.lineTo(right,base);g.stroke();for(let t=-4;t<=4;t+=1){let x0=xx(t);g.beginPath();g.moveTo(x0,base);g.lineTo(x0,yy(t));g.strokeStyle='#7a8ca8';g.setLineDash([4,4]);g.stroke();g.setLineDash([]);g.fillStyle='#1f2d4d';g.font='12px sans-serif';g.fillText(t===0?'μ':`μ ${t<0?'-':'+'} ${Math.abs(t)}`,(x0),base+18);}g.fillStyle='#1f2d4d';g.font='12px sans-serif';g.fillText('z',right-8,base-10);$('nSummary').textContent=`Mean ${m}, SD ${s}; cutoff ${x} gives z=${fmt(z,3)}.`;}
+function renderBin(){
+  let n=num('bn'),p=num('bp'),k=num('bk');
+  if(!binValid(n,p)||!Number.isInteger(k)||k<0||k>n){$('bError').textContent='Use whole-number n from 0 to 60, p from 0 to 1, and a whole-number k in range.';return;}
+  $('bError').textContent='';let prob=pmf(n,p,k);
+  $('bResult').innerHTML=`P(X = ${k}) = C(${n}, ${k}) × ${p}<sup>${k}</sup> × ${(1-p).toFixed(2)}<sup>${n-k}</sup> = ${fmt(prob,4)}`;
+  let out='';for(let i=0;i<=n;i++)out+=`<div class="step"><strong>k=${i}</strong><span>${fmt(pmf(n,p,i),4)}</span></div>`;
+  $('bFlow').innerHTML=out;
+  if($('binomial').classList.contains('active')){
+    const {g,w,h}=surface('binChart'),pad={l:30,r:20,t:30,b:36},barW=(w-pad.l-pad.r)/(n+1),gap=Math.min(8,barW*.25);
+    const max=Math.max(...Array.from({length:n+1},(_,i)=>pmf(n,p,i))),labelStep=Math.max(1,Math.ceil(28/barW));
+    g.clearRect(0,0,w,h);g.font='12px sans-serif';g.textAlign='center';
+    for(let i=0;i<=n;i++){
+      const val=pmf(n,p,i),x=pad.l+i*barW+gap/2,y=h-pad.b-(val/max)*(h-pad.t-pad.b);
+      g.fillStyle=i===k?'#f59e0b':'#7c5cff';g.fillRect(x,y,barW-gap,h-pad.b-y);
+      g.fillStyle='#1f2d4d';
+      if(i%labelStep===0||i===k)g.fillText(String(i),pad.l+(i+.5)*barW,h-pad.b+16);
+      if(barW>=40)g.fillText(fmt(val,3),pad.l+(i+.5)*barW,Math.max(16,y-6));
+    }
+    g.fillText('k',w/2,h-8);g.textAlign='left';g.fillText('Probability',12,20);
+  }
+  $('bSummary').textContent=`For n=${n}, p=${p}, the bars sum to 1; the bar at k=${k} is the exact probability.`;
+}
+function renderNormal(){
+  const m=num('nm'),s=num('ns'),x=num('nx');
+  if(!normValid(m,s,x)){$('nError').textContent='Use finite μ and x and positive σ.';return;}
+  $('nError').textContent='';const z=(x-m)/s,p=phi(z);
+  $('nResult').innerHTML=`z = (${x} − ${m}) / ${s} = ${fmt(z,3)}<br>P(X ≤ ${x}) = Φ(${fmt(z,3)}) ≈ ${fmt(p,4)}`;
+  if($('normal').classList.contains('active')){
+    const {g,w,h}=surface('normalChart'),left=30,right=w-30,base=h-55;
+    const xx=t=>left+(t+4)*(right-left)/8,yy=t=>base-(base-45)*Math.exp(-t*t/2),cutoff=Math.max(-4,Math.min(4,z));
+    g.clearRect(0,0,w,h);
+    if(z>-4){
+      g.beginPath();g.moveTo(left,base);g.lineTo(left,yy(-4));
+      for(let i=1;i<=160;i++){const t=-4+(cutoff+4)*i/160;g.lineTo(xx(t),yy(t));}
+      g.lineTo(xx(cutoff),base);g.closePath();g.fillStyle='#93c5fd';g.fill();
+    }
+    g.strokeStyle='#0f172a';g.lineWidth=2;g.beginPath();
+    for(let i=0;i<=160;i++){const t=-4+i/20;if(i===0)g.moveTo(xx(t),yy(t));else g.lineTo(xx(t),yy(t));}g.stroke();
+    g.beginPath();g.moveTo(left,base);g.lineTo(right,base);g.stroke();
+    g.font='12px sans-serif';g.textAlign='center';g.lineWidth=1;
+    for(let t=-3;t<=3;t++){
+      if(w<380&&Math.abs(t)===2)continue;
+      g.strokeStyle='#7a8ca8';g.setLineDash([4,4]);g.beginPath();g.moveTo(xx(t),base);g.lineTo(xx(t),yy(t));g.stroke();g.setLineDash([]);
+      g.fillStyle='#1f2d4d';g.fillText(t===0?'μ':`μ${t<0?'−':'+'}${Math.abs(t)===1?'':Math.abs(t)}σ`,xx(t),base+20);
+    }
+    g.strokeStyle='#c23442';g.lineWidth=2;g.beginPath();g.moveTo(xx(cutoff),base);g.lineTo(xx(cutoff),35);g.stroke();
+    g.fillStyle='#8f1f2d';g.textAlign=z<0?'left':'right';g.fillText(`x=${x}${Math.abs(z)>4?' (off scale)':''}`,xx(cutoff),25);
+    g.fillStyle='#1f2d4d';g.textAlign='center';g.fillText('Measurement (SD bands)',w/2,h-10);
+  }
+  $('nSummary').textContent=`Mean ${m}, SD ${s}; cutoff ${x} gives z=${fmt(z,3)}. Blue area: P(X ≤ ${x}) ≈ ${fmt(p,4)}.`;
+}
 function zTable(){let z=num('tableZ');if(!Number.isFinite(z)||Math.abs(z)>3.49){$('tableResult').textContent='Enter z from −3.49 to 3.49.';return;}const val=phi(z);$('tableResult').textContent=`z=${fmt(z,2)} ⇒ Φ(z) = ${fmt(val,4)}.`;let tbl=document.createElement('table');let thead=document.createElement('thead');let rhead=document.createElement('tr');['z',' .00',' .01',' .02',' .03',' .04',' .05',' .06',' .07',' .08',' .09'].forEach(h=>{let th=document.createElement('th');th.textContent=h; rhead.appendChild(th);});thead.appendChild(rhead);tbl.appendChild(thead);let tbody=document.createElement('tbody');for(let i=0;i<=3.4;i+=0.1){let rowEl=document.createElement('tr');let label=document.createElement('th');label.textContent=fmt(i,1);rowEl.appendChild(label);for(let j=0;j<=0.09;j+=0.01){let cell=document.createElement('td');let v=phi(i+j);cell.textContent=fmt(v,4);rowEl.appendChild(cell);}tbody.appendChild(rowEl);}tbl.appendChild(tbody);$('zTable').replaceChildren(tbl);}
 function renderAdvanced(){let n=num('an'),p=num('ap'),a=num('aa'),b=num('ab');if(!binValid(n,p)||!Number.isInteger(a)||!Number.isInteger(b)||a<0||a>b||b>n){$('aBin').innerHTML='<p class="error">Use integer bounds within the binomial range.</p>';return;}let exact=pmf(n,p,a);let atMost=binRange(n,p,0,a);let atLeast=binRange(n,p,a,n);$('aBin').innerHTML=`<p>For n=${n}, p=${p}:</p><div class="formula">P(X=${a}) = ${fmt(exact,4)}</div><div class="formula">P(X ≤ ${a}) = ${fmt(atMost,4)}</div><div class="formula">P(X ≥ ${a}) = ${fmt(atLeast,4)}</div>`;let mu=num('am'),sd=num('as'),l=num('al'),u=num('au');if(!normValid(mu,sd,l,u)){$('aNormal').innerHTML='<p class="error">Use valid normal parameters.</p>';return;}let z1=(l-mu)/sd,z2=(u-mu)/sd;let area=phi(z2)-phi(z1);$('aNormal').innerHTML=`<p>For N(${mu}, ${sd}²):</p><div class="formula">z<sub>1</sub> = ${fmt(z1,3)} &nbsp; z<sub>2</sub> = ${fmt(z2,3)}</div><div class="formula">P(${l} ≤ X ≤ ${u}) = ${fmt(area,4)}</div>`;}
 function easyCalcBinomial(){let n=num('en'),p=num('ep'),k=num('ek');if(!binValid(n,p)||!Number.isInteger(k)||k<0||k>n){$('easyBinomOut').textContent='Please enter a valid n, p and k.';return;}$('easyBinomOut').textContent=`P(X=${k}) = C(${n}, ${k}) × ${p}^{k} × ${(1-p)}^{${n-k}} = ${fmt(pmf(n,p,k),4)}`;}
 function easyCalcZ(){let mu=num('emu'),sigma=num('esigma'),x=num('exval');if(!Number.isFinite(mu)||!Number.isFinite(sigma)||!Number.isFinite(x)||sigma<=0){$('easyZOut').textContent='σ must be > 0.';return;}$('easyZOut').textContent=`z = (${x} − ${mu}) / ${sigma} = ${fmt((x-mu)/sigma,4)}`;}
-function easyCheckQ(opt){const ok=opt==='a';$('easyQuizOut').className=ok?'good feedback':'bad feedback';$('easyQuizOut').textContent=ok?'✅ Correct! Binomial counts whole numbers; normal describes measured values.':'❌ Not quite. Binomial is count-based; normal is measurement-based.';}
-const tabs=document.querySelectorAll('[data-tab]');const panels=document.querySelectorAll('.panel');function go(id){panels.forEach(p=>p.classList.toggle('active',p.id===id));tabs.forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===id)));}
+function easyCheckQ(opt){const ok=opt==='a';$('easyQuizOut').className=ok?'good feedback':'bad feedback';$('easyQuizOut').textContent=ok?'✅ Correct! Check fixed independent trials and constant p for binomial; a symmetric bell-shaped pattern for normal.':'❌ Not quite. Counts and measurements alone do not determine the model; check its assumptions.';}
+const tabs=document.querySelectorAll('[data-tab]');const panels=document.querySelectorAll('.panel');function go(id){panels.forEach(p=>p.classList.toggle('active',p.id===id));tabs.forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===id)));if(id==='binomial')renderBin();if(id==='normal')renderNormal();}
 [...document.querySelectorAll('[data-go]')].forEach(btn=>btn.addEventListener('click',()=>{const target=btn.dataset.go;go(target);}));
 document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>go(btn.dataset.tab)));
 document.querySelectorAll('[data-easy-quiz]').forEach(btn=>btn.addEventListener('click',()=>easyCheckQ(btn.dataset.easyQuiz)));
 $('easyBinomialBtn').onclick=easyCalcBinomial;$('easyZBtn').onclick=easyCalcZ;['bn','bp','bk'].forEach(id=>$(id).addEventListener('input',renderBin));['nm','ns','nx'].forEach(id=>$(id).addEventListener('input',renderNormal));['tableZ'].forEach(id=>$(id).addEventListener('input',zTable));['an','ap','aa','ab'].forEach(id=>$(id).addEventListener('input',renderAdvanced));['am','as','al','au'].forEach(id=>$(id).addEventListener('input',renderAdvanced));
-renderBin();renderNormal();zTable();renderAdvanced();
+tabs.forEach(tab=>tab.id=`tab-${tab.dataset.tab}`);
+window.addEventListener('resize',()=>{if($('binomial').classList.contains('active'))renderBin();if($('normal').classList.contains('active'))renderNormal();});
+mountDiagrams();renderBin();renderNormal();zTable();renderAdvanced();
 go('intro');
 </script></body></html>
