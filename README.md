@@ -1,7 +1,7 @@
 # Statistics + Probability
 
 Self-learning lessons for statistics and probability, published with GitHub Pages at
-https://dina85hai.github.io/STATISTICS_PROBABILITY/
+https://farahdina19.github.io/STATISTICS_PROBABILITY/
 
 ## Learning path
 
@@ -33,6 +33,8 @@ https://dina85hai.github.io/STATISTICS_PROBABILITY/
 | `presentation.html` | Probability slides (styles compiled by Tailwind) |
 | `lessons/*.html` | Stand-alone lesson pages, copied to the site as they are |
 | `public/learner.js` | Lesson list (`TOPICS`), Home / Mark as done / Next buttons, progress, self-test mode |
+| `public/probability-images/` | Diagram images placed in the Probability Lab (PNG palette files and SVG) |
+| `scripts/generate-probability-visuals.mjs` | Writes the SVG diagrams in `public/probability-images/` and checks their calculations |
 
 ## Adding a new lesson
 
@@ -84,6 +86,22 @@ included in the existing GitHub Pages build.
 
 ## Probability Lab diagrams
 
-Probability Lab places eight diagram topics beside their matching explanations: three-coin outcomes, probability table and bars, model choice, exact/cumulative binomial selections, normal SD bands, raw/z axes, normal regions, and table lookup. All nine original reference cards remain in the Diagrams tab, including the expected-count example, with teaching captions, quick questions and feedback.
+Probability Lab places its images beside the matching explanations. Each one sits in the tab for its topic:
+
+| Tab | Images |
+|---|---|
+| Intro | `decision-tree-2.png` (binomial or normal, with the condition checklist) |
+| Binomial | `five-fair-coin-flips.svg`, `basketball-shots.png`, `basketball-shots-2.svg` |
+| Normal | `raw-score-to-z-score.png`, `area-under-normal-curve-2.png`, `area-under-normal-curve.png`, `normal-table-lookup.png` |
+| Advanced | `cumulative-vs-individual.png` |
+| Diagrams | `normal-bell-curve.svg` (the accurate empirical-rule figure) |
+
+Duplicate images were removed, keeping the best version of each concept. The Diagrams tab keeps the nine
+original reference cards, with teaching captions, quick questions and feedback. Their slots fill the
+topic tabs when the page loads.
+
+Reference cards, explicit insertion slots and their cloning logic live in `lessons/probability-lab.html`; there are no duplicate element IDs. Most artwork is inline SVG; the empirical-rule card reuses the accurate `public/probability-images/normal-bell-curve.svg`. The calculator charts redraw on tab activation and resize. The normal table uses cumulative left areas Φ(z); notes distinguish other table conventions and rounded empirical-rule percentages. Vite publishes the lesson and assets in `dist/`.
+
+The visual guide and learning suite were merged into the Probability Lab and their pages were removed. The lab keeps their worked examples, mistakes section, formula reference and diagram prompts.
 
 Reference cards, explicit insertion slots and their cloning logic live in `lessons/probability-lab.html`; there are no duplicate element IDs. Most artwork is inline SVG; the empirical-rule card reuses the accurate `public/probability-images/normal-bell-curve.svg`. The calculator charts redraw on tab activation and resize. The normal table uses cumulative left areas Φ(z); notes distinguish other table conventions and rounded empirical-rule percentages. Vite publishes the lesson and assets in `dist/`.
