@@ -88,16 +88,16 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
   <div class="diagram-grid">
 
     <article class="diagram-card" data-diagram="outcomes">
-      <div class="diagram-header"><span class="diagram-badge">1</span><h3>8 hasil tiga lambungan syiling adil</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">1</span><h3>8 outcomes of three fair coin flips</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Three fair coin flips grouped by heads count">
           <rect width="520" height="260" fill="#f7faff"/>
-          <text x="260" y="26" font-size="20" font-family="Arial" text-anchor="middle" fill="#1d2c49">Tiga lambungan syiling adil</text>
+          <text x="260" y="26" font-size="20" font-family="Arial" text-anchor="middle" fill="#1d2c49">Three fair coin flips</text>
           <g font-size="16" font-family="Arial" fill="#192b46">
-            <text x="80" y="58">0 kepala:</text><text x="210" y="58">TTT</text>
-            <text x="80" y="92">1 kepala:</text><text x="210" y="92">HTT, THT, TTH</text>
-            <text x="80" y="126">2 kepala:</text><text x="210" y="126">HHT, HTH, THH</text>
-            <text x="80" y="160">3 kepala:</text><text x="210" y="160">HHH</text>
+            <text x="80" y="58">0 heads:</text><text x="210" y="58">TTT</text>
+            <text x="80" y="92">1 head:</text><text x="210" y="92">HTT, THT, TTH</text>
+            <text x="80" y="126">2 heads:</text><text x="210" y="126">HHT, HTH, THH</text>
+            <text x="80" y="160">3 heads:</text><text x="210" y="160">HHH</text>
           </g>
           <g>
             <rect x="34" y="211" width="96" height="18" rx="6" fill="#dfeaf8"/>
@@ -115,21 +115,21 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
           </g>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Jumlah semua hasil = 8, bukan 16.</li><li>Setiap jujukan H/T sama mungkin.</li><li>Kumpulan mengikut bilangan kepala: 0, 1, 2, 3.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Total outcomes = 8, not 16.</li><li>Every H/T sequence is equally likely.</li><li>Groups by number of heads: 0, 1, 2, 3.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Berapa banyak jujukan mempunyai tepat 2 kepala?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> Terdapat 3 jujukan: HHT, HTH, THH. Jadi P(X=2)=3/8. Ini merupakan taburan binomial untuk n=3, p=0.5.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> How many sequences have exactly 2 heads?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> There are 3 sequences: HHT, HTH, THH. So P(X=2)=3/8. This is a binomial distribution with n=3, p=0.5.</div>
     </article>
 
     <article class="diagram-card" data-diagram="probability-bars">
-      <div class="diagram-header"><span class="diagram-badge">2</span><h3>Jadual kebarangkalian dan batang</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">2</span><h3>Probability table and bars</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 270" xmlns="http://www.w3.org/2000/svg" aria-label="Binomial probability table and bar chart for three fair coin flips">
           <rect width="520" height="270" fill="#f7faff"/>
           <g font-family="Arial" font-size="15" fill="#172033">
             <rect x="40" y="38" width="180" height="160" fill="#ffffff" stroke="#b9c9dd"/>
-            <text x="130" y="58" text-anchor="middle" font-size="16" font-weight="700">Jadual</text>
+            <text x="130" y="58" text-anchor="middle" font-size="16" font-weight="700">Table</text>
             <text x="80" y="86">k</text><text x="140" y="86">P(X=k)</text>
             <text x="80" y="110">0</text><text x="140" y="110">1/8</text>
             <text x="80" y="134">1</text><text x="140" y="134">3/8</text>
@@ -149,19 +149,19 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
           </g>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Setiap palang mewakili satu nilai k.</li><li>Semua kebarangkalian jumlah = 1.</li><li>Palang tertinggi menunjukkan nilai k yang paling mungkin.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Each bar represents one value of k.</li><li>All probabilities add up to 1.</li><li>The tallest bar shows the most likely value of k.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Apakah nilai P(X=1) dan mengapa bar k=1 sama tinggi dengan k=2?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> P(X=1)=3/8 dan P(X=2)=3/8 kerana terdapat 3 jujukan untuk setiap kes itu. Dalam taburan simetri p=0.5, kebarangkalian pusat sama tinggi.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is P(X=1), and why are the bars for k=1 and k=2 the same height?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> P(X=1)=3/8 and P(X=2)=3/8, because each case has 3 sequences. In a symmetric distribution with p=0.5, the two middle probabilities are equal.</div>
     </article>
 
     <article class="diagram-card" data-diagram="decision">
-      <div class="diagram-header"><span class="diagram-badge">3</span><h3>Keputusan: binomial atau normal?</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">3</span><h3>Decision: binomial or normal?</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Decision diagram for choosing binomial versus normal">
           <rect width="520" height="260" fill="#f7faff"/>
-          <text x="260" y="28" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">Pilih model yang betul</text>
+          <text x="260" y="28" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">Choose the correct model</text>
           <line x1="260" y1="45" x2="260" y2="80" stroke="#7d8fa8" stroke-width="2"/>
           <line x1="260" y1="80" x2="120" y2="120" stroke="#7d8fa8" stroke-width="2"/>
           <line x1="260" y1="80" x2="400" y2="120" stroke="#7d8fa8" stroke-width="2"/>
@@ -169,26 +169,26 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
           <rect x="340" y="120" width="120" height="64" rx="12" fill="#e3edff" stroke="#5782d8"/>
           <text x="120" y="145" text-anchor="middle" font-size="16" font-family="Arial" fill="#163d2f">Binomial</text>
           <text x="400" y="145" text-anchor="middle" font-size="16" font-family="Arial" fill="#1d2d4d">Normal</text>
-          <text x="120" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#163d2f">Kira x = 0,1,2,…,n</text>
-          <text x="400" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">Ukuran berterusan</text>
-          <text x="260" y="96" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">Bilang atau ukur?</text>
-          <text x="260" y="210" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Andaian binomial: n tetap, dua hasil, p sama, bebas.</text>
-          <text x="260" y="235" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Andaian normal: ukuran berterusan, simetri, bell-shape.</text>
+          <text x="120" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#163d2f">Count x = 0, 1, 2, …, n</text>
+          <text x="400" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">Continuous measurement</text>
+          <text x="260" y="96" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">Count or measure?</text>
+          <text x="260" y="210" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Binomial assumptions: fixed n, two outcomes, same p, independent.</text>
+          <text x="260" y="235" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Normal assumptions: continuous measurement, symmetric, bell-shaped.</text>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Binomial: n tetap, dua hasil, p sama dan trial bebas.</li><li>Normal: ukuran berterusan dengan taburan simetri dan bell-shape.</li><li>Bukan semua count ialah binomial; bukan semua ukuran ialah normal.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Binomial: fixed n, two outcomes, same p, independent trials.</li><li>Normal: continuous measurement with a symmetric, bell-shaped distribution.</li><li>Not every count is binomial; not every measurement is normal.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Bilangan kepala dalam 5 lambungan syiling ialah binomial atau normal?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> Binomial jika 5 lambungan bebas mempunyai p yang sama. Normal boleh sesuai untuk masa penghantaran, berat atau markah jika taburannya simetri dan bell-shape.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> Is the number of heads in 5 coin flips binomial or normal?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> Binomial, if the 5 flips are independent with the same p. Normal may suit delivery times, weights or marks if their distribution is symmetric and bell-shaped.</div>
     </article>
 
     <article class="diagram-card" data-diagram="expected-count">
-      <div class="diagram-header"><span class="diagram-badge">4</span><h3>10 ikon komponen: satu kemungkinan, bukan min</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">4</span><h3>10 component icons: one possible result, not the mean</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg" aria-label="Ten shot icons showing one possible outcome versus expected count">
           <rect width="520" height="250" fill="#f7faff"/>
-          <text x="260" y="26" text-anchor="middle" font-size="20" font-family="Arial" fill="#172033">Satu kemungkinan hasil</text>
+          <text x="260" y="26" text-anchor="middle" font-size="20" font-family="Arial" fill="#172033">One possible result</text>
           <g>
             <circle cx="50" cy="90" r="18" fill="#16a34a"/><text x="50" y="96" text-anchor="middle" font-size="16" fill="#fff">✓</text>
             <circle cx="90" cy="90" r="18" fill="#16a34a"/><text x="90" y="96" text-anchor="middle" font-size="16" fill="#fff">✓</text>
@@ -201,42 +201,42 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
             <circle cx="370" cy="90" r="18" fill="#ef4444"/><text x="370" y="96" text-anchor="middle" font-size="16" fill="#fff">✕</text>
             <circle cx="410" cy="90" r="18" fill="#ef4444"/><text x="410" y="96" text-anchor="middle" font-size="16" fill="#fff">✕</text>
           </g>
-          <text x="260" y="150" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">7 masuk, 3 gagal</text>
+          <text x="260" y="150" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">7 made, 3 missed</text>
           <text x="260" y="180" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">X = 7</text>
           <rect x="80" y="200" width="360" height="28" rx="10" fill="#edf6ff"/>
-          <text x="260" y="220" text-anchor="middle" font-size="15" font-family="Arial" fill="#1f3558">Jangkaan: E(X)=np=10×0.7=7, tetapi ini bukan hasil yang pasti.</text>
+          <text x="260" y="220" text-anchor="middle" font-size="15" font-family="Arial" fill="#1f3558">Expected: E(X)=np=10×0.7=7, but this is not a certain result.</text>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Gambar ini ialah satu hasil yang mungkin.</li><li>Jangkaan ialah nilai purata, bukan keputusan pasti.</li><li>7 masuk adalah sama dengan E(X), tetapi bukan satu-satunya kemungkinan.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>This picture is one possible result.</li><li>The expected value is an average, not a certain outcome.</li><li>7 made equals E(X), but it is not the only possible result.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Adakah 7 masuk adalah hasil yang pasti?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> Tidak. 7 masuk ialah hasil yang paling biasa dengan p=0.7, tetapi satu kemungkinan lain seperti 6 atau 8 juga boleh berlaku. E(X)=7 ialah jangkaan, bukan hasil wajib.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> Is 7 made a certain result?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> No. 7 made is the most common result with p=0.7, but another possibility such as 6 or 8 can also happen. E(X)=7 is an expectation, not a required result.</div>
     </article>
 
     <article class="diagram-card" data-diagram="binomial-selections">
-      <div class="diagram-header"><span class="diagram-badge">5</span><h3>Palang binomial: tepat, paling banyak, sekurang-kurangnya</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">5</span><h3>Binomial bars: exactly, at most, at least</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 290" xmlns="http://www.w3.org/2000/svg" aria-label="Three separate binomial charts on the same axes: exactly 2, at most 2, and at least 2 heads">
           <rect width="520" height="290" fill="#f7faff"/>
           <g font-family="Arial" font-size="14" fill="#172033" text-anchor="middle">
             <text x="260" y="25">X ∼ B(3, 0.5) · Same axes: k=0…3, P=0…0.375</text>
             <g transform="translate(20 0)" data-selection="exact">
-              <text x="75" y="55">Tepat 2: X=2</text>
+              <text x="75" y="55">Exactly 2: X=2</text>
               <path d="M5 80V215H150" fill="none" stroke="#172033"/>
               <rect x="20" y="170" width="24" height="45" fill="#cbd5e1"/><rect x="52" y="80" width="24" height="135" fill="#cbd5e1"/><rect x="84" y="80" width="24" height="135" fill="#7c5cff"/><rect x="116" y="170" width="24" height="45" fill="#cbd5e1"/>
               <text x="32" y="234">0</text><text x="64" y="234">1</text><text x="96" y="234">2</text><text x="128" y="234">3</text>
               <text x="75" y="265">3/8 = 0.375</text>
             </g>
             <g transform="translate(185 0)" data-selection="at-most">
-              <text x="75" y="55">Paling banyak 2: X≤2</text>
+              <text x="75" y="55">At most 2: X≤2</text>
               <path d="M5 80V215H150" fill="none" stroke="#172033"/>
               <rect x="20" y="170" width="24" height="45" fill="#16a34a"/><rect x="52" y="80" width="24" height="135" fill="#16a34a"/><rect x="84" y="80" width="24" height="135" fill="#16a34a"/><rect x="116" y="170" width="24" height="45" fill="#cbd5e1"/>
               <text x="32" y="234">0</text><text x="64" y="234">1</text><text x="96" y="234">2</text><text x="128" y="234">3</text>
               <text x="75" y="265">7/8 = 0.875</text>
             </g>
             <g transform="translate(350 0)" data-selection="at-least">
-              <text x="75" y="55">Sekurang-kurangnya 2</text>
+              <text x="75" y="55">At least 2</text>
               <path d="M5 80V215H150" fill="none" stroke="#172033"/>
               <rect x="20" y="170" width="24" height="45" fill="#cbd5e1"/><rect x="52" y="80" width="24" height="135" fill="#cbd5e1"/><rect x="84" y="80" width="24" height="135" fill="#f59e0b"/><rect x="116" y="170" width="24" height="45" fill="#f59e0b"/>
               <text x="32" y="234">0</text><text x="64" y="234">1</text><text x="96" y="234">2</text><text x="128" y="234">3</text>
@@ -245,27 +245,27 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
           </g>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>"Tepat 2" = hanya k=2.</li><li>"Paling banyak 2" = tambah k=0,1,2.</li><li>"Sekurang-kurangnya 2" = tambah k=2,3.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>"Exactly 2" = only k=2.</li><li>"At most 2" = add k=0, 1, 2.</li><li>"At least 2" = add k=2, 3.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Jika X = bilangan kepala daripada 3 lambungan, apakah P(X≤2)?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> P(X≤2)=P(0)+P(1)+P(2)=1/8+3/8+3/8=7/8. Ia bukan hanya P(X=2). Untuk P(X≥2)=P(2)+P(3)=3/8+1/8=1/2.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> If X is the number of heads in 3 flips, what is P(X≤2)?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> P(X≤2)=P(0)+P(1)+P(2)=1/8+3/8+3/8=7/8. It is not only P(X=2). For P(X≥2)=P(2)+P(3)=3/8+1/8=1/2.</div>
     </article>
 
     <article class="diagram-card" data-diagram="empirical-rule">
-      <div class="diagram-header"><span class="diagram-badge">6</span><h3>Lengkung normal: min, band SD, peraturan empirikal</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">6</span><h3>Normal curve: mean, SD bands, empirical rule</h3></div>
       <div class="diagram-figure">
         <img src="./probability-images/normal-bell-curve.svg" alt="Accurate normal density with SD bands: 68.27%, 95.45%, and 99.73% within one, two, and three SDs; rounded empirical rule 68%, 95%, 99.7%." width="960" height="720" loading="lazy">
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>68% berada dalam satu sisihan piawai min.</li><li>95% berada dalam dua sisihan piawai.</li><li>99.7% berada dalam tiga sisihan piawai.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>68% lie within one standard deviation of the mean.</li><li>95% lie within two standard deviations.</li><li>99.7% lie within three standard deviations.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Berapa peratus markah antara 60 dan 80 jika μ=70 dan σ=10?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> Kira-kira 68%. Ini ialah kawasan dari μ−σ kepada μ+σ, iaitu 70−10 hingga 70+10. Ini adalah peraturan empirikal normal.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What percentage of marks are between 60 and 80 if μ=70 and σ=10?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> About 68%. This is the area from μ−σ to μ+σ, that is 70−10 to 70+10. This is the normal empirical rule.</div>
     </article>
 
     <article class="diagram-card" data-diagram="raw-z">
-      <div class="diagram-header"><span class="diagram-badge">7</span><h3>Nilai mentah dan paksi z: piawaian</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">7</span><h3>Raw values and the z-axis: standardisation</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Raw value and z-score axes showing standardization">
           <rect width="520" height="260" fill="#f7faff"/>
@@ -281,21 +281,21 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
           <text x="260" y="68" text-anchor="middle" font-size="15" fill="#172033">z=0</text>
           <text x="410" y="68" text-anchor="middle" font-size="15" fill="#172033">z=1</text>
           <path d="M70 190 L470 190" stroke="#1f2d4d"/>
-          <text x="75" y="68" font-size="13" fill="#1f2d4d" text-anchor="end">Skor z</text>
-          <text x="260" y="254" font-size="13" fill="#1f2d4d" text-anchor="middle">Nilai mentah (markah)</text>
+          <text x="75" y="68" font-size="13" fill="#1f2d4d" text-anchor="end">z-score</text>
+          <text x="260" y="254" font-size="13" fill="#1f2d4d" text-anchor="middle">Raw value (marks)</text>
           <text x="260" y="150" text-anchor="middle" font-size="18" fill="#172033">z = (75 − 70)/5 = 1</text>
           <text x="260" y="235" text-anchor="middle" font-size="16" fill="#172033">μ = 70, σ = 5</text>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Nilai mentah dan skor z mewakili titik yang sama.</li><li>z ialah bilangan sisihan piawai dari min.</li><li>Skor z memudahkan perbandingan dua skala berbeza.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>The raw value and the z-score represent the same point.</li><li>z is the number of standard deviations from the mean.</li><li>A z-score makes it easy to compare two different scales.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Apakah z untuk x=75 jika μ=70 dan σ=5?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> z=(75−70)/5=1. Ini bermaksud 75 ialah satu sisihan piawai di atas min. Standardisasi menukar skala asal kepada unit sisihan piawai.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is z for x=75 if μ=70 and σ=5?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> z=(75−70)/5=1. This means 75 is one standard deviation above the mean. Standardisation converts the original scale into standard-deviation units.</div>
     </article>
 
     <article class="diagram-card" data-diagram="normal-regions">
-      <div class="diagram-header"><span class="diagram-badge">8</span><h3>Kawasan kiri, kanan dan antara pada lengkung normal</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">8</span><h3>Left, right and between areas on the normal curve</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Separate normal density charts shading left of z=1, right of z=1, and between z=-1 and z=1">
           <rect width="520" height="260" fill="#f7faff"/>
@@ -305,35 +305,35 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
           <g data-region="between" transform="translate(350 0)"></g>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Kawasan kiri = P(X≤x).</li><li>Kawasan kanan = P(X≥x)=1−Φ(z).</li><li>Kawasan antara = P(a≤X≤b)=Φ(z_b)−Φ(z_a).</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Left area = P(X≤x).</li><li>Right area = P(X≥x)=1−Φ(z).</li><li>Between area = P(a≤X≤b)=Φ(z_b)−Φ(z_a).</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Apakah beza antara P(X≤35) dan P(25≤X≤35)?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> P(X≤35) ialah seluruh kawasan di kiri 35; P(25≤X≤35) ialah kawasan antara 25 dan 35 sahaja. Jangan campuradukkan kawasan di bawah lengkung.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is the difference between P(X≤35) and P(25≤X≤35)?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> P(X≤35) is the whole area left of 35; P(25≤X≤35) is only the area between 25 and 35. Do not mix up the areas under the curve.</div>
     </article>
 
     <article class="diagram-card" data-diagram="table-lookup">
-      <div class="diagram-header"><span class="diagram-badge">9</span><h3>Carian jadual normal: padanan jadual yang dipakai dalam pelajaran</h3></div>
+      <div class="diagram-header"><span class="diagram-badge">9</span><h3>Normal table lookup: the table used in the lesson</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Standard normal table lookup matching the lesson convention">
           <rect width="520" height="260" fill="#f7faff"/>
           <g font-family="Arial" font-size="14" fill="#172033">
             <rect x="60" y="40" width="390" height="170" fill="#ffffff" stroke="#b9c9dd"/>
-            <text x="255" y="58" text-anchor="middle" font-size="17" font-weight="700">Jadual normal piawai: Φ(z)=P(Z≤z)</text>
+            <text x="255" y="58" text-anchor="middle" font-size="17" font-weight="700">Standard normal table: Φ(z)=P(Z≤z)</text>
             <text x="85" y="88">z</text><text x="148" y="88">.00</text><text x="210" y="88">.01</text><text x="272" y="88">.02</text><text x="334" y="88">.03</text>
             <rect x="331" y="100" width="62" height="24" fill="#dbeafe"/>
             <text x="85" y="118">1.2</text><text x="148" y="118">0.8849</text><text x="210" y="118">0.8869</text><text x="272" y="118">0.8888</text><text x="334" y="118">0.8907</text>
             <text x="85" y="146">1.3</text><text x="148" y="146">0.9032</text><text x="210" y="146">0.9049</text><text x="272" y="146">0.9066</text><text x="334" y="146">0.9082</text>
-            <text x="255" y="182" text-anchor="middle" font-size="15" fill="#1d2d4d">Untuk z = 1.23, pilih baris 1.2 dan lajur .03.</text>
+            <text x="255" y="182" text-anchor="middle" font-size="15" fill="#1d2d4d">For z = 1.23, choose row 1.2 and column .03.</text>
             <text x="255" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#1d2d4d">Φ(1.23)=0.8907</text>
           </g>
         </svg>
       </div>
-      <div class="diagram-rule"><strong>Apa yang perlu diperhatikan?</strong>
-        <ul class="diagram-list"><li>Jadual ini memberi kawasan kumulatif ke kiri.</li><li>Baris ialah 1.2, lajur ialah .03.</li><li>Untuk z=1.23, baca 0.8907.</li><li>Jadual lain mungkin memberi ekor kanan atau kawasan antara 0 dan z; semak konvensyen dahulu.</li></ul>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>This table gives the cumulative area to the left.</li><li>The row is 1.2, the column is .03.</li><li>For z=1.23, read 0.8907.</li><li>Other tables may give the right tail or the area between 0 and z; check the convention first.</li></ul>
       </div>
-      <div class="diagram-prompt"><strong>Soalan cepat:</strong> Apakah nilai Φ(1.23) mengikut jadual ini?</div>
-      <div class="diagram-feedback"><strong>Maklum balas:</strong> Φ(1.23)=0.8907. Ini bermaksud P(Z≤1.23)=0.8907, iaitu 89.07% kawasan di kiri z=1.23.</div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is Φ(1.23) from this table?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> Φ(1.23)=0.8907. This means P(Z≤1.23)=0.8907, that is 89.07% of the area is left of z=1.23.</div>
     </article>
 
   </div>
@@ -358,7 +358,7 @@ function mountDiagrams(){
       group.append(svgElement('path',{d:`M${xx(z)} 175V${yy(z)}`,stroke:'#172033','stroke-dasharray':'4 4'}));
       group.append(svgElement('text',{x:xx(z),y:194,'text-anchor':'middle',fill:'#172033','font-size':12},`z=${z}`));
     });
-    const labels={left:['Kiri: Φ(1)','≈ 0.8413'],right:['Kanan: 1−Φ(1)','≈ 0.1587'],between:['Antara: Φ(1)−Φ(−1)','≈ 0.6827']};
+    const labels={left:['Left: Φ(1)','≈ 0.8413'],right:['Right: 1−Φ(1)','≈ 0.1587'],between:['Between: Φ(1)−Φ(−1)','≈ 0.6827']};
     labels[region].forEach((label,i)=>group.append(svgElement('text',{x:80,y:222+i*22,'text-anchor':'middle',fill:'#172033','font-family':'Arial','font-size':13},label)));
   });
   // Reference cards are the single source; clones contain no element IDs.
