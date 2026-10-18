@@ -340,6 +340,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 </section>
 <footer class="foot">Probability Level Up · Count or measure, then choose the correct model.</footer>
 </main>
+<script src="./lab-tabs.js"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id),fmt=(x,d=4)=>Number(x).toFixed(d),num=id=>$(id).value.trim()===''?NaN:Number($(id).value);
@@ -433,13 +434,11 @@ function renderAdvanced(){let n=num('an'),p=num('ap'),a=num('aa'),b=num('ab');if
 function easyCalcBinomial(){let n=num('en'),p=num('ep'),k=num('ek');if(!binValid(n,p)||!Number.isInteger(k)||k<0||k>n){$('easyBinomOut').textContent='Please enter a valid n, p and k.';return;}$('easyBinomOut').textContent=`P(X=${k}) = C(${n}, ${k}) × ${p}^{k} × ${(1-p)}^{${n-k}} = ${fmt(pmf(n,p,k),4)}`;}
 function easyCalcZ(){let mu=num('emu'),sigma=num('esigma'),x=num('exval');if(!Number.isFinite(mu)||!Number.isFinite(sigma)||!Number.isFinite(x)||sigma<=0){$('easyZOut').textContent='σ must be > 0.';return;}$('easyZOut').textContent=`z = (${x} − ${mu}) / ${sigma} = ${fmt((x-mu)/sigma,4)}`;}
 function easyCheckQ(opt){const ok=opt==='a';$('easyQuizOut').className=ok?'good feedback':'bad feedback';$('easyQuizOut').textContent=ok?'✅ Correct! Check fixed independent trials and constant p for binomial; a symmetric bell-shaped pattern for normal.':'❌ Not quite. Counts and measurements alone do not determine the model; check its assumptions.';}
-const tabs=document.querySelectorAll('[data-tab]');const panels=document.querySelectorAll('.panel');function go(id){panels.forEach(p=>p.classList.toggle('active',p.id===id));tabs.forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===id)));if(id==='binomial')renderBin();if(id==='normal')renderNormal();}
-[...document.querySelectorAll('[data-go]')].forEach(btn=>btn.addEventListener('click',()=>{const target=btn.dataset.go;go(target);}));
-document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>go(btn.dataset.tab)));
+const labTabs=LabTabs.init({onShow:id=>{if(id==='binomial')renderBin();if(id==='normal')renderNormal();}});
 document.querySelectorAll('[data-easy-quiz]').forEach(btn=>btn.addEventListener('click',()=>easyCheckQ(btn.dataset.easyQuiz)));
 $('easyBinomialBtn').onclick=easyCalcBinomial;$('easyZBtn').onclick=easyCalcZ;['bn','bp','bk'].forEach(id=>$(id).addEventListener('input',renderBin));['nm','ns','nx'].forEach(id=>$(id).addEventListener('input',renderNormal));['tableZ'].forEach(id=>$(id).addEventListener('input',zTable));['an','ap','aa','ab'].forEach(id=>$(id).addEventListener('input',renderAdvanced));['am','as','al','au'].forEach(id=>$(id).addEventListener('input',renderAdvanced));
-tabs.forEach(tab=>tab.id=`tab-${tab.dataset.tab}`);
+document.querySelectorAll('[data-tab]').forEach(tab=>tab.id=`tab-${tab.dataset.tab}`);
 window.addEventListener('resize',()=>{if($('binomial').classList.contains('active'))renderBin();if($('normal').classList.contains('active'))renderNormal();});
 mountDiagrams();renderBin();renderNormal();zTable();renderAdvanced();
-go('intro');
+labTabs.start();
 </script></body></html>

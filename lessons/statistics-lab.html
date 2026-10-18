@@ -503,6 +503,7 @@ body.sp-lesson header .top{padding-left:max(0px,calc(112px - max(0px,(100vw - 11
 </main>
 <footer>Statistics Lab · Works offline · Uses population variance (divide by N), as in the statistics notes</footer>
 
+<script src="./lab-tabs.js"></script>
 <script>
 'use strict';
 /* =====================================================================
@@ -806,28 +807,11 @@ function drawDotRows(canvas, rows, opts = {}) {
 /* =====================================================================
    5. Tabs
    ===================================================================== */
-const tabs = [...document.querySelectorAll('[role=tab]')];
 const drawers = { intro: [], exercise: [], advanced: [], practice: [], tips: [] };
 function redraw(id) { (drawers[id] || []).forEach(fn => fn()); }
-function activeTab() { return tabs.find(t => t.getAttribute('aria-selected') === 'true').dataset.tab; }
-function showTab(id, focus) {
-  tabs.forEach(t => {
-    const on = t.dataset.tab === id;
-    t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
-    $(t.dataset.tab).classList.toggle('active', on);
-    if (on && focus) t.focus();
-  });
-  try { history.replaceState(null, '', '#' + id); } catch (e) { /* file:// or sandbox */ }
-  redraw(id);
-}
-tabs.forEach((t, i) => {
-  t.addEventListener('click', () => { showTab(t.dataset.tab); window.scrollTo({ top: 0 }); });
-  t.addEventListener('keydown', e => {
-    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-    if (d) { e.preventDefault(); showTab(tabs[(i + d + tabs.length) % tabs.length].dataset.tab, true); }
-  });
-});
-document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => { showTab(b.dataset.go); window.scrollTo({ top: 0 }); }));
+const labTabs = LabTabs.init({ onShow: redraw, aliases: { averages: 'exercise', spread: 'exercise', grouped: 'exercise' } });
+const activeTab = () => labTabs.current();
+const showTab = (id, focus) => labTabs.show(id, focus);
 let resizeTimer;
 window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => redraw(activeTab()), 120); });
 try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => redraw(activeTab())); } catch (e) { /* old browser */ }
@@ -1596,18 +1580,7 @@ $('pMeasure').onchange = newProblem;
    11. Start
    ===================================================================== */
 newSeason(); newWeek(); exerciseNotes(); renderTf(); newProblem(); updateScore();
-// Old links to the Averages, Spread and Grouped tabs now open the exercise.
-const OLD_TABS = { averages: 'exercise', spread: 'exercise', grouped: 'exercise' };
-const startTab = OLD_TABS[location.hash.slice(1)] || location.hash.slice(1);
-showTab(drawers[startTab] ? startTab : 'intro');
-// A #tab link would otherwise make the browser jump to the section, below the heading.
-// The browser may do that jump during or just after load, so undo it on both.
-if (location.hash) {
-  try { history.scrollRestoration = 'manual'; } catch (e) { /* old browser */ }
-  const toTop = () => window.scrollTo(0, 0);
-  toTop();
-  window.addEventListener('load', () => { toTop(); setTimeout(toTop, 0); setTimeout(toTop, 150); });
-}
+labTabs.start();
 </script>
 </body>
 </html>
