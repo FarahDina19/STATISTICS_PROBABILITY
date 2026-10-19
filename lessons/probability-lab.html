@@ -13,6 +13,7 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
 canvas{height:250px}.diagram-card h3{color:#f8fafc}
 .diagram-figure img{width:100%;height:auto}.lab-figure{margin:18px 0}.lab-figure img{display:block;width:100%;height:auto;border-radius:10px;background:#fff}.lab-figure figcaption{padding-top:10px;font-size:15px;line-height:1.6}
 .result,.result p,.tablewrap td{color:#15412a}
+.choices button[aria-pressed=true]{background:#4b34a3;border-color:#d8c4ff;color:#fff}.exstep input:disabled{opacity:.5}
 </style><link rel="stylesheet" href="./probability-diagrams.css?v=2"></head><body>
 <header><div class="wrap"><div class="top"><div class="brand">◈ Probability<span>Lab</span></div><span class="badge">4.4 · 4.4.1–4.4.5</span></div><nav role="tablist" aria-label="Learning sections">
 <button type="button" role="tab" aria-selected="true" data-tab="intro">Intro</button>
@@ -20,6 +21,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 <button type="button" role="tab" aria-selected="false" data-tab="binomial">Binomial</button>
 <button type="button" role="tab" aria-selected="false" data-tab="normal">Normal</button>
 <button type="button" role="tab" aria-selected="false" data-tab="advanced">Advanced</button>
+<button type="button" role="tab" aria-selected="false" data-tab="exercises">Exercises</button>
 <button type="button" role="tab" aria-selected="false" data-tab="tips">Tips</button>
 <button type="button" role="tab" aria-selected="false" data-tab="summary">Summary</button>
 </nav></div></header>
@@ -430,6 +432,17 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     <div class="card"><h3>Which formula do I use?</h3><table><tr><th>Question</th><th>What to do</th></tr><tr><td>Exactly k yes</td><td>One bar: use the binomial formula once</td></tr><tr><td>At most k yes</td><td>Add the bars from 0 up to k</td></tr><tr><td>At least k yes</td><td>Add the bars from k up to n</td></tr><tr><td>Between a and b</td><td>Add the bars from a up to b</td></tr><tr><td>Normal range</td><td>Turn both ends into z, then subtract the areas</td></tr></table></div>
   </div>
 </section>
+<section id="exercises" class="panel" role="tabpanel" aria-labelledby="tab-exercises">
+  <div class="eyebrow">Exercises · Fill in the boxes</div>
+  <h1>Practice: one step at a time</h1>
+  <div class="card"><h2>Choose what to practise</h2>
+    <div class="choices" role="group" aria-label="Topic"><button type="button" data-ex-family="binomial" aria-pressed="true">Binomial</button><button type="button" data-ex-family="normal" aria-pressed="false">Normal</button></div>
+    <div class="choices" role="group" aria-label="Level"><button type="button" data-ex-level="easy" aria-pressed="true">Easy</button><button type="button" data-ex-level="medium" aria-pressed="false">Medium</button><button type="button" data-ex-level="hard" aria-pressed="false">Hard</button></div>
+    <div class="actions"><button type="button" class="primary" id="exNew">New question</button><button type="button" id="exReveal">Show all answers</button></div>
+    <p id="exScore" class="small" aria-live="polite">Solved: 0</p>
+  </div>
+  <div id="exBox"></div>
+</section>
 <section id="tips" class="panel" role="tabpanel" aria-labelledby="tab-tips"><div class="eyebrow">Keep these nearby</div><h1>Tips to avoid mistakes</h1><div class="grid"><div class="card"><h2>Five common mistakes</h2><ol><li><b>Using variance instead of SD:</b> for z, divide by σ, not σ². If σ² = 25, then σ = 5.</li><li><b>Mixing up “exactly” and “at most”:</b> P(X ≤ 3) adds the chances for 0, 1, 2 and 3.</li><li><b>Reading the wrong side:</b> Φ(z) is the area on the <i>left</i>. For the right side, use 1 − Φ(z).</li><li><b>Mixing up success and failure:</b> use p for yes and 1 − p for no.</li><li><b>Forgetting independence:</b> picking with replacement keeps tries independent, so binomial works.</li></ol></div><div class="card"><h2>Practice questions</h2><p>Try each one, then open the answer.</p><details><summary>1. 4 coin flips, p = 0.5. Is this binomial?</summary><p>Yes. Fixed tries, two outcomes, same p, independent flips.</p></details><details><summary>2. Heights of students. Binomial or normal?</summary><p>Normal, because height is a measurement.</p></details><details><summary>3. Number of faulty bulbs in a box of 20. Binomial or normal?</summary><p>Binomial, because we count faulty bulbs.</p></details><details><summary>4. A value x = 38 with μ = 30 and σ = 5. What is z?</summary><p>z = (38 − 30) / 5 = 1.6. Then Φ(1.6) = 0.9452.</p></details><details><summary>5. 2 flips, p = 0.5. What is P(X ≤ 1)?</summary><p>P(0) = 1/4 and P(1) = 2/4. Add them: 3/4.</p></details></div></div></section>
 <section id="summary" class="panel" role="tabpanel" aria-labelledby="tab-summary"><div class="eyebrow">Summary · Your revision sheet</div><h1>Probability Lab summary</h1><p>Use this as a quick reference. Each formula has a plain meaning and an example.</p><div class="grid"><div class="card"><h2>Binomial: count yes results</h2><div class="step"><strong>Use when:</strong> a fixed number n of tries, two outcomes, the same chance p, and independent tries.</div><div class="formula">P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div><div class="formula">E(X) = np &nbsp; &nbsp; Var(X) = np(1 − p)</div><p>E(X) is the average count. Var(X) shows how spread out the counts are.</p></div><div class="card"><h2>Normal: measure values</h2><div class="step"><strong>Use when:</strong> a measurement is roughly symmetric and bell-shaped.</div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; P(X ≤ x) = Φ(z)</div><div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div><p><b>Φ(z)</b> means the chance of a value at or below z. Change each end to z first, then use the table.</p></div><div class="card"><h2>Three binomial examples</h2><ul><li><b>Basketball:</b> 10 shots, 70% each. The average is 7 makes, but any number from 0 to 10 can happen.</li><li><b>Bulbs:</b> 20 bulbs, 5% faulty each. P(exactly 1 faulty) ≈ 0.3774.</li><li><b>Coins:</b> 5 flips, exactly 3 heads. P = 10 × 0.5⁵ = 0.3125.</li></ul></div><div class="card"><h2>Three normal examples</h2><p>If the measurement is normal:</p><ul><li><b>Test scores:</b> mean 70, SD 10. Scores 60 to 80 are within 1 SD: about 68%.</li><li><b>Delivery:</b> mean 30 minutes, SD 5. Within 35 minutes is z = 1: about 84%.</li><li><b>Height:</b> mean 165 cm, SD 8 cm. Taller than 173 cm is z = 1: about 16%.</li></ul></div></div></section>
 
@@ -522,6 +535,95 @@ function renderAdvanced(){let n=num('an'),p=num('ap'),a=num('aa'),b=num('ab');if
 function easyCalcBinomial(){let n=num('en'),p=num('ep'),k=num('ek');if(!binValid(n,p)||!Number.isInteger(k)||k<0||k>n){$('easyBinomOut').textContent='Please enter a valid n, p and k.';return;}$('easyBinomOut').textContent=`P(X=${k}) = C(${n}, ${k}) × ${p}^${k} × ${1-p}^${n-k} = ${fmt(pmf(n,p,k),4)}`;}
 function easyCalcZ(){let mu=num('emu'),sigma=num('esigma'),x=num('exval');if(!Number.isFinite(mu)||!Number.isFinite(sigma)||!Number.isFinite(x)||sigma<=0){$('easyZOut').textContent='σ must be > 0.';return;}$('easyZOut').textContent=`z = (${x} − ${mu}) / ${sigma} = ${fmt((x-mu)/sigma,4)}`;}
 function easyCheckQ(opt){const ok=opt==='a';$('easyQuizOut').className=ok?'good feedback':'bad feedback';$('easyQuizOut').textContent=ok?'✅ Correct! Check fixed independent trials and constant p for binomial; a symmetric bell-shaped pattern for normal.':'❌ Not quite. Counts and measurements alone do not determine the model; check its assumptions.';}
+// Exercises: each question is split into steps. A step opens when the step before it is correct.
+const EX={family:'binomial',level:'easy',solved:0,steps:[],counted:false};
+const exRnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const exPick=a=>a[Math.floor(Math.random()*a.length)];
+const exR2=x=>Math.round(x*100)/100;
+const exF=(label,value,dp,tol)=>({label,value,dp,tol});
+function exBinomial(level){
+  let n,p,type,a,b;
+  if(level==='easy'){n=exRnd(3,5);p=0.5;type='exact';a=exRnd(0,n);}
+  else if(level==='medium'){n=exRnd(5,10);p=exPick([0.2,0.25,0.3,0.4,0.6,0.7,0.75]);type=exPick(['exact','atmost']);a=type==='exact'?exRnd(0,n):exRnd(1,n-1);}
+  else{n=exRnd(8,15);p=exPick([0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9]);type=exPick(['atleast','between']);if(type==='atleast'){a=exRnd(1,n-1);}else{a=exRnd(0,n-2);b=exRnd(a+1,n-1);}}
+  const intro=`There are ${n} tries. Each try has chance ${p} of success.`;
+  const text=intro+' '+{exact:`Find P(X = ${a}).`,atmost:`Find P(X ≤ ${a}).`,atleast:`Find P(X ≥ ${a}).`,between:`Find P(${a} ≤ X ≤ ${b}).`}[type];
+  const prob={exact:()=>pmf(n,p,a),atmost:()=>binRange(n,p,0,a),atleast:()=>binRange(n,p,a,n),between:()=>binRange(n,p,a,b)}[type]();
+  const steps=[{title:'Write down the numbers',explain:'Find n (the number of tries), p (the chance of success on one try) and the values in the question.',hint:'n is the number of tries. p is the chance of a success on one try. Read the question again for a and b.',fields:[exF('n',n,0,0),exF('p',p,2,0.0001)].concat(type==='exact'?[exF('k',a,0,0)]:type==='between'?[exF('a',a,0,0),exF('b',b,0,0)]:[exF('a',a,0,0)])}];
+  if(type==='exact'){steps.push({title:'Count the ways (ⁿCₖ)',explain:`How many ways can ${a} ${a===1?'success':'successes'} fit into ${n} tries?`,hint:'ⁿCₖ = n! / (k! × (n − k)!). Example: 5C2 = 10.',fields:[exF('ways',choose(n,a),0,0)]});}
+  const finalHint={exact:'Multiply the ways by p for each success and by (1 − p) for each failure.',atmost:`Add P(X = 0) up to P(X = ${a}).`,atleast:`Add P(X = ${a}) up to P(X = ${n}).`,between:`Add P(X = ${a}) up to P(X = ${b}).`}[type];
+  steps.push({title:'Find the probability',explain:type==='exact'?'Ways × p^k × (1 − p)^(n − k)':'Add the probabilities for each value in the range.',hint:finalHint,fields:[exF(type==='exact'?'P(X = k)':'Probability',prob,4,0.001)]});
+  return {text,steps};
+}
+function exNormal(level){
+  const mu=exRnd(8,16)*5,sigma=exPick([4,5,8,10]);
+  let type,x,a,b;
+  if(level==='easy'){type='le';x=mu+sigma*exRnd(-2,2);}
+  else if(level==='medium'){type=exPick(['le','ge']);x=mu+sigma*exRnd(-2,2);}
+  else{type='between';a=mu+sigma*exRnd(-2,0);b=mu+sigma*exRnd(1,2);}
+  const model=`A measurement X is normal with mean μ = ${mu} and SD σ = ${sigma}.`;
+  const text={le:`${model} Find P(X ≤ ${x}).`,ge:`${model} Find P(X ≥ ${x}).`,between:`${model} Find P(${a} ≤ X ≤ ${b}).`}[type];
+  const tableHint='Use the table on the Normal tab: row = z to 1 decimal, column = 2nd decimal. Φ(z) is the area to the LEFT.';
+  const steps=[{title:'Write down the numbers',explain:'Find μ (the mean), σ (the SD) and the value or values in the question.',hint:'μ is the centre and σ is the spread. Write both before you start.',fields:[exF('μ',mu,0,0),exF('σ',sigma,0,0)].concat(type==='between'?[exF('a',a,0,0),exF('b',b,0,0)]:[exF('x',x,0,0)])}];
+  if(type==='between'){
+    const za=exR2((a-mu)/sigma),zb=exR2((b-mu)/sigma);
+    steps.push({title:'Turn both ends into z',explain:'z = (value − μ) / σ. Round z to 2 decimals.',hint:'Do one end, then the other. Example: z = (35 − 30) / 5 = 1.',fields:[exF('z for a',za,2,0.005),exF('z for b',zb,2,0.005)]});
+    steps.push({title:'Look up both areas',explain:'Find Φ(z) for each z in the table.',hint:tableHint,fields:[exF('Φ(z for a)',phi(za),4,0.001),exF('Φ(z for b)',phi(zb),4,0.001)]});
+    steps.push({title:'Subtract the areas',explain:'P(a ≤ X ≤ b) = Φ(z for b) − Φ(z for a).',hint:'Take the bigger area and subtract the smaller one.',fields:[exF('Probability',phi(zb)-phi(za),4,0.001)]});
+  }else{
+    const z=exR2((x-mu)/sigma);
+    steps.push({title:'Turn the value into z',explain:'z = (x − μ) / σ. Round z to 2 decimals.',hint:'Subtract the mean first, then divide by the SD.',fields:[exF('z',z,2,0.005)]});
+    if(type==='le'){steps.push({title:'Find the probability',explain:'P(X ≤ x) = Φ(z). Look up Φ(z) in the table.',hint:tableHint,fields:[exF('P(X ≤ x)',phi(z),4,0.001)]});}
+    else{steps.push({title:'Look up the area',explain:'Look up Φ(z) in the table.',hint:tableHint,fields:[exF('Φ(z)',phi(z),4,0.001)]});steps.push({title:'Find the right-hand area',explain:'P(X ≥ x) = 1 − Φ(z).',hint:'The whole area is 1. Take away the left area.',fields:[exF('P(X ≥ x)',1-phi(z),4,0.001)]});}
+  }
+  return {text,steps};
+}
+function exEl(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;}
+function exBuildStep(s,i){
+  const card=exEl('div','step exstep');
+  const grid=exEl('div','controls');
+  const inputs=s.fields.map(f=>{const lab=exEl('label','exfield');lab.append(exEl('span',null,f.label));const input=exEl('input');input.type='number';input.step='any';input.inputMode='decimal';input.setAttribute('aria-label',f.label);lab.append(input);grid.append(lab);return {f,input};});
+  const check=exEl('button','primary','Check this step');check.type='button';
+  const hintBtn=exEl('button',null,'Hint');hintBtn.type='button';
+  const hint=exEl('p','small',s.hint);hint.hidden=true;
+  hintBtn.onclick=()=>{hint.hidden=!hint.hidden;};
+  const answer=exEl('p','small','Answer: '+s.fields.map(f=>`${f.label}: ${f.value.toFixed(f.dp)}`).join(', '));answer.hidden=true;
+  const msg=exEl('div','quizfeedback');msg.setAttribute('aria-live','polite');
+  const bar=exEl('div','actions');bar.append(check,hintBtn);
+  card.append(exEl('strong',null,`Step ${i+1}: ${s.title}`),exEl('p',null,s.explain),grid,bar,hint,msg,answer);
+  return {card,inputs,check,msg,answer,index:i,s,done:false};
+}
+function exSetOpen(st,open){
+  st.inputs.forEach(({input})=>input.disabled=!open);
+  st.check.disabled=!open;
+  if(!open){st.msg.className='quizfeedback';st.msg.textContent='Finish the step above to open this one.';}
+}
+function exCheck(st){
+  const bad=st.inputs.filter(({f,input})=>input.value.trim()===''||Math.abs(Number(input.value)-f.value)>f.tol);
+  if(bad.length){st.msg.className='quizfeedback bad';st.msg.textContent='Not quite. Check: '+bad.map(x=>x.f.label).join(', ')+'. Open the hint and try again.';return;}
+  st.done=true;st.inputs.forEach(({input})=>input.disabled=true);st.check.disabled=true;
+  const next=EX.steps[st.index+1];
+  if(next){st.msg.className='quizfeedback good';st.msg.textContent='Correct! The next step is open.';exSetOpen(next,true);return;}
+  st.msg.className='quizfeedback good';st.msg.textContent='Correct! Question solved.';
+  if(!EX.counted){EX.counted=true;EX.solved++;$('exScore').textContent=`Solved: ${EX.solved}`;}
+}
+function exNewQuestion(){
+  const q=EX.family==='binomial'?exBinomial(EX.level):exNormal(EX.level);
+  EX.counted=false;
+  const box=$('exBox');box.replaceChildren();
+  const card=exEl('div','card');card.append(exEl('h2',null,'Question'),exEl('p',null,q.text),exEl('p','small','Fill in each box, then check the step. Each step opens after the one before it is correct.'));
+  box.append(card);
+  EX.steps=q.steps.map((s,i)=>exBuildStep(s,i));
+  EX.steps.forEach((st,i)=>{st.check.onclick=()=>exCheck(st);if(i>0)exSetOpen(st,false);box.append(st.card);});
+}
+function exSync(){
+  document.querySelectorAll('[data-ex-family]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.exFamily===EX.family)));
+  document.querySelectorAll('[data-ex-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.exLevel===EX.level)));
+}
+document.querySelectorAll('[data-ex-family]').forEach(b=>b.addEventListener('click',()=>{EX.family=b.dataset.exFamily;exSync();exNewQuestion();}));
+document.querySelectorAll('[data-ex-level]').forEach(b=>b.addEventListener('click',()=>{EX.level=b.dataset.exLevel;exSync();exNewQuestion();}));
+$('exNew').onclick=exNewQuestion;
+$('exReveal').onclick=()=>EX.steps.forEach(st=>st.answer.hidden=false);
 const labTabs=LabTabs.init({onShow:id=>{if(id==='binomial')renderBin();if(id==='normal')renderNormal();}});
 document.querySelectorAll('[data-easy-quiz]').forEach(btn=>btn.addEventListener('click',()=>easyCheckQ(btn.dataset.easyQuiz)));
 $('easyBinomialBtn').onclick=easyCalcBinomial;$('easyZBtn').onclick=easyCalcZ;['bn','bp','bk'].forEach(id=>$(id).addEventListener('input',renderBin));['nm','ns','nx'].forEach(id=>$(id).addEventListener('input',renderNormal));['tableZ'].forEach(id=>$(id).addEventListener('input',zTable));['an','ap','aa','ab'].forEach(id=>$(id).addEventListener('input',renderAdvanced));['am','as','al','au'].forEach(id=>$(id).addEventListener('input',renderAdvanced));
@@ -529,4 +631,5 @@ document.querySelectorAll('[data-tab]').forEach(tab=>tab.id=`tab-${tab.dataset.t
 window.addEventListener('resize',()=>{if($('binomial').classList.contains('active'))renderBin();if($('normal').classList.contains('active'))renderNormal();});
 mountDiagrams();renderBin();renderNormal();zTable();renderAdvanced();
 labTabs.start();
+exNewQuestion();
 </script></body></html>
