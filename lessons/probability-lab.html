@@ -79,14 +79,15 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     <div class="controls"><label>Mean μ<input id="emu" type="number" value="30"></label><label>SD σ<input id="esigma" type="number" min="0.01" step="0.01" value="5"></label><label>Value x<input id="exval" type="number" value="35"></label></div><div class="actions"><button id="easyZBtn" type="button" class="primary">Convert to z</button></div><div id="easyZOut" class="result" aria-live="polite">z = (35 − 30)/5 = 1</div></div>
   </div><div class="card"><h2>Quick check: which is correct?</h2><p>Pick one answer.</p><div class="choices"><button type="button" data-easy-quiz="a">A. Binomial counts yes results in fixed tries. Normal describes bell-shaped measurements.</button><button type="button" data-easy-quiz="b">B. Binomial always gives a bell-shaped curve.</button><button type="button" data-easy-quiz="c">C. Normal counts yes results in fixed tries.</button></div><div id="easyQuizOut" class="quizfeedback" aria-live="polite">Choose the correct answer.</div></div></section>
 <section id="binomial" class="panel" role="tabpanel" aria-labelledby="tab-binomial">
-  <div class="eyebrow">4.4.1–4.4.2 · Counting yes results</div><h1>4.4.1 Binomial: counting yes results</h1><p>Use binomial when you count how many “yes” results you get in a fixed number of tries.</p>
+  <div class="eyebrow">4.4.1–4.4.2 · Counting yes results</div>
+  <h1>4.4.1 Binomial: counting yes results</h1>
+  <div class="card"><h2>The question</h2><p>We flip a fair coin <b>3 times</b>. What is the chance of getting <b>exactly 2 heads</b>?</p><p>Follow the five steps. You can change the numbers in step 5.</p></div>
+
   <div class="grid">
-    <div class="card"><h3>Step by step: 3 coin flips</h3>
-      <div class="step"><strong>Step 1: Find n</strong><p>We flip the coin 3 times, so <b>n = 3</b>.</p></div>
-      <div class="step"><strong>Step 2: Find p</strong><p>A fair coin gives heads half the time, so <b>p = 0.5</b>.</p></div>
-      <div class="step"><strong>Step 3: Pick k</strong><p>Let X = number of heads. We want exactly 2 heads, so <b>k = 2</b>.</p></div>
-      <div class="step"><strong>Step 4: Count the ways</strong><p>List the ways to get 2 heads: HHT, HTH, THH. That is <b>3 ways</b>.</p></div>
-      <div class="step"><strong>Step 5: Multiply</strong><p>Each way has 2 heads and 1 tail: 0.5 × 0.5 × 0.5 = 1/8. So P(X = 2) = 3 × 1/8 = <b>3/8</b>.</p></div>
+    <div class="card">
+      <div class="step"><strong>Step 1: Count the tries (n)</strong><p>We flip 3 times, so <b>n = 3</b>.</p></div>
+      <div class="step"><strong>Step 2: Find the “yes” chance (p)</strong><p>A fair coin gives heads half the time, so <b>p = 0.5</b>.</p></div>
+      <div class="step"><strong>Step 3: Choose the “yes” count (k)</strong><p>We want exactly 2 heads, so <b>k = 2</b>.</p></div>
     </div>
     <div data-diagram-slot="outcomes"><article class="diagram-card" data-diagram="outcomes">
       <div class="diagram-header"><span class="diagram-badge">1</span><h3>8 outcomes of three fair coin flips</h3></div>
@@ -122,7 +123,14 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="diagram-prompt"><strong>Quick question:</strong> How many sequences have exactly 2 heads?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: list the sequences with 2 heads: HHT, HTH, THH. Step 2: count them: 3. Step 3: 3 out of 8 gives P(X=2) = 3/8.</div>
     </article></div>
-    <div class="card"><h3>All 8 outcomes</h3><p>There are 8 equal outcomes. Count how many have each number of heads.</p><div class="outcomes"><div class="outcome"><strong>1</strong><span>0 heads</span></div><div class="outcome"><strong>3</strong><span>1 head</span></div><div class="outcome"><strong>3</strong><span>2 heads</span></div><div class="outcome"><strong>1</strong><span>3 heads</span></div></div><p>Each count divided by 8 gives a probability: 1/8, 3/8, 3/8, 1/8. Together they make 1.</p></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 4: List the outcomes</strong><p>There are 8 equal outcomes. Find the ones with 2 heads: HHT, HTH and THH. That is <b>3</b>.</p></div>
+      <div class="outcomes"><div class="outcome"><strong>1</strong><span>0 heads</span></div><div class="outcome"><strong>3</strong><span>1 head</span></div><div class="outcome"><strong>3</strong><span>2 heads</span></div><div class="outcome"><strong>1</strong><span>3 heads</span></div></div>
+      <p>Each outcome has chance 1/8, so P(X = 2) = 3/8 = 0.375.</p>
+    </div>
     <div data-diagram-slot="probability-bars"><article class="diagram-card" data-diagram="probability-bars">
       <div class="diagram-header"><span class="diagram-badge">2</span><h3>Probability table and bars</h3></div>
       <div class="diagram-figure">
@@ -157,12 +165,26 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: P(X=1) has 3 sequences, so 3/8. Step 2: P(X=2) also has 3 sequences, so 3/8. The two bars match because p = 0.5.</div>
     </article></div>
   </div>
-  <div class="grid"><div class="card"><h3>Try it: change the numbers</h3><div class="controls"><label>n (tries)<input id="bn" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="bp" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k (yes results)<input id="bk" type="number" min="0" max="60" step="1" value="2"></label></div><p><b>The formula:</b> P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></p><ul><li><b>ⁿCₖ</b> = the number of ways to pick which k tries are “yes”. For 3 tries and 2 yes results, ³C₂ = 3.</li><li><b>0! = 1</b>. So ⁿC₀ = 1 and ⁿCₙ = 1.</li></ul><p id="bError" class="error" role="status"></p><div id="bFlow"></div><div id="bResult" class="result" aria-live="polite"></div></div><div class="card"><h3>The bar chart</h3><canvas id="binChart" role="img" aria-label="Binomial distribution chart"></canvas><p id="bSummary"></p><small>Each bar is one value of k. The tallest bar is the most likely number of yes results. All bars add up to 1.</small></div></div>
+
   <div class="grid">
-    <div class="card"><h3>Example: basketball</h3><p>A player takes 10 shots. Each shot is a make with chance 0.7. Let X = number of makes, so X ∼ B(10, 0.7).</p><div class="formula">P(X = 7) = ¹⁰C₇ × 0.7⁷ × 0.3³ ≈ 0.2668</div><p>The average is 7 makes, but 7 is not guaranteed.</p><p><strong>Try it:</strong> What is P(X = 8)?</p><details><summary>Check your answer</summary><p>P(X = 8) = ¹⁰C₈ × 0.7⁸ × 0.3² ≈ 0.2335.</p></details></div>
-    <figure class="card"><img src="./probability-images/basketball-shots-2.svg" alt="Ten basketball shots with seven made and three missed, alongside the binomial probabilities for 10 shots with a 0.7 make probability." width="960" height="720" loading="lazy" decoding="async"><figcaption>Find the bar at k = 7 to see the chance of exactly 7 makes. This picture shows one possible result, not a sure result.</figcaption></figure>
+    <div class="card">
+      <div class="step"><strong>Step 5: Use the formula</strong><p>The formula gives the same answer as step 4, without listing every outcome.</p></div>
+      <div class="formula">P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div>
+      <p>Put in the numbers: ³C₂ × 0.5² × 0.5¹ = 3 × 0.25 × 0.5 = <b>0.375</b>.</p>
+      <p><b>Try it:</b> change n, p or k.</p>
+      <div class="controls"><label>n (tries)<input id="bn" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="bp" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k (yes count)<input id="bk" type="number" min="0" max="60" step="1" value="2"></label></div>
+      <p id="bError" class="error" role="status"></p>
+      <div id="bFlow"></div>
+      <div id="bResult" class="result" aria-live="polite"></div>
+    </div>
+    <div class="card"><h3>Bar chart</h3><p>Each bar is one possible count. The tallest bar is the most likely count. All bars add up to 1.</p><canvas id="binChart" role="img" aria-label="Binomial distribution chart"></canvas><p id="bSummary"></p></div>
   </div>
-  <div class="grid"><div data-diagram-slot="expected-count"><article class="diagram-card" data-diagram="expected-count">
+
+  <div class="card"><details><summary>Why is it ⁿCₖ? (optional)</summary><p>ⁿCₖ counts the ways to choose which k tries are “yes”. For 3 tries with 2 yes results, ³C₂ = 3: HHT, HTH and THH.</p><p>By definition 0! = 1, so ⁿC₀ = 1 (no yes results) and ⁿCₙ = 1 (all yes results).</p></details></div>
+
+  <div class="card"><h2>More practice (open when ready)</h2>
+    <details><summary>Practice 1: 5 coin flips</summary><p>Same five steps. There are 10 ways to get 3 heads out of 32 outcomes, so P(X = 3) = 10/32 = 0.3125.</p><figure class="lab-figure"><img src="./probability-images/five-fair-coin-flips.svg" alt="All 32 sequences of five fair coin flips, with the ten containing exactly three heads outlined." width="960" height="720" loading="lazy" decoding="async"><figcaption>The 10 outlined sequences each have 3 heads.</figcaption></figure></details>
+    <details><summary>Practice 2: basketball (10 shots, 70% each)</summary><p>Let X = number of makes, so X ∼ B(10, 0.7). Find P(X = 7).</p><div class="step"><strong>Step 1:</strong> n = 10, p = 0.7, k = 7.</div><div class="step"><strong>Step 2:</strong> Ways: ¹⁰C₇ = 120.</div><div class="step"><strong>Step 3:</strong> 120 × 0.7⁷ × 0.3³ ≈ <b>0.2668</b>.</div><p>The average is 7 makes, but 7 is not guaranteed.</p><p><b>Try it:</b> What is P(X = 8)?</p><details><summary>Check your answer</summary><p>P(X = 8) = ¹⁰C₈ × 0.7⁸ × 0.3² ≈ 0.2335.</p></details><div data-diagram-slot="expected-count"><article class="diagram-card" data-diagram="expected-count">
       <div class="diagram-header"><span class="diagram-badge">3</span><h3>10 component icons: one possible result, not the mean</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg" aria-label="Ten shot icons showing one possible outcome versus expected count">
@@ -191,9 +213,9 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> Is 7 made a certain result?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> No. 7 is the most likely single result, but 6 or 8 can also happen. E(X) = 7 is an average, not a sure result.</div>
-    </article></div></div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/five-fair-coin-flips.svg" alt="All 32 sequences of five fair coin flips, with the ten containing exactly three heads outlined." width="960" height="720" loading="lazy" decoding="async"><figcaption>Same steps with 5 flips: there are 10 ways to get 3 heads, out of 32 outcomes. So P(X = 3) = 10/32 = 0.3125.</figcaption></figure><figure class="card lab-figure"><img src="./probability-images/basketball-shots.png" alt="Ten basketball shots: six actual makes compared with the expected seven." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>The expected count is 7, but one real result can be 6, 7 or 8.</figcaption></figure></div>
-  <div class="grid"><div class="card"><h3>Real-life example: quality control</h3><p>A factory checks 20 bulbs. Each bulb is faulty with chance 0.05, so X ∼ B(20, 0.05).</p><div class="step"><strong>Step 1:</strong> n = 20, p = 0.05, k = 1.</div><div class="step"><strong>Step 2:</strong> Ways to pick 1 faulty bulb: ²⁰C₁ = 20.</div><div class="step"><strong>Step 3:</strong> Multiply: 20 × 0.05 × 0.95¹⁹ ≈ 0.3774.</div><p>So about 38% of batches have exactly one faulty bulb.</p></div></div>
+    </article></div><figure class="lab-figure"><img src="./probability-images/basketball-shots-2.svg" alt="Ten basketball shots with seven made and three missed, alongside the binomial probabilities for 10 shots with a 0.7 make probability." width="960" height="720" loading="lazy" decoding="async"><figcaption>Find the bar at k = 7 for the chance of exactly 7 makes.</figcaption></figure></details>
+    <details><summary>Practice 3: quality control (20 bulbs, 5% faulty)</summary><p>Let X = number of faulty bulbs, so X ∼ B(20, 0.05). Find P(X = 1).</p><div class="step"><strong>Step 1:</strong> n = 20, p = 0.05, k = 1.</div><div class="step"><strong>Step 2:</strong> Ways: ²⁰C₁ = 20.</div><div class="step"><strong>Step 3:</strong> 20 × 0.05 × 0.95¹⁹ ≈ <b>0.3774</b>.</div><p>About 38% of batches have exactly one faulty bulb.</p></details>
+  </div>
 </section>
 <section id="normal" class="panel" role="tabpanel" aria-labelledby="tab-normal">
   <div class="eyebrow">4.4.3–4.4.5 · Measurements</div><h1>4.4.3 Normal: measuring values</h1><p>A normal curve is a bell shape. The middle is the mean μ. The width is set by the SD σ. We write X ∼ N(μ, σ²).</p>
