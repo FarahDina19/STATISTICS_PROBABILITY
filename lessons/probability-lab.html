@@ -22,7 +22,6 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 <button type="button" role="tab" aria-selected="false" data-tab="advanced">Advanced</button>
 <button type="button" role="tab" aria-selected="false" data-tab="tips">Tips</button>
 <button type="button" role="tab" aria-selected="false" data-tab="summary">Summary</button>
-<button type="button" role="tab" aria-selected="false" data-tab="diagrams">Diagrams</button>
 </nav></div></header>
 <main class="wrap">
 <section id="intro" class="panel active" role="tabpanel" aria-labelledby="tab-intro">
@@ -33,7 +32,32 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="step"><strong>Step 2: Check the rules</strong><p><b>Binomial</b> needs: a fixed number of tries, only two results (yes or no), the same chance each time, and tries that do not affect each other.</p><p><b>Normal</b> needs: a measurement that is roughly symmetric and bell-shaped.</p></div>
       <div class="step"><strong>Step 3: Go to the matching tab</strong><p>Counting → Binomial tab. Measuring → Normal tab. Not sure? Follow the decision tree picture.</p></div>
     </div></div>
-    <div data-diagram-slot="decision"></div>
+    <div data-diagram-slot="decision"><article class="diagram-card" data-diagram="decision">
+      <div class="diagram-header"><span class="diagram-badge">1</span><h3>Decision: binomial or normal?</h3></div>
+      <div class="diagram-figure">
+        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Decision diagram for choosing binomial versus normal">
+          <rect width="520" height="260" fill="#f7faff"/>
+          <text x="260" y="28" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">Choose the correct model</text>
+          <line x1="260" y1="45" x2="260" y2="80" stroke="#7d8fa8" stroke-width="2"/>
+          <line x1="260" y1="80" x2="120" y2="120" stroke="#7d8fa8" stroke-width="2"/>
+          <line x1="260" y1="80" x2="400" y2="120" stroke="#7d8fa8" stroke-width="2"/>
+          <rect x="60" y="120" width="120" height="64" rx="12" fill="#e5f8ec" stroke="#56b77a"/>
+          <rect x="340" y="120" width="120" height="64" rx="12" fill="#e3edff" stroke="#5782d8"/>
+          <text x="120" y="145" text-anchor="middle" font-size="16" font-family="Arial" fill="#163d2f">Binomial</text>
+          <text x="400" y="145" text-anchor="middle" font-size="16" font-family="Arial" fill="#1d2d4d">Normal</text>
+          <text x="120" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#163d2f">Count x = 0, 1, 2, …, n</text>
+          <text x="400" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">Continuous measurement</text>
+          <text x="260" y="96" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">Count or measure?</text>
+          <text x="260" y="210" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Binomial assumptions: fixed n, two outcomes, same p, independent.</text>
+          <text x="260" y="235" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Normal assumptions: continuous measurement, symmetric, bell-shaped.</text>
+        </svg>
+      </div>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Binomial: a fixed number of tries, two outcomes, the same p, and tries that do not affect each other.</li><li>Normal: a measurement that is symmetric and bell-shaped.</li><li>Not every count is binomial; not every measurement is normal.</li></ul>
+      </div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> Is the number of heads in 5 coin flips binomial or normal?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> Binomial. We count heads in 5 flips, the flips do not affect each other, and the chance stays 0.5. Normal is for measurements like delivery times or weights.</div>
+    </article></div>
   </div>
   <div class="grid"><figure class="card lab-figure"><img src="./probability-images/decision-tree-2.png" alt="Decision tree: count or measure, then check the rules for each model." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Follow the arrows: count → binomial, measure → normal. Check the rules before you calculate.</figcaption></figure></div>
   <div class="card"><h2>Quick memory check</h2><div class="formula">Binomial: X ∼ B(n, p) &nbsp; &nbsp; Normal: X ∼ N(μ, σ²)</div><p>B means “bin” (count of yes results). N means “normal” (a bell-shaped measurement).</p><div class="actions"><button type="button" data-go="binomial" class="primary">Start with binomial →</button></div></div>
@@ -64,43 +88,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="step"><strong>Step 4: Count the ways</strong><p>List the ways to get 2 heads: HHT, HTH, THH. That is <b>3 ways</b>.</p></div>
       <div class="step"><strong>Step 5: Multiply</strong><p>Each way has 2 heads and 1 tail: 0.5 × 0.5 × 0.5 = 1/8. So P(X = 2) = 3 × 1/8 = <b>3/8</b>.</p></div>
     </div>
-    <div data-diagram-slot="outcomes"></div>
-    <div class="card"><h3>All 8 outcomes</h3><p>There are 8 equal outcomes. Count how many have each number of heads.</p><div class="outcomes"><div class="outcome"><strong>1</strong><span>0 heads</span></div><div class="outcome"><strong>3</strong><span>1 head</span></div><div class="outcome"><strong>3</strong><span>2 heads</span></div><div class="outcome"><strong>1</strong><span>3 heads</span></div></div><p>Each count divided by 8 gives a probability: 1/8, 3/8, 3/8, 1/8. Together they make 1.</p></div>
-    <div data-diagram-slot="probability-bars"></div>
-  </div>
-  <div class="grid"><div class="card"><h3>Try it: change the numbers</h3><div class="controls"><label>n (tries)<input id="bn" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="bp" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k (yes results)<input id="bk" type="number" min="0" max="60" step="1" value="2"></label></div><p><b>The formula:</b> P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></p><ul><li><b>ⁿCₖ</b> = the number of ways to pick which k tries are “yes”. For 3 tries and 2 yes results, ³C₂ = 3.</li><li><b>0! = 1</b>. So ⁿC₀ = 1 and ⁿCₙ = 1.</li></ul><p id="bError" class="error" role="status"></p><div id="bFlow"></div><div id="bResult" class="result" aria-live="polite"></div></div><div class="card"><h3>The bar chart</h3><canvas id="binChart" role="img" aria-label="Binomial distribution chart"></canvas><p id="bSummary"></p><small>Each bar is one value of k. The tallest bar is the most likely number of yes results. All bars add up to 1.</small></div></div>
-  <div class="grid">
-    <div class="card"><h3>Example: basketball</h3><p>A player takes 10 shots. Each shot is a make with chance 0.7. Let X = number of makes, so X ∼ B(10, 0.7).</p><div class="formula">P(X = 7) = ¹⁰C₇ × 0.7⁷ × 0.3³ ≈ 0.2668</div><p>The average is 7 makes, but 7 is not guaranteed.</p><p><strong>Try it:</strong> What is P(X = 8)?</p><details><summary>Check your answer</summary><p>P(X = 8) = ¹⁰C₈ × 0.7⁸ × 0.3² ≈ 0.2335.</p></details></div>
-    <figure class="card"><img src="./probability-images/basketball-shots-2.svg" alt="Ten basketball shots with seven made and three missed, alongside the binomial probabilities for 10 shots with a 0.7 make probability." width="960" height="720" loading="lazy" decoding="async"><figcaption>Find the bar at k = 7 to see the chance of exactly 7 makes. This picture shows one possible result, not a sure result.</figcaption></figure>
-  </div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/five-fair-coin-flips.svg" alt="All 32 sequences of five fair coin flips, with the ten containing exactly three heads outlined." width="960" height="720" loading="lazy" decoding="async"><figcaption>Same steps with 5 flips: there are 10 ways to get 3 heads, out of 32 outcomes. So P(X = 3) = 10/32 = 0.3125.</figcaption></figure><figure class="card lab-figure"><img src="./probability-images/basketball-shots.png" alt="Ten basketball shots: six actual makes compared with the expected seven." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>The expected count is 7, but one real result can be 6, 7 or 8.</figcaption></figure></div>
-  <div class="grid"><div class="card"><h3>Real-life example: quality control</h3><p>A factory checks 20 bulbs. Each bulb is faulty with chance 0.05, so X ∼ B(20, 0.05).</p><div class="step"><strong>Step 1:</strong> n = 20, p = 0.05, k = 1.</div><div class="step"><strong>Step 2:</strong> Ways to pick 1 faulty bulb: ²⁰C₁ = 20.</div><div class="step"><strong>Step 3:</strong> Multiply: 20 × 0.05 × 0.95¹⁹ ≈ 0.3774.</div><p>So about 38% of batches have exactly one faulty bulb.</p></div></div>
-</section>
-<section id="normal" class="panel" role="tabpanel" aria-labelledby="tab-normal">
-  <div class="eyebrow">4.4.3–4.4.5 · Measurements</div><h1>4.4.3 Normal: measuring values</h1><p>A normal curve is a bell shape. The middle is the mean μ. The width is set by the SD σ. We write X ∼ N(μ, σ²).</p>
-  <div class="grid"><div class="card"><h3>Step 1: Know the mean and SD</h3><p>Most values sit near the mean. For a normal curve:</p><ul><li>About <b>68%</b> lie within 1 SD of the mean.</li><li>About <b>95%</b> lie within 2 SDs.</li><li>About <b>99.7%</b> lie within 3 SDs.</li></ul><p>Example: test marks with μ = 70 and σ = 10. About 68% of marks are between 60 and 80.</p></div><div data-diagram-slot="empirical-rule"></div></div>
-  <div class="grid"><div class="card"><h3>Step 2: Turn a value into a z-score</h3><p>A delivery takes <b>μ = 30 minutes</b> on average, with <b>σ = 5 minutes</b>. How far is 35 minutes from the mean?</p><div class="step"><strong>Subtract the mean:</strong> 35 − 30 = 5</div><div class="step"><strong>Divide by the SD:</strong> 5 ÷ 5 = 1</div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; z = 1</div><p>So 35 minutes is <b>1 SD above</b> the mean.</p><div class="controls"><label>Mean μ<input id="nm" type="number" value="30" min="-10000" max="10000"></label><label>SD σ<input id="ns" type="number" value="5" min="0.01" max="10000"></label><label>Value x<input id="nx" type="number" value="35" min="-10000" max="10000"></label></div><p id="nError" class="error" role="status"></p><div id="nFlow"></div><div id="nResult" class="result" aria-live="polite"></div></div><div><p><strong>Another example:</strong> test scores with μ = 70 and σ = 5 (see the picture below).</p><div data-diagram-slot="raw-z"></div></div></div>
-  <div class="grid"><div class="card"><h3>Step 3: Read the table</h3><p>The table gives <b>Φ(z)</b>: the area to the <b>left</b> of z. To find Φ(1.23):</p><ol><li><b>Row:</b> find 1.2 (down the side).</li><li><b>Column:</b> find .03 (across the top).</li><li><b>Read:</b> where they meet is 0.8907.</li></ol><div class="formula">Φ(1.23) = 0.8907</div><p>Other answers from the same entry:</p><div class="formula">P(Z &gt; 1.23) = 1 − 0.8907 = 0.1093</div><details><summary>Practice: find Φ(0.47)</summary><p>Row 0.4, column .07: Φ(0.47) = 0.6808.</p></details></div><div data-diagram-slot="table-lookup"></div></div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/normal-table-lookup.png" alt="Looking up z = 1.23 in the standard normal table: row 1.2, column .03." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Row 1.2 + column .03 = 0.8907.</figcaption></figure></div>
-  <div class="card"><h3>Your standard normal table</h3><div class="controls"><label>Look up z (−3.49 to 3.49)<input id="tableZ" type="number" min="-3.49" max="3.49" step="0.01" value="1.23"></label><p id="tableResult" aria-live="polite"></p></div><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></div>
-  <div class="grid"><div class="card"><h3>Step 4: Shade the area</h3><p>The chart shades the area to the left of your cutoff. This area is the probability. A right tail is 1 − Φ(z). A between area is Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>).</p><canvas id="normalChart" role="img" aria-label="Normal density curve with cumulative probability shaded"></canvas><p id="nSummary"></p><small>For a continuous measurement, one exact value has probability 0. So “less than” and “at most” give the same answer.</small></div><div data-diagram-slot="normal-regions"></div></div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/raw-score-to-z-score.png" alt="Converting a raw score to a z-score: a score of 85 with mean 70 and SD 10 gives z = 1.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Raw score to z-score: z = (85 − 70) / 10 = 1.5.</figcaption></figure><figure class="card lab-figure"><img src="./probability-images/area-under-normal-curve.png" alt="Shaded normal areas for below, above and between two cutoffs." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Left area: Φ(a). Right area: 1 − Φ(b). Between: Φ(b) − Φ(a).</figcaption></figure></div>
-  <div class="grid"><div class="card"><h3>Which result is better?</h3><p>Compare each score with its own mean, using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></div></div>
-</section>
-<section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced"><div class="eyebrow">Advanced · Ranges of values</div><h1>Beyond “exactly one value”</h1>
-  <div class="grid"><div class="card"><h3>Step by step: exactly, at most, at least</h3><div class="step"><strong>Exactly k:</strong> find P(X = a) with the formula.</div><div class="step"><strong>At most a:</strong> add P(X = 0) up to P(X = a).</div><div class="step"><strong>At least a:</strong> add P(X = a) up to P(X = n). Or use 1 − P(X ≤ a − 1).</div><div class="step"><strong>Between a and b:</strong> add P(X = a) up to P(X = b).</div><div class="controls"><label>n (tries)<input id="an" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="ap" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>Lower bound a<input id="aa" type="number" min="0" max="60" step="1" value="2"></label><label>Upper bound b<input id="ab" type="number" min="0" max="60" step="1" value="3"></label></div><div id="aBin" class="result" aria-live="polite"></div></div><div data-diagram-slot="binomial-selections"></div></div>
-  <div class="grid"><div class="card"><h3>Step by step: a range of normal values</h3><p>To find P(a ≤ X ≤ b), convert both ends to z first.</p><div class="step"><strong>Step 1:</strong> z₁ = (a − μ) / σ and z₂ = (b − μ) / σ.</div><div class="step"><strong>Step 2:</strong> Look up Φ(z₁) and Φ(z₂).</div><div class="step"><strong>Step 3:</strong> Subtract: Φ(z₂) − Φ(z₁).</div><div class="controls"><label>Mean μ<input id="am" type="number" value="30"></label><label>SD σ<input id="as" type="number" step="0.01" value="5"></label><label>Lower x<input id="al" type="number" value="25"></label><label>Upper x<input id="au" type="number" value="35"></label></div><div id="aNormal" class="result" aria-live="polite"></div></div><div data-diagram-slot="normal-regions"></div></div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/cumulative-vs-individual.png" alt="Bar charts comparing exactly two heads with at most two heads for n = 5 and p = 0.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Exactly 2 = one bar. At most 2 = add the bars for 0, 1 and 2.</figcaption></figure></div>
-  <div class="grid"><div class="card"><h3>Which formula do I use?</h3><table><tr><th>Question</th><th>What to do</th><th>Example</th></tr><tr><td>Exactly k yes</td><td>Use the binomial formula once</td><td>3 heads in 5 flips</td></tr><tr><td>At most k yes</td><td>Add the bars from 0 up to k</td><td>0 to 3 baskets in 10 shots</td></tr><tr><td>Average yes results</td><td>E(X) = np</td><td>Expected heads in 5 flips</td></tr><tr><td>Turn a value into z</td><td>z = (x − μ) / σ</td><td>Score 75 with mean 70</td></tr><tr><td>At most a value (normal)</td><td>Look up Φ(z)</td><td>Height at most 170 cm</td></tr></table></div></div>
-</section>
-<section id="tips" class="panel" role="tabpanel" aria-labelledby="tab-tips"><div class="eyebrow">Keep these nearby</div><h1>Tips to avoid mistakes</h1><div class="grid"><div class="card"><h2>Five common mistakes</h2><ol><li><b>Using variance instead of SD:</b> for z, divide by σ, not σ². If σ² = 25, then σ = 5.</li><li><b>Mixing up “exactly” and “at most”:</b> P(X ≤ 3) adds the chances for 0, 1, 2 and 3.</li><li><b>Reading the wrong side:</b> Φ(z) is the area on the <i>left</i>. For the right side, use 1 − Φ(z).</li><li><b>Mixing up success and failure:</b> use p for yes and 1 − p for no.</li><li><b>Forgetting independence:</b> picking with replacement keeps tries independent, so binomial works.</li></ol></div><div class="card"><h2>Practice questions</h2><p>Try each one, then open the answer.</p><details><summary>1. 4 coin flips, p = 0.5. Is this binomial?</summary><p>Yes. Fixed tries, two outcomes, same p, independent flips.</p></details><details><summary>2. Heights of students. Binomial or normal?</summary><p>Normal, because height is a measurement.</p></details><details><summary>3. Number of faulty bulbs in a box of 20. Binomial or normal?</summary><p>Binomial, because we count faulty bulbs.</p></details><details><summary>4. A value x = 38 with μ = 30 and σ = 5. What is z?</summary><p>z = (38 − 30) / 5 = 1.6. Then Φ(1.6) = 0.9452.</p></details><details><summary>5. 2 flips, p = 0.5. What is P(X ≤ 1)?</summary><p>P(0) = 1/4 and P(1) = 2/4. Add them: 3/4.</p></details></div></div></section>
-<section id="summary" class="panel" role="tabpanel" aria-labelledby="tab-summary"><div class="eyebrow">Summary · Your revision sheet</div><h1>Probability Lab summary</h1><p>Read the steps in order. Each formula is shown with a simple example.</p><div class="grid"><div class="card"><h2>Binomial: count yes results</h2><div class="step"><strong>Use when:</strong> a fixed number n of tries, two outcomes, the same chance p, and independent tries.</div><div class="formula">P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div><div class="formula">E(X) = np &nbsp; &nbsp; Var(X) = np(1 − p)</div><p>E(X) is the average count. Var(X) shows how spread out the counts are.</p></div><div class="card"><h2>Normal: measure values</h2><div class="step"><strong>Use when:</strong> a measurement is roughly symmetric and bell-shaped.</div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; P(X ≤ x) = Φ(z)</div><div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div><p>Change each end to z first, then use the table.</p></div><div class="card"><h2>Three binomial examples</h2><ul><li><b>Basketball:</b> 10 shots, 70% each. The average is 7 makes, but any number from 0 to 10 can happen.</li><li><b>Bulbs:</b> 20 bulbs, 5% faulty each. P(exactly 1 faulty) ≈ 0.3774.</li><li><b>Coins:</b> 5 flips, exactly 3 heads. P = 10 × 0.5⁵ = 0.3125.</li></ul></div><div class="card"><h2>Three normal examples</h2><p>If the measurement is normal:</p><ul><li><b>Test scores:</b> mean 70, SD 10. Scores 60 to 80 are within 1 SD: about 68%.</li><li><b>Delivery:</b> mean 30 minutes, SD 5. Within 35 minutes is z = 1: about 84%.</li><li><b>Height:</b> mean 165 cm, SD 8 cm. Taller than 173 cm is z = 1: about 16%.</li></ul></div></div></section>
-<section id="diagrams" class="panel" role="tabpanel" aria-labelledby="tab-diagrams">
-  <div class="eyebrow">Visual checks · mobile-friendly reasoning</div>
-  <h1>Diagram set: binomial and normal in one glance</h1>
-  <div class="diagram-grid">
-
-    <article class="diagram-card" data-diagram="outcomes">
+    <div data-diagram-slot="outcomes"><article class="diagram-card" data-diagram="outcomes">
       <div class="diagram-header"><span class="diagram-badge">1</span><h3>8 outcomes of three fair coin flips</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Three fair coin flips grouped by heads count">
@@ -133,9 +121,9 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> How many sequences have exactly 2 heads?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: list the sequences with 2 heads: HHT, HTH, THH. Step 2: count them: 3. Step 3: 3 out of 8 gives P(X=2) = 3/8.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="probability-bars">
+    </article></div>
+    <div class="card"><h3>All 8 outcomes</h3><p>There are 8 equal outcomes. Count how many have each number of heads.</p><div class="outcomes"><div class="outcome"><strong>1</strong><span>0 heads</span></div><div class="outcome"><strong>3</strong><span>1 head</span></div><div class="outcome"><strong>3</strong><span>2 heads</span></div><div class="outcome"><strong>1</strong><span>3 heads</span></div></div><p>Each count divided by 8 gives a probability: 1/8, 3/8, 3/8, 1/8. Together they make 1.</p></div>
+    <div data-diagram-slot="probability-bars"><article class="diagram-card" data-diagram="probability-bars">
       <div class="diagram-header"><span class="diagram-badge">2</span><h3>Probability table and bars</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 270" xmlns="http://www.w3.org/2000/svg" aria-label="Binomial probability table and bar chart for three fair coin flips">
@@ -167,37 +155,15 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> What is P(X=1), and why are the bars for k=1 and k=2 the same height?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: P(X=1) has 3 sequences, so 3/8. Step 2: P(X=2) also has 3 sequences, so 3/8. The two bars match because p = 0.5.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="decision">
-      <div class="diagram-header"><span class="diagram-badge">3</span><h3>Decision: binomial or normal?</h3></div>
-      <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Decision diagram for choosing binomial versus normal">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <text x="260" y="28" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">Choose the correct model</text>
-          <line x1="260" y1="45" x2="260" y2="80" stroke="#7d8fa8" stroke-width="2"/>
-          <line x1="260" y1="80" x2="120" y2="120" stroke="#7d8fa8" stroke-width="2"/>
-          <line x1="260" y1="80" x2="400" y2="120" stroke="#7d8fa8" stroke-width="2"/>
-          <rect x="60" y="120" width="120" height="64" rx="12" fill="#e5f8ec" stroke="#56b77a"/>
-          <rect x="340" y="120" width="120" height="64" rx="12" fill="#e3edff" stroke="#5782d8"/>
-          <text x="120" y="145" text-anchor="middle" font-size="16" font-family="Arial" fill="#163d2f">Binomial</text>
-          <text x="400" y="145" text-anchor="middle" font-size="16" font-family="Arial" fill="#1d2d4d">Normal</text>
-          <text x="120" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#163d2f">Count x = 0, 1, 2, …, n</text>
-          <text x="400" y="164" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">Continuous measurement</text>
-          <text x="260" y="96" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">Count or measure?</text>
-          <text x="260" y="210" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Binomial assumptions: fixed n, two outcomes, same p, independent.</text>
-          <text x="260" y="235" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Normal assumptions: continuous measurement, symmetric, bell-shaped.</text>
-        </svg>
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>Binomial: a fixed number of tries, two outcomes, the same p, and tries that do not affect each other.</li><li>Normal: a measurement that is symmetric and bell-shaped.</li><li>Not every count is binomial; not every measurement is normal.</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> Is the number of heads in 5 coin flips binomial or normal?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> Binomial. We count heads in 5 flips, the flips do not affect each other, and the chance stays 0.5. Normal is for measurements like delivery times or weights.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="expected-count">
-      <div class="diagram-header"><span class="diagram-badge">4</span><h3>10 component icons: one possible result, not the mean</h3></div>
+    </article></div>
+  </div>
+  <div class="grid"><div class="card"><h3>Try it: change the numbers</h3><div class="controls"><label>n (tries)<input id="bn" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="bp" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k (yes results)<input id="bk" type="number" min="0" max="60" step="1" value="2"></label></div><p><b>The formula:</b> P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></p><ul><li><b>ⁿCₖ</b> = the number of ways to pick which k tries are “yes”. For 3 tries and 2 yes results, ³C₂ = 3.</li><li><b>0! = 1</b>. So ⁿC₀ = 1 and ⁿCₙ = 1.</li></ul><p id="bError" class="error" role="status"></p><div id="bFlow"></div><div id="bResult" class="result" aria-live="polite"></div></div><div class="card"><h3>The bar chart</h3><canvas id="binChart" role="img" aria-label="Binomial distribution chart"></canvas><p id="bSummary"></p><small>Each bar is one value of k. The tallest bar is the most likely number of yes results. All bars add up to 1.</small></div></div>
+  <div class="grid">
+    <div class="card"><h3>Example: basketball</h3><p>A player takes 10 shots. Each shot is a make with chance 0.7. Let X = number of makes, so X ∼ B(10, 0.7).</p><div class="formula">P(X = 7) = ¹⁰C₇ × 0.7⁷ × 0.3³ ≈ 0.2668</div><p>The average is 7 makes, but 7 is not guaranteed.</p><p><strong>Try it:</strong> What is P(X = 8)?</p><details><summary>Check your answer</summary><p>P(X = 8) = ¹⁰C₈ × 0.7⁸ × 0.3² ≈ 0.2335.</p></details></div>
+    <figure class="card"><img src="./probability-images/basketball-shots-2.svg" alt="Ten basketball shots with seven made and three missed, alongside the binomial probabilities for 10 shots with a 0.7 make probability." width="960" height="720" loading="lazy" decoding="async"><figcaption>Find the bar at k = 7 to see the chance of exactly 7 makes. This picture shows one possible result, not a sure result.</figcaption></figure>
+  </div>
+  <div class="grid"><div data-diagram-slot="expected-count"><article class="diagram-card" data-diagram="expected-count">
+      <div class="diagram-header"><span class="diagram-badge">3</span><h3>10 component icons: one possible result, not the mean</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg" aria-label="Ten shot icons showing one possible outcome versus expected count">
           <rect width="520" height="250" fill="#f7faff"/>
@@ -225,10 +191,100 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> Is 7 made a certain result?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> No. 7 is the most likely single result, but 6 or 8 can also happen. E(X) = 7 is an average, not a sure result.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="binomial-selections">
-      <div class="diagram-header"><span class="diagram-badge">5</span><h3>Binomial bars: exactly, at most, at least</h3></div>
+    </article></div></div>
+  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/five-fair-coin-flips.svg" alt="All 32 sequences of five fair coin flips, with the ten containing exactly three heads outlined." width="960" height="720" loading="lazy" decoding="async"><figcaption>Same steps with 5 flips: there are 10 ways to get 3 heads, out of 32 outcomes. So P(X = 3) = 10/32 = 0.3125.</figcaption></figure><figure class="card lab-figure"><img src="./probability-images/basketball-shots.png" alt="Ten basketball shots: six actual makes compared with the expected seven." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>The expected count is 7, but one real result can be 6, 7 or 8.</figcaption></figure></div>
+  <div class="grid"><div class="card"><h3>Real-life example: quality control</h3><p>A factory checks 20 bulbs. Each bulb is faulty with chance 0.05, so X ∼ B(20, 0.05).</p><div class="step"><strong>Step 1:</strong> n = 20, p = 0.05, k = 1.</div><div class="step"><strong>Step 2:</strong> Ways to pick 1 faulty bulb: ²⁰C₁ = 20.</div><div class="step"><strong>Step 3:</strong> Multiply: 20 × 0.05 × 0.95¹⁹ ≈ 0.3774.</div><p>So about 38% of batches have exactly one faulty bulb.</p></div></div>
+</section>
+<section id="normal" class="panel" role="tabpanel" aria-labelledby="tab-normal">
+  <div class="eyebrow">4.4.3–4.4.5 · Measurements</div><h1>4.4.3 Normal: measuring values</h1><p>A normal curve is a bell shape. The middle is the mean μ. The width is set by the SD σ. We write X ∼ N(μ, σ²).</p>
+  <div class="grid"><div class="card"><h3>Step 1: Know the mean and SD</h3><p>Most values sit near the mean. For a normal curve:</p><ul><li>About <b>68%</b> lie within 1 SD of the mean.</li><li>About <b>95%</b> lie within 2 SDs.</li><li>About <b>99.7%</b> lie within 3 SDs.</li></ul><p>Example: test marks with μ = 70 and σ = 10. About 68% of marks are between 60 and 80.</p></div><div data-diagram-slot="empirical-rule"><article class="diagram-card" data-diagram="empirical-rule">
+      <div class="diagram-header"><span class="diagram-badge">1</span><h3>Normal curve: mean, SD bands, empirical rule</h3></div>
+      <div class="diagram-figure">
+        <img src="./probability-images/normal-bell-curve.svg" alt="Accurate normal density with SD bands: 68.27%, 95.45%, and 99.73% within one, two, and three SDs; rounded empirical rule 68%, 95%, 99.7%." width="960" height="720" loading="lazy">
+      </div>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>68% lie within one standard deviation of the mean.</li><li>95% lie within two standard deviations.</li><li>99.7% lie within three standard deviations.</li></ul>
+      </div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What percentage of marks are between 60 and 80 if μ=70 and σ=10?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: 70 − 10 = 60 and 70 + 10 = 80. Step 2: the area between 60 and 80 is about 68%.</div>
+    </article></div></div>
+  <div class="grid"><div class="card"><h3>Step 2: Turn a value into a z-score</h3><p>A delivery takes <b>μ = 30 minutes</b> on average, with <b>σ = 5 minutes</b>. How far is 35 minutes from the mean?</p><div class="step"><strong>Subtract the mean:</strong> 35 − 30 = 5</div><div class="step"><strong>Divide by the SD:</strong> 5 ÷ 5 = 1</div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; z = 1</div><p>So 35 minutes is <b>1 SD above</b> the mean.</p><div class="controls"><label>Mean μ<input id="nm" type="number" value="30" min="-10000" max="10000"></label><label>SD σ<input id="ns" type="number" value="5" min="0.01" max="10000"></label><label>Value x<input id="nx" type="number" value="35" min="-10000" max="10000"></label></div><p id="nError" class="error" role="status"></p><div id="nFlow"></div><div id="nResult" class="result" aria-live="polite"></div></div><div><p><strong>Another example:</strong> test scores with μ = 70 and σ = 5 (see the picture below).</p><div data-diagram-slot="raw-z"><article class="diagram-card" data-diagram="raw-z">
+      <div class="diagram-header"><span class="diagram-badge">2</span><h3>Raw values and z-scores</h3></div>
+      <div class="diagram-figure">
+        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Raw value and z-score axes showing standardization">
+          <rect width="520" height="260" fill="#f7faff"/>
+          <line x1="70" y1="190" x2="470" y2="190" stroke="#1f2d4d" stroke-width="2"/>
+          <line x1="70" y1="90" x2="470" y2="90" stroke="#1f2d4d" stroke-width="2"/>
+          <line x1="110" y1="80" x2="110" y2="200" stroke="#4a5f80" stroke-dasharray="5 5"/>
+          <line x1="260" y1="80" x2="260" y2="200" stroke="#4a5f80" stroke-dasharray="5 5"/>
+          <line x1="410" y1="80" x2="410" y2="200" stroke="#4a5f80" stroke-dasharray="5 5"/>
+          <text x="110" y="212" text-anchor="middle" font-size="15" fill="#172033">65</text>
+          <text x="260" y="212" text-anchor="middle" font-size="15" fill="#172033">70</text>
+          <text x="410" y="212" text-anchor="middle" font-size="15" fill="#172033">75</text>
+          <text x="110" y="68" text-anchor="middle" font-size="15" fill="#172033">z=-1</text>
+          <text x="260" y="68" text-anchor="middle" font-size="15" fill="#172033">z=0</text>
+          <text x="410" y="68" text-anchor="middle" font-size="15" fill="#172033">z=1</text>
+          <path d="M70 190 L470 190" stroke="#1f2d4d"/>
+          <text x="75" y="68" font-size="13" fill="#1f2d4d" text-anchor="end">z-score</text>
+          <text x="260" y="254" font-size="13" fill="#1f2d4d" text-anchor="middle">Raw value (marks)</text>
+          <text x="260" y="150" text-anchor="middle" font-size="18" fill="#172033">z = (75 − 70)/5 = 1</text>
+          <text x="260" y="235" text-anchor="middle" font-size="16" fill="#172033">μ = 70, σ = 5</text>
+        </svg>
+      </div>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>The raw value and the z-score represent the same point.</li><li>z is the number of standard deviations from the mean.</li><li>A z-score makes it easy to compare two different scales.</li></ul>
+      </div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is z for x=75 if μ=70 and σ=5?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: 75 − 70 = 5. Step 2: 5 ÷ 5 = 1. So 75 is 1 SD above the mean.</div>
+    </article></div></div></div>
+  <div class="grid"><div class="card"><h3>Step 3: Read the table</h3><p>The table gives <b>Φ(z)</b>: the area to the <b>left</b> of z. To find Φ(1.23):</p><ol><li><b>Row:</b> find 1.2 (down the side).</li><li><b>Column:</b> find .03 (across the top).</li><li><b>Read:</b> where they meet is 0.8907.</li></ol><div class="formula">Φ(1.23) = 0.8907</div><p>Other answers from the same entry:</p><div class="formula">P(Z &gt; 1.23) = 1 − 0.8907 = 0.1093</div><details><summary>Practice: find Φ(0.47)</summary><p>Row 0.4, column .07: Φ(0.47) = 0.6808.</p></details></div><div data-diagram-slot="table-lookup"><article class="diagram-card" data-diagram="table-lookup">
+      <div class="diagram-header"><span class="diagram-badge">3</span><h3>Normal table lookup: how to read the table</h3></div>
+      <div class="diagram-figure">
+        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Standard normal table lookup matching the lesson convention">
+          <rect width="520" height="260" fill="#f7faff"/>
+          <g font-family="Arial" font-size="14" fill="#172033">
+            <rect x="60" y="40" width="390" height="170" fill="#ffffff" stroke="#b9c9dd"/>
+            <text x="255" y="58" text-anchor="middle" font-size="17" font-weight="700">Standard normal table: Φ(z)=P(Z≤z)</text>
+            <text x="85" y="88">z</text><text x="148" y="88">.00</text><text x="210" y="88">.01</text><text x="272" y="88">.02</text><text x="334" y="88">.03</text>
+            <rect x="331" y="100" width="62" height="24" fill="#dbeafe"/>
+            <text x="85" y="118">1.2</text><text x="148" y="118">0.8849</text><text x="210" y="118">0.8869</text><text x="272" y="118">0.8888</text><text x="334" y="118">0.8907</text>
+            <text x="85" y="146">1.3</text><text x="148" y="146">0.9032</text><text x="210" y="146">0.9049</text><text x="272" y="146">0.9066</text><text x="334" y="146">0.9082</text>
+            <text x="255" y="182" text-anchor="middle" font-size="15" fill="#1d2d4d">For z = 1.23, choose row 1.2 and column .03.</text>
+            <text x="255" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#1d2d4d">Φ(1.23)=0.8907</text>
+          </g>
+        </svg>
+      </div>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Step 1: find the row 1.2.</li><li>Step 2: find the column .03.</li><li>Step 3: read 0.8907 where they meet.</li><li>Some tables show the right side instead. Check the heading first.</li></ul>
+      </div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is Φ(1.23) from this table?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> Φ(1.23) = 0.8907. This means about 89% of the area lies to the left of z = 1.23.</div>
+    </article></div></div>
+  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/normal-table-lookup.png" alt="Looking up z = 1.23 in the standard normal table: row 1.2, column .03." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Row 1.2 + column .03 = 0.8907.</figcaption></figure></div>
+  <div class="card"><h3>Your standard normal table</h3><div class="controls"><label>Look up z (−3.49 to 3.49)<input id="tableZ" type="number" min="-3.49" max="3.49" step="0.01" value="1.23"></label><p id="tableResult" aria-live="polite"></p></div><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></div>
+  <div class="grid"><div class="card"><h3>Step 4: Shade the area</h3><p>The chart shades the area to the left of your cutoff. This area is the probability. A right tail is 1 − Φ(z). A between area is Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>).</p><canvas id="normalChart" role="img" aria-label="Normal density curve with cumulative probability shaded"></canvas><p id="nSummary"></p><small>For a continuous measurement, one exact value has probability 0. So “less than” and “at most” give the same answer.</small></div><div data-diagram-slot="normal-regions"><article class="diagram-card" data-diagram="normal-regions">
+      <div class="diagram-header"><span class="diagram-badge">4</span><h3>Left, right and between areas on the normal curve</h3></div>
+      <div class="diagram-figure">
+        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Separate normal density charts shading left of z=1, right of z=1, and between z=-1 and z=1">
+          <rect width="520" height="260" fill="#f7faff"/>
+          <text x="260" y="26" text-anchor="middle" font-family="Arial" font-size="16" fill="#172033">Delivery times: μ=30, σ=5 · x=25,35 → z=−1,1</text>
+          <g data-region="left" transform="translate(10 0)"></g>
+          <g data-region="right" transform="translate(180 0)"></g>
+          <g data-region="between" transform="translate(350 0)"></g>
+        </svg>
+      </div>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Left area = P(X≤x).</li><li>Right area = P(X≥x)=1−Φ(z).</li><li>Between area = P(a≤X≤b)=Φ(z_b)−Φ(z_a).</li></ul>
+      </div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is the difference between P(X≤35) and P(25≤X≤35)?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> P(X≤35) is the whole area left of 35; P(25≤X≤35) is only the area between 25 and 35. Do not mix up the areas under the curve.</div>
+    </article></div></div>
+  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/raw-score-to-z-score.png" alt="Converting a raw score to a z-score: a score of 85 with mean 70 and SD 10 gives z = 1.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Raw score to z-score: z = (85 − 70) / 10 = 1.5.</figcaption></figure><figure class="card lab-figure"><img src="./probability-images/area-under-normal-curve.png" alt="Shaded normal areas for below, above and between two cutoffs." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Left area: Φ(a). Right area: 1 − Φ(b). Between: Φ(b) − Φ(a).</figcaption></figure></div>
+  <div class="grid"><div class="card"><h3>Which result is better?</h3><p>Compare each score with its own mean, using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></div></div>
+</section>
+<section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced"><div class="eyebrow">Advanced · Ranges of values</div><h1>Beyond “exactly one value”</h1>
+  <div class="grid"><div class="card"><h3>Step by step: exactly, at most, at least</h3><div class="step"><strong>Exactly k:</strong> find P(X = a) with the formula.</div><div class="step"><strong>At most a:</strong> add P(X = 0) up to P(X = a).</div><div class="step"><strong>At least a:</strong> add P(X = a) up to P(X = n). Or use 1 − P(X ≤ a − 1).</div><div class="step"><strong>Between a and b:</strong> add P(X = a) up to P(X = b).</div><div class="controls"><label>n (tries)<input id="an" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="ap" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>Lower bound a<input id="aa" type="number" min="0" max="60" step="1" value="2"></label><label>Upper bound b<input id="ab" type="number" min="0" max="60" step="1" value="3"></label></div><div id="aBin" class="result" aria-live="polite"></div></div><div data-diagram-slot="binomial-selections"><article class="diagram-card" data-diagram="binomial-selections">
+      <div class="diagram-header"><span class="diagram-badge">1</span><h3>Binomial bars: exactly, at most, at least</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 290" xmlns="http://www.w3.org/2000/svg" aria-label="Three separate binomial charts on the same axes: exactly 2, at most 2, and at least 2 heads">
           <rect width="520" height="290" fill="#f7faff"/>
@@ -263,94 +319,14 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> If X is the number of heads in 3 flips, what is P(X≤2)?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: for at most 2, add the bars for 0, 1 and 2: 1/8 + 3/8 + 3/8 = 7/8. Step 2: for at least 2, add the bars for 2 and 3: 3/8 + 1/8 = 1/2.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="empirical-rule">
-      <div class="diagram-header"><span class="diagram-badge">6</span><h3>Normal curve: mean, SD bands, empirical rule</h3></div>
-      <div class="diagram-figure">
-        <img src="./probability-images/normal-bell-curve.svg" alt="Accurate normal density with SD bands: 68.27%, 95.45%, and 99.73% within one, two, and three SDs; rounded empirical rule 68%, 95%, 99.7%." width="960" height="720" loading="lazy">
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>68% lie within one standard deviation of the mean.</li><li>95% lie within two standard deviations.</li><li>99.7% lie within three standard deviations.</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> What percentage of marks are between 60 and 80 if μ=70 and σ=10?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: 70 − 10 = 60 and 70 + 10 = 80. Step 2: the area between 60 and 80 is about 68%.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="raw-z">
-      <div class="diagram-header"><span class="diagram-badge">7</span><h3>Raw values and z-scores</h3></div>
-      <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Raw value and z-score axes showing standardization">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <line x1="70" y1="190" x2="470" y2="190" stroke="#1f2d4d" stroke-width="2"/>
-          <line x1="70" y1="90" x2="470" y2="90" stroke="#1f2d4d" stroke-width="2"/>
-          <line x1="110" y1="80" x2="110" y2="200" stroke="#4a5f80" stroke-dasharray="5 5"/>
-          <line x1="260" y1="80" x2="260" y2="200" stroke="#4a5f80" stroke-dasharray="5 5"/>
-          <line x1="410" y1="80" x2="410" y2="200" stroke="#4a5f80" stroke-dasharray="5 5"/>
-          <text x="110" y="212" text-anchor="middle" font-size="15" fill="#172033">65</text>
-          <text x="260" y="212" text-anchor="middle" font-size="15" fill="#172033">70</text>
-          <text x="410" y="212" text-anchor="middle" font-size="15" fill="#172033">75</text>
-          <text x="110" y="68" text-anchor="middle" font-size="15" fill="#172033">z=-1</text>
-          <text x="260" y="68" text-anchor="middle" font-size="15" fill="#172033">z=0</text>
-          <text x="410" y="68" text-anchor="middle" font-size="15" fill="#172033">z=1</text>
-          <path d="M70 190 L470 190" stroke="#1f2d4d"/>
-          <text x="75" y="68" font-size="13" fill="#1f2d4d" text-anchor="end">z-score</text>
-          <text x="260" y="254" font-size="13" fill="#1f2d4d" text-anchor="middle">Raw value (marks)</text>
-          <text x="260" y="150" text-anchor="middle" font-size="18" fill="#172033">z = (75 − 70)/5 = 1</text>
-          <text x="260" y="235" text-anchor="middle" font-size="16" fill="#172033">μ = 70, σ = 5</text>
-        </svg>
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>The raw value and the z-score represent the same point.</li><li>z is the number of standard deviations from the mean.</li><li>A z-score makes it easy to compare two different scales.</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> What is z for x=75 if μ=70 and σ=5?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: 75 − 70 = 5. Step 2: 5 ÷ 5 = 1. So 75 is 1 SD above the mean.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="normal-regions">
-      <div class="diagram-header"><span class="diagram-badge">8</span><h3>Left, right and between areas on the normal curve</h3></div>
-      <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Separate normal density charts shading left of z=1, right of z=1, and between z=-1 and z=1">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <text x="260" y="26" text-anchor="middle" font-family="Arial" font-size="16" fill="#172033">Delivery times: μ=30, σ=5 · x=25,35 → z=−1,1</text>
-          <g data-region="left" transform="translate(10 0)"></g>
-          <g data-region="right" transform="translate(180 0)"></g>
-          <g data-region="between" transform="translate(350 0)"></g>
-        </svg>
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>Left area = P(X≤x).</li><li>Right area = P(X≥x)=1−Φ(z).</li><li>Between area = P(a≤X≤b)=Φ(z_b)−Φ(z_a).</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> What is the difference between P(X≤35) and P(25≤X≤35)?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> P(X≤35) is the whole area left of 35; P(25≤X≤35) is only the area between 25 and 35. Do not mix up the areas under the curve.</div>
-    </article>
-
-    <article class="diagram-card" data-diagram="table-lookup">
-      <div class="diagram-header"><span class="diagram-badge">9</span><h3>Normal table lookup: how to read the table</h3></div>
-      <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Standard normal table lookup matching the lesson convention">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <g font-family="Arial" font-size="14" fill="#172033">
-            <rect x="60" y="40" width="390" height="170" fill="#ffffff" stroke="#b9c9dd"/>
-            <text x="255" y="58" text-anchor="middle" font-size="17" font-weight="700">Standard normal table: Φ(z)=P(Z≤z)</text>
-            <text x="85" y="88">z</text><text x="148" y="88">.00</text><text x="210" y="88">.01</text><text x="272" y="88">.02</text><text x="334" y="88">.03</text>
-            <rect x="331" y="100" width="62" height="24" fill="#dbeafe"/>
-            <text x="85" y="118">1.2</text><text x="148" y="118">0.8849</text><text x="210" y="118">0.8869</text><text x="272" y="118">0.8888</text><text x="334" y="118">0.8907</text>
-            <text x="85" y="146">1.3</text><text x="148" y="146">0.9032</text><text x="210" y="146">0.9049</text><text x="272" y="146">0.9066</text><text x="334" y="146">0.9082</text>
-            <text x="255" y="182" text-anchor="middle" font-size="15" fill="#1d2d4d">For z = 1.23, choose row 1.2 and column .03.</text>
-            <text x="255" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#1d2d4d">Φ(1.23)=0.8907</text>
-          </g>
-        </svg>
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>Step 1: find the row 1.2.</li><li>Step 2: find the column .03.</li><li>Step 3: read 0.8907 where they meet.</li><li>Some tables show the right side instead. Check the heading first.</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> What is Φ(1.23) from this table?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> Φ(1.23) = 0.8907. This means about 89% of the area lies to the left of z = 1.23.</div>
-    </article>
-
-  </div>
+    </article></div></div>
+  <div class="grid"><div class="card"><h3>Step by step: a range of normal values</h3><p>To find P(a ≤ X ≤ b), convert both ends to z first.</p><div class="step"><strong>Step 1:</strong> z₁ = (a − μ) / σ and z₂ = (b − μ) / σ.</div><div class="step"><strong>Step 2:</strong> Look up Φ(z₁) and Φ(z₂).</div><div class="step"><strong>Step 3:</strong> Subtract: Φ(z₂) − Φ(z₁).</div><div class="controls"><label>Mean μ<input id="am" type="number" value="30"></label><label>SD σ<input id="as" type="number" step="0.01" value="5"></label><label>Lower x<input id="al" type="number" value="25"></label><label>Upper x<input id="au" type="number" value="35"></label></div><div id="aNormal" class="result" aria-live="polite"></div></div></div>
+  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/cumulative-vs-individual.png" alt="Bar charts comparing exactly two heads with at most two heads for n = 5 and p = 0.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Exactly 2 = one bar. At most 2 = add the bars for 0, 1 and 2.</figcaption></figure></div>
+  <div class="grid"><div class="card"><h3>Which formula do I use?</h3><table><tr><th>Question</th><th>What to do</th><th>Example</th></tr><tr><td>Exactly k yes</td><td>Use the binomial formula once</td><td>3 heads in 5 flips</td></tr><tr><td>At most k yes</td><td>Add the bars from 0 up to k</td><td>0 to 3 baskets in 10 shots</td></tr><tr><td>Average yes results</td><td>E(X) = np</td><td>Expected heads in 5 flips</td></tr><tr><td>Turn a value into z</td><td>z = (x − μ) / σ</td><td>Score 75 with mean 70</td></tr><tr><td>At most a value (normal)</td><td>Look up Φ(z)</td><td>Height at most 170 cm</td></tr></table></div></div>
 </section>
+<section id="tips" class="panel" role="tabpanel" aria-labelledby="tab-tips"><div class="eyebrow">Keep these nearby</div><h1>Tips to avoid mistakes</h1><div class="grid"><div class="card"><h2>Five common mistakes</h2><ol><li><b>Using variance instead of SD:</b> for z, divide by σ, not σ². If σ² = 25, then σ = 5.</li><li><b>Mixing up “exactly” and “at most”:</b> P(X ≤ 3) adds the chances for 0, 1, 2 and 3.</li><li><b>Reading the wrong side:</b> Φ(z) is the area on the <i>left</i>. For the right side, use 1 − Φ(z).</li><li><b>Mixing up success and failure:</b> use p for yes and 1 − p for no.</li><li><b>Forgetting independence:</b> picking with replacement keeps tries independent, so binomial works.</li></ol></div><div class="card"><h2>Practice questions</h2><p>Try each one, then open the answer.</p><details><summary>1. 4 coin flips, p = 0.5. Is this binomial?</summary><p>Yes. Fixed tries, two outcomes, same p, independent flips.</p></details><details><summary>2. Heights of students. Binomial or normal?</summary><p>Normal, because height is a measurement.</p></details><details><summary>3. Number of faulty bulbs in a box of 20. Binomial or normal?</summary><p>Binomial, because we count faulty bulbs.</p></details><details><summary>4. A value x = 38 with μ = 30 and σ = 5. What is z?</summary><p>z = (38 − 30) / 5 = 1.6. Then Φ(1.6) = 0.9452.</p></details><details><summary>5. 2 flips, p = 0.5. What is P(X ≤ 1)?</summary><p>P(0) = 1/4 and P(1) = 2/4. Add them: 3/4.</p></details></div></div></section>
+<section id="summary" class="panel" role="tabpanel" aria-labelledby="tab-summary"><div class="eyebrow">Summary · Your revision sheet</div><h1>Probability Lab summary</h1><p>Read the steps in order. Each formula is shown with a simple example.</p><div class="grid"><div class="card"><h2>Binomial: count yes results</h2><div class="step"><strong>Use when:</strong> a fixed number n of tries, two outcomes, the same chance p, and independent tries.</div><div class="formula">P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div><div class="formula">E(X) = np &nbsp; &nbsp; Var(X) = np(1 − p)</div><p>E(X) is the average count. Var(X) shows how spread out the counts are.</p></div><div class="card"><h2>Normal: measure values</h2><div class="step"><strong>Use when:</strong> a measurement is roughly symmetric and bell-shaped.</div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; P(X ≤ x) = Φ(z)</div><div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div><p>Change each end to z first, then use the table.</p></div><div class="card"><h2>Three binomial examples</h2><ul><li><b>Basketball:</b> 10 shots, 70% each. The average is 7 makes, but any number from 0 to 10 can happen.</li><li><b>Bulbs:</b> 20 bulbs, 5% faulty each. P(exactly 1 faulty) ≈ 0.3774.</li><li><b>Coins:</b> 5 flips, exactly 3 heads. P = 10 × 0.5⁵ = 0.3125.</li></ul></div><div class="card"><h2>Three normal examples</h2><p>If the measurement is normal:</p><ul><li><b>Test scores:</b> mean 70, SD 10. Scores 60 to 80 are within 1 SD: about 68%.</li><li><b>Delivery:</b> mean 30 minutes, SD 5. Within 35 minutes is z = 1: about 84%.</li><li><b>Height:</b> mean 165 cm, SD 8 cm. Taller than 173 cm is z = 1: about 16%.</li></ul></div></div></section>
+
 <footer class="foot">Probability Level Up · Count or measure, then choose the correct model.</footer>
 </main>
 <script src="./lab-tabs.js"></script>
@@ -362,7 +338,7 @@ function mountDiagrams(){
   function svgElement(tag,attributes,text){const el=document.createElementNS(ns,tag);Object.entries(attributes).forEach(([key,value])=>el.setAttribute(key,value));if(text!==undefined)el.textContent=text;return el;}
   const xx=z=>80+z*18,yy=z=>175-100*Math.exp(-z*z/2);
   function densityPath(a,b){let path=`M${xx(a)} ${yy(a)}`;const steps=120;for(let i=1;i<=steps;i++){let z=a+(b-a)*i/steps;path+=`L${xx(z)} ${yy(z)}`;}return path;}
-  document.querySelectorAll('#diagrams [data-region]').forEach(group=>{
+  document.querySelectorAll('[data-region]').forEach(group=>{
     const region=group.dataset.region,a=region==='left'?-4:region==='right'?1:-1,b=region==='right'?4:1;
     group.append(svgElement('path',{d:`M${xx(a)} 175L${xx(a)} ${yy(a)}${densityPath(a,b).replace(/^M[^L]+/,'')}L${xx(b)} 175Z`,fill:region==='right'?'#fca5a5':'#60a5fa'}));
     group.append(svgElement('path',{d:densityPath(-4,4),fill:'none',stroke:'#2a5cc5','stroke-width':2}));
@@ -373,13 +349,6 @@ function mountDiagrams(){
     });
     const labels={left:['Left: Φ(1)','≈ 0.8413'],right:['Right: 1−Φ(1)','≈ 0.1587'],between:['Between: Φ(1)−Φ(−1)','≈ 0.6827']};
     labels[region].forEach((label,i)=>group.append(svgElement('text',{x:80,y:222+i*22,'text-anchor':'middle',fill:'#172033','font-family':'Arial','font-size':13},label)));
-  });
-  // Reference cards are the single source; clones contain no element IDs.
-  const cards=new Map([...document.querySelectorAll('#diagrams [data-diagram]')].map(card=>[card.dataset.diagram,card]));
-  document.querySelectorAll('[data-diagram-slot]').forEach(slot=>{
-    const clone=cards.get(slot.dataset.diagramSlot).cloneNode(true);
-    clone.removeAttribute('id');clone.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
-    slot.replaceChildren(clone);
   });
 }
 function choose(n,k){if(k<0||k>n)return 0;k=Math.min(k,n-k);let v=1;for(let i=1;i<=k;i++)v=v*(n-k+i)/i;return v;}
