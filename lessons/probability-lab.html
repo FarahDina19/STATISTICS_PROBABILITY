@@ -353,8 +353,18 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     <details><summary>Practice 3: which result is better?</summary><p>Compare each score with its own mean using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></details>
   </div>
 </section>
-<section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced"><div class="eyebrow">Advanced · Ranges of values</div><h1>Beyond “exactly one value”</h1>
-  <div class="grid"><div class="card"><h3>Step by step: exactly, at most, at least</h3><div class="step"><strong>Exactly k:</strong> find P(X = a) with the formula.</div><div class="step"><strong>At most a:</strong> add P(X = 0) up to P(X = a).</div><div class="step"><strong>At least a:</strong> add P(X = a) up to P(X = n). Or use 1 − P(X ≤ a − 1).</div><div class="step"><strong>Between a and b:</strong> add P(X = a) up to P(X = b).</div><div class="controls"><label>n (tries)<input id="an" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="ap" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>Lower bound a<input id="aa" type="number" min="0" max="60" step="1" value="2"></label><label>Upper bound b<input id="ab" type="number" min="0" max="60" step="1" value="3"></label></div><div id="aBin" class="result" aria-live="polite"></div></div><div data-diagram-slot="binomial-selections"><article class="diagram-card" data-diagram="binomial-selections">
+<section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced">
+  <div class="eyebrow">Advanced · Ranges of values</div>
+  <h1>Beyond “exactly one value”</h1>
+  <div class="card"><h2>The question</h2><p>We flip a fair coin <b>3 times</b> (n = 3, p = 0.5). X = number of heads.</p><p>Each step asks a different kind of question. Follow them in order.</p></div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 1: Exactly k</strong><p>“Exactly 2 heads” means only the bar at k = 2.</p></div>
+      <div class="formula">P(X = 2) = 3/8 = 0.375</div>
+      <p>This is one bar from the chart.</p>
+    </div>
+    <div data-diagram-slot="binomial-selections"><article class="diagram-card" data-diagram="binomial-selections">
       <div class="diagram-header"><span class="diagram-badge">1</span><h3>Binomial bars: exactly, at most, at least</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 290" xmlns="http://www.w3.org/2000/svg" aria-label="Three separate binomial charts on the same axes: exactly 2, at most 2, and at least 2 heads">
@@ -390,10 +400,35 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> If X is the number of heads in 3 flips, what is P(X≤2)?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: for at most 2, add the bars for 0, 1 and 2: 1/8 + 3/8 + 3/8 = 7/8. Step 2: for at least 2, add the bars for 2 and 3: 3/8 + 1/8 = 1/2.</div>
-    </article></div></div>
-  <div class="grid"><div class="card"><h3>Step by step: a range of normal values</h3><p>To find P(a ≤ X ≤ b), convert both ends to z first.</p><div class="step"><strong>Step 1:</strong> z₁ = (a − μ) / σ and z₂ = (b − μ) / σ.</div><div class="step"><strong>Step 2:</strong> Look up Φ(z₁) and Φ(z₂).</div><div class="step"><strong>Step 3:</strong> Subtract: Φ(z₂) − Φ(z₁).</div><div class="controls"><label>Mean μ<input id="am" type="number" value="30"></label><label>SD σ<input id="as" type="number" step="0.01" value="5"></label><label>Lower x<input id="al" type="number" value="25"></label><label>Upper x<input id="au" type="number" value="35"></label></div><div id="aNormal" class="result" aria-live="polite"></div></div></div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/cumulative-vs-individual.png" alt="Bar charts comparing exactly two heads with at most two heads for n = 5 and p = 0.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Exactly 2 = one bar. At most 2 = add the bars for 0, 1 and 2.</figcaption></figure></div>
-  <div class="grid"><div class="card"><h3>Which formula do I use?</h3><table><tr><th>Question</th><th>What to do</th><th>Example</th></tr><tr><td>Exactly k yes</td><td>Use the binomial formula once</td><td>3 heads in 5 flips</td></tr><tr><td>At most k yes</td><td>Add the bars from 0 up to k</td><td>0 to 3 baskets in 10 shots</td></tr><tr><td>Average yes results</td><td>E(X) = np</td><td>Expected heads in 5 flips</td></tr><tr><td>Turn a value into z</td><td>z = (x − μ) / σ</td><td>Score 75 with mean 70</td></tr><tr><td>At most a value (normal)</td><td>Look up Φ(z)</td><td>Height at most 170 cm</td></tr></table></div></div>
+    </article></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 2: At most k (add from the left)</strong><p>“At most 2 heads” means 0, 1 or 2 heads. Add those bars.</p></div>
+      <div class="formula">P(X ≤ 2) = P(0) + P(1) + P(2) = 1/8 + 3/8 + 3/8 = 7/8</div>
+      <div class="step"><strong>Step 3: At least k (add from the right)</strong><p>“At least 2 heads” means 2 or 3 heads.</p></div>
+      <div class="formula">P(X ≥ 2) = P(2) + P(3) = 3/8 + 1/8 = 1/2</div>
+      <div class="step"><strong>Step 4: Between a and b</strong><p>“Between 1 and 2 heads” means add the bars for 1 and 2.</p></div>
+      <div class="formula">P(1 ≤ X ≤ 2) = 3/8 + 3/8 = 3/4</div>
+      <p><b>Try it:</b> change n, p and the bounds a and b. The results update.</p>
+      <div class="controls"><label>n (tries)<input id="an" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="ap" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>Lower bound a<input id="aa" type="number" min="0" max="60" step="1" value="2"></label><label>Upper bound b<input id="ab" type="number" min="0" max="60" step="1" value="3"></label></div>
+      <div id="aBin" class="result" aria-live="polite"></div>
+    </div>
+    <div class="card"><h3>Read the picture</h3><p>Exactly 2 is one bar. At most 2 adds the bars for 0, 1 and 2. At least 2 adds the bars for 2 and 3.</p><figure class="lab-figure"><img src="./probability-images/cumulative-vs-individual.png" alt="Bar charts comparing exactly two heads with at most two heads for n = 5 and p = 0.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Exactly 2 = one bar. At most 2 = add the bars for 0, 1 and 2.</figcaption></figure></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 5: A range of normal values</strong><p>Change both ends to z first, then subtract the two areas.</p></div>
+      <div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div>
+      <p>Example: mean 30, SD 5. For 25 to 35: z = −1 and z = 1, so Φ(1) − Φ(−1) = 0.8413 − 0.1587 = 0.6827.</p>
+      <p><b>Try it:</b> change μ, σ and the ends of the range.</p>
+      <div class="controls"><label>Mean μ<input id="am" type="number" value="30"></label><label>SD σ<input id="as" type="number" step="0.01" value="5"></label><label>Lower x<input id="al" type="number" value="25"></label><label>Upper x<input id="au" type="number" value="35"></label></div>
+      <div id="aNormal" class="result" aria-live="polite"></div>
+    </div>
+    <div class="card"><h3>Which formula do I use?</h3><table><tr><th>Question</th><th>What to do</th></tr><tr><td>Exactly k yes</td><td>One bar: use the binomial formula once</td></tr><tr><td>At most k yes</td><td>Add the bars from 0 up to k</td></tr><tr><td>At least k yes</td><td>Add the bars from k up to n</td></tr><tr><td>Between a and b</td><td>Add the bars from a up to b</td></tr><tr><td>Normal range</td><td>Turn both ends into z, then subtract the areas</td></tr></table></div>
+  </div>
 </section>
 <section id="tips" class="panel" role="tabpanel" aria-labelledby="tab-tips"><div class="eyebrow">Keep these nearby</div><h1>Tips to avoid mistakes</h1><div class="grid"><div class="card"><h2>Five common mistakes</h2><ol><li><b>Using variance instead of SD:</b> for z, divide by σ, not σ². If σ² = 25, then σ = 5.</li><li><b>Mixing up “exactly” and “at most”:</b> P(X ≤ 3) adds the chances for 0, 1, 2 and 3.</li><li><b>Reading the wrong side:</b> Φ(z) is the area on the <i>left</i>. For the right side, use 1 − Φ(z).</li><li><b>Mixing up success and failure:</b> use p for yes and 1 − p for no.</li><li><b>Forgetting independence:</b> picking with replacement keeps tries independent, so binomial works.</li></ol></div><div class="card"><h2>Practice questions</h2><p>Try each one, then open the answer.</p><details><summary>1. 4 coin flips, p = 0.5. Is this binomial?</summary><p>Yes. Fixed tries, two outcomes, same p, independent flips.</p></details><details><summary>2. Heights of students. Binomial or normal?</summary><p>Normal, because height is a measurement.</p></details><details><summary>3. Number of faulty bulbs in a box of 20. Binomial or normal?</summary><p>Binomial, because we count faulty bulbs.</p></details><details><summary>4. A value x = 38 with μ = 30 and σ = 5. What is z?</summary><p>z = (38 − 30) / 5 = 1.6. Then Φ(1.6) = 0.9452.</p></details><details><summary>5. 2 flips, p = 0.5. What is P(X ≤ 1)?</summary><p>P(0) = 1/4 and P(1) = 2/4. Add them: 3/4.</p></details></div></div></section>
 <section id="summary" class="panel" role="tabpanel" aria-labelledby="tab-summary"><div class="eyebrow">Summary · Your revision sheet</div><h1>Probability Lab summary</h1><p>Read the steps in order. Each formula is shown with a simple example.</p><div class="grid"><div class="card"><h2>Binomial: count yes results</h2><div class="step"><strong>Use when:</strong> a fixed number n of tries, two outcomes, the same chance p, and independent tries.</div><div class="formula">P(X = k) = ⁿCₖ × p<sup>k</sup> × (1 − p)<sup>n − k</sup></div><div class="formula">E(X) = np &nbsp; &nbsp; Var(X) = np(1 − p)</div><p>E(X) is the average count. Var(X) shows how spread out the counts are.</p></div><div class="card"><h2>Normal: measure values</h2><div class="step"><strong>Use when:</strong> a measurement is roughly symmetric and bell-shaped.</div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; P(X ≤ x) = Φ(z)</div><div class="formula">P(a ≤ X ≤ b) = Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>)</div><p>Change each end to z first, then use the table.</p></div><div class="card"><h2>Three binomial examples</h2><ul><li><b>Basketball:</b> 10 shots, 70% each. The average is 7 makes, but any number from 0 to 10 can happen.</li><li><b>Bulbs:</b> 20 bulbs, 5% faulty each. P(exactly 1 faulty) ≈ 0.3774.</li><li><b>Coins:</b> 5 flips, exactly 3 heads. P = 10 × 0.5⁵ = 0.3125.</li></ul></div><div class="card"><h2>Three normal examples</h2><p>If the measurement is normal:</p><ul><li><b>Test scores:</b> mean 70, SD 10. Scores 60 to 80 are within 1 SD: about 68%.</li><li><b>Delivery:</b> mean 30 minutes, SD 5. Within 35 minutes is z = 1: about 84%.</li><li><b>Height:</b> mean 165 cm, SD 8 cm. Taller than 173 cm is z = 1: about 16%.</li></ul></div></div></section>
