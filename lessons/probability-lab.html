@@ -218,8 +218,16 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
   </div>
 </section>
 <section id="normal" class="panel" role="tabpanel" aria-labelledby="tab-normal">
-  <div class="eyebrow">4.4.3–4.4.5 · Measurements</div><h1>4.4.3 Normal: measuring values</h1><p>A normal curve is a bell shape. The middle is the mean μ. The width is set by the SD σ. We write X ∼ N(μ, σ²).</p>
-  <div class="grid"><div class="card"><h3>Step 1: Know the mean and SD</h3><p>Most values sit near the mean. For a normal curve:</p><ul><li>About <b>68%</b> lie within 1 SD of the mean.</li><li>About <b>95%</b> lie within 2 SDs.</li><li>About <b>99.7%</b> lie within 3 SDs.</li></ul><p>Example: test marks with μ = 70 and σ = 10. About 68% of marks are between 60 and 80.</p></div><div data-diagram-slot="empirical-rule"><article class="diagram-card" data-diagram="empirical-rule">
+  <div class="eyebrow">4.4.3–4.4.5 · Measurements</div>
+  <h1>4.4.3 Normal: measuring values</h1>
+  <div class="card"><h2>The question</h2><p>A delivery takes on average <b>30 minutes</b>, with a spread (SD) of <b>5 minutes</b>. A delivery takes <b>35 minutes</b>. How far is that from the average, and how often is a delivery this fast or faster?</p><p>Follow the four steps. You can change the numbers in each step.</p></div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 1: Know the mean (μ) and SD (σ)</strong><p>The <b>mean</b> is the centre of the bell. The <b>SD</b> is how wide the bell is.</p><p>For the delivery example: μ = 30 and σ = 5.</p></div>
+      <div class="step"><strong>Rule of thumb</strong><p>About <b>68%</b> of values are within 1 SD of the mean, <b>95%</b> within 2 SDs, and <b>99.7%</b> within 3 SDs.</p></div>
+    </div>
+    <div data-diagram-slot="empirical-rule"><article class="diagram-card" data-diagram="empirical-rule">
       <div class="diagram-header"><span class="diagram-badge">1</span><h3>Normal curve: mean, SD bands, empirical rule</h3></div>
       <div class="diagram-figure">
         <img src="./probability-images/normal-bell-curve.svg" alt="Accurate normal density with SD bands: 68.27%, 95.45%, and 99.73% within one, two, and three SDs; rounded empirical rule 68%, 95%, 99.7%." width="960" height="720" loading="lazy">
@@ -229,8 +237,90 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> What percentage of marks are between 60 and 80 if μ=70 and σ=10?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: 70 − 10 = 60 and 70 + 10 = 80. Step 2: the area between 60 and 80 is about 68%.</div>
-    </article></div></div>
-  <div class="grid"><div class="card"><h3>Step 2: Turn a value into a z-score</h3><p>A delivery takes <b>μ = 30 minutes</b> on average, with <b>σ = 5 minutes</b>. How far is 35 minutes from the mean?</p><div class="step"><strong>Subtract the mean:</strong> 35 − 30 = 5</div><div class="step"><strong>Divide by the SD:</strong> 5 ÷ 5 = 1</div><div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; z = 1</div><p>So 35 minutes is <b>1 SD above</b> the mean.</p><div class="controls"><label>Mean μ<input id="nm" type="number" value="30" min="-10000" max="10000"></label><label>SD σ<input id="ns" type="number" value="5" min="0.01" max="10000"></label><label>Value x<input id="nx" type="number" value="35" min="-10000" max="10000"></label></div><p id="nError" class="error" role="status"></p><div id="nFlow"></div><div id="nResult" class="result" aria-live="polite"></div></div><div><p><strong>Another example:</strong> test scores with μ = 70 and σ = 5 (see the picture below).</p><div data-diagram-slot="raw-z"><article class="diagram-card" data-diagram="raw-z">
+    </article></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 2: Turn the value into a z-score</strong><p>z tells you how many SDs a value is from the mean.</p></div>
+      <div class="step"><strong>2a: Subtract the mean</strong><p>35 − 30 = 5 minutes.</p></div>
+      <div class="step"><strong>2b: Divide by the SD</strong><p>5 ÷ 5 = 1.</p></div>
+      <div class="formula">z = (x − μ) / σ &nbsp; → &nbsp; z = (35 − 30) / 5 = 1</div>
+      <p>So 35 minutes is <b>1 SD above</b> the mean.</p>
+      <p><b>Try it:</b> change μ, σ or x.</p>
+      <div class="controls"><label>Mean μ<input id="nm" type="number" value="30" min="-10000" max="10000"></label><label>SD σ<input id="ns" type="number" value="5" min="0.01" max="10000"></label><label>Value x<input id="nx" type="number" value="35" min="-10000" max="10000"></label></div>
+      <p id="nError" class="error" role="status"></p>
+      <div id="nFlow"></div>
+      <div id="nResult" class="result" aria-live="polite"></div>
+    </div>
+    <div class="card"><h3>What the z-score means</h3><p>z = 0 is the mean. z = 1 is one SD above it. z = −1 is one SD below it.</p><p>Once you have z, the table gives the chance of a value that is that small or smaller.</p></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 3: Read the table</strong><p>The table gives <b>Φ(z)</b>: the chance of a value <b>at or below</b> z. Look at z = 1.00 for the delivery example:</p></div>
+      <ol><li><b>Row:</b> find 1.0 down the side.</li><li><b>Column:</b> find .00 across the top.</li><li><b>Read:</b> the value is <b>0.8413</b>.</li></ol>
+      <div class="formula">P(X ≤ 35) = Φ(1) = 0.8413</div>
+      <p>So about <b>84%</b> of deliveries take 35 minutes or less.</p>
+      <div class="controls"><label>Look up z (−3.49 to 3.49)<input id="tableZ" type="number" min="-3.49" max="3.49" step="0.01" value="1.23"></label></div>
+      <p id="tableResult" aria-live="polite"></p>
+    </div>
+    <div data-diagram-slot="table-lookup"><article class="diagram-card" data-diagram="table-lookup">
+      <div class="diagram-header"><span class="diagram-badge">3</span><h3>Normal table lookup: how to read the table</h3></div>
+      <div class="diagram-figure">
+        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Standard normal table lookup matching the lesson convention">
+          <rect width="520" height="260" fill="#f7faff"/>
+          <g font-family="Arial" font-size="14" fill="#172033">
+            <rect x="60" y="40" width="390" height="170" fill="#ffffff" stroke="#b9c9dd"/>
+            <text x="255" y="58" text-anchor="middle" font-size="17" font-weight="700">Standard normal table: Φ(z)=P(Z≤z)</text>
+            <text x="85" y="88">z</text><text x="148" y="88">.00</text><text x="210" y="88">.01</text><text x="272" y="88">.02</text><text x="334" y="88">.03</text>
+            <rect x="331" y="100" width="62" height="24" fill="#dbeafe"/>
+            <text x="85" y="118">1.2</text><text x="148" y="118">0.8849</text><text x="210" y="118">0.8869</text><text x="272" y="118">0.8888</text><text x="334" y="118">0.8907</text>
+            <text x="85" y="146">1.3</text><text x="148" y="146">0.9032</text><text x="210" y="146">0.9049</text><text x="272" y="146">0.9066</text><text x="334" y="146">0.9082</text>
+            <text x="255" y="182" text-anchor="middle" font-size="15" fill="#1d2d4d">For z = 1.23, choose row 1.2 and column .03.</text>
+            <text x="255" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#1d2d4d">Φ(1.23)=0.8907</text>
+          </g>
+        </svg>
+      </div>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Step 1: find the row 1.2.</li><li>Step 2: find the column .03.</li><li>Step 3: read 0.8907 where they meet.</li><li>Some tables show the right side instead. Check the heading first.</li></ul>
+      </div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is Φ(1.23) from this table?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> Φ(1.23) = 0.8907. This means about 89% of the area lies to the left of z = 1.23.</div>
+    </article></div>
+  </div>
+
+  <div class="card"><details><summary>Show the full standard normal table</summary><p>Find the row (z to one decimal), then the column (the second decimal).</p><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></details></div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="step"><strong>Step 4: Shade the area</strong><p>The shaded area is the chance. It is the area to the <b>left</b> of your value.</p></div>
+      <div class="formula">Left area = Φ(z) &nbsp; &nbsp; Right area = 1 − Φ(z)</div>
+      <canvas id="normalChart" role="img" aria-label="Normal density curve with cumulative probability shaded"></canvas>
+      <p id="nSummary"></p>
+      <small>For a measurement, one exact value has chance 0, so “less than” and “at most” give the same answer.</small>
+    </div>
+    <div data-diagram-slot="normal-regions"><article class="diagram-card" data-diagram="normal-regions">
+      <div class="diagram-header"><span class="diagram-badge">4</span><h3>Left, right and between areas on the normal curve</h3></div>
+      <div class="diagram-figure">
+        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Separate normal density charts shading left of z=1, right of z=1, and between z=-1 and z=1">
+          <rect width="520" height="260" fill="#f7faff"/>
+          <text x="260" y="26" text-anchor="middle" font-family="Arial" font-size="16" fill="#172033">Delivery times: μ=30, σ=5 · x=25,35 → z=−1,1</text>
+          <g data-region="left" transform="translate(10 0)"></g>
+          <g data-region="right" transform="translate(180 0)"></g>
+          <g data-region="between" transform="translate(350 0)"></g>
+        </svg>
+      </div>
+      <div class="diagram-rule"><strong>What to notice</strong>
+        <ul class="diagram-list"><li>Left area = P(X≤x).</li><li>Right area = P(X≥x)=1−Φ(z).</li><li>Between area = P(a≤X≤b)=Φ(z_b)−Φ(z_a).</li></ul>
+      </div>
+      <div class="diagram-prompt"><strong>Quick question:</strong> What is the difference between P(X≤35) and P(25≤X≤35)?</div>
+      <div class="diagram-feedback"><strong>Feedback:</strong> P(X≤35) is the whole area left of 35; P(25≤X≤35) is only the area between 25 and 35. Do not mix up the areas under the curve.</div>
+    </article></div>
+  </div>
+
+  <div class="card"><h2>More practice (open when ready)</h2>
+    <details><summary>Practice 1: test scores (mean 70, SD 5)</summary><p>Find z for a score of 75: z = (75 − 70) / 5 = 1. So 75 is one SD above the mean.</p><div data-diagram-slot="raw-z"><article class="diagram-card" data-diagram="raw-z">
       <div class="diagram-header"><span class="diagram-badge">2</span><h3>Raw values and z-scores</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Raw value and z-score axes showing standardization">
@@ -258,51 +348,10 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       </div>
       <div class="diagram-prompt"><strong>Quick question:</strong> What is z for x=75 if μ=70 and σ=5?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: 75 − 70 = 5. Step 2: 5 ÷ 5 = 1. So 75 is 1 SD above the mean.</div>
-    </article></div></div></div>
-  <div class="grid"><div class="card"><h3>Step 3: Read the table</h3><p>The table gives <b>Φ(z)</b>: the area to the <b>left</b> of z. To find Φ(1.23):</p><ol><li><b>Row:</b> find 1.2 (down the side).</li><li><b>Column:</b> find .03 (across the top).</li><li><b>Read:</b> where they meet is 0.8907.</li></ol><div class="formula">Φ(1.23) = 0.8907</div><p>Other answers from the same entry:</p><div class="formula">P(Z &gt; 1.23) = 1 − 0.8907 = 0.1093</div><details><summary>Practice: find Φ(0.47)</summary><p>Row 0.4, column .07: Φ(0.47) = 0.6808.</p></details></div><div data-diagram-slot="table-lookup"><article class="diagram-card" data-diagram="table-lookup">
-      <div class="diagram-header"><span class="diagram-badge">3</span><h3>Normal table lookup: how to read the table</h3></div>
-      <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Standard normal table lookup matching the lesson convention">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <g font-family="Arial" font-size="14" fill="#172033">
-            <rect x="60" y="40" width="390" height="170" fill="#ffffff" stroke="#b9c9dd"/>
-            <text x="255" y="58" text-anchor="middle" font-size="17" font-weight="700">Standard normal table: Φ(z)=P(Z≤z)</text>
-            <text x="85" y="88">z</text><text x="148" y="88">.00</text><text x="210" y="88">.01</text><text x="272" y="88">.02</text><text x="334" y="88">.03</text>
-            <rect x="331" y="100" width="62" height="24" fill="#dbeafe"/>
-            <text x="85" y="118">1.2</text><text x="148" y="118">0.8849</text><text x="210" y="118">0.8869</text><text x="272" y="118">0.8888</text><text x="334" y="118">0.8907</text>
-            <text x="85" y="146">1.3</text><text x="148" y="146">0.9032</text><text x="210" y="146">0.9049</text><text x="272" y="146">0.9066</text><text x="334" y="146">0.9082</text>
-            <text x="255" y="182" text-anchor="middle" font-size="15" fill="#1d2d4d">For z = 1.23, choose row 1.2 and column .03.</text>
-            <text x="255" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#1d2d4d">Φ(1.23)=0.8907</text>
-          </g>
-        </svg>
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>Step 1: find the row 1.2.</li><li>Step 2: find the column .03.</li><li>Step 3: read 0.8907 where they meet.</li><li>Some tables show the right side instead. Check the heading first.</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> What is Φ(1.23) from this table?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> Φ(1.23) = 0.8907. This means about 89% of the area lies to the left of z = 1.23.</div>
-    </article></div></div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/normal-table-lookup.png" alt="Looking up z = 1.23 in the standard normal table: row 1.2, column .03." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Row 1.2 + column .03 = 0.8907.</figcaption></figure></div>
-  <div class="card"><h3>Your standard normal table</h3><div class="controls"><label>Look up z (−3.49 to 3.49)<input id="tableZ" type="number" min="-3.49" max="3.49" step="0.01" value="1.23"></label><p id="tableResult" aria-live="polite"></p></div><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></div>
-  <div class="grid"><div class="card"><h3>Step 4: Shade the area</h3><p>The chart shades the area to the left of your cutoff. This area is the probability. A right tail is 1 − Φ(z). A between area is Φ(z<sub>b</sub>) − Φ(z<sub>a</sub>).</p><canvas id="normalChart" role="img" aria-label="Normal density curve with cumulative probability shaded"></canvas><p id="nSummary"></p><small>For a continuous measurement, one exact value has probability 0. So “less than” and “at most” give the same answer.</small></div><div data-diagram-slot="normal-regions"><article class="diagram-card" data-diagram="normal-regions">
-      <div class="diagram-header"><span class="diagram-badge">4</span><h3>Left, right and between areas on the normal curve</h3></div>
-      <div class="diagram-figure">
-        <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Separate normal density charts shading left of z=1, right of z=1, and between z=-1 and z=1">
-          <rect width="520" height="260" fill="#f7faff"/>
-          <text x="260" y="26" text-anchor="middle" font-family="Arial" font-size="16" fill="#172033">Delivery times: μ=30, σ=5 · x=25,35 → z=−1,1</text>
-          <g data-region="left" transform="translate(10 0)"></g>
-          <g data-region="right" transform="translate(180 0)"></g>
-          <g data-region="between" transform="translate(350 0)"></g>
-        </svg>
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>Left area = P(X≤x).</li><li>Right area = P(X≥x)=1−Φ(z).</li><li>Between area = P(a≤X≤b)=Φ(z_b)−Φ(z_a).</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> What is the difference between P(X≤35) and P(25≤X≤35)?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> P(X≤35) is the whole area left of 35; P(25≤X≤35) is only the area between 25 and 35. Do not mix up the areas under the curve.</div>
-    </article></div></div>
-  <div class="grid"><figure class="card lab-figure"><img src="./probability-images/raw-score-to-z-score.png" alt="Converting a raw score to a z-score: a score of 85 with mean 70 and SD 10 gives z = 1.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Raw score to z-score: z = (85 − 70) / 10 = 1.5.</figcaption></figure><figure class="card lab-figure"><img src="./probability-images/area-under-normal-curve.png" alt="Shaded normal areas for below, above and between two cutoffs." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Left area: Φ(a). Right area: 1 − Φ(b). Between: Φ(b) − Φ(a).</figcaption></figure></div>
-  <div class="grid"><div class="card"><h3>Which result is better?</h3><p>Compare each score with its own mean, using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></div></div>
+    </article></div><figure class="lab-figure"><img src="./probability-images/raw-score-to-z-score.png" alt="Converting a raw score to a z-score: a score of 85 with mean 70 and SD 10 gives z = 1.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Another example: a score of 85 with mean 70 and SD 10 gives z = 1.5.</figcaption></figure></details>
+    <details><summary>Practice 2: delivery times, both sides</summary><p>Left area: P(X ≤ 35) = Φ(1) = 0.8413. Right area: P(X ≥ 35) = 1 − 0.8413 = 0.1587.</p><p>Between 25 and 35: z = −1 and z = 1, so Φ(1) − Φ(−1) = 0.8413 − 0.1587 = 0.6827.</p><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve-2.png" alt="Delivery time with mean 30 minutes and SD 5 minutes; the 35-minute cutoff gives z = 1." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>The 35-minute cutoff gives z = 1, so P(X ≤ 35) = Φ(1) ≈ 0.8413.</figcaption></figure><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve.png" alt="Shaded normal areas for below, above and between two cutoffs." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Left: Φ(a). Right: 1 − Φ(b). Between: Φ(b) − Φ(a).</figcaption></figure></details>
+    <details><summary>Practice 3: which result is better?</summary><p>Compare each score with its own mean using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></details>
+  </div>
 </section>
 <section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced"><div class="eyebrow">Advanced · Ranges of values</div><h1>Beyond “exactly one value”</h1>
   <div class="grid"><div class="card"><h3>Step by step: exactly, at most, at least</h3><div class="step"><strong>Exactly k:</strong> find P(X = a) with the formula.</div><div class="step"><strong>At most a:</strong> add P(X = 0) up to P(X = a).</div><div class="step"><strong>At least a:</strong> add P(X = a) up to P(X = n). Or use 1 − P(X ≤ a − 1).</div><div class="step"><strong>Between a and b:</strong> add P(X = a) up to P(X = b).</div><div class="controls"><label>n (tries)<input id="an" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="ap" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>Lower bound a<input id="aa" type="number" min="0" max="60" step="1" value="2"></label><label>Upper bound b<input id="ab" type="number" min="0" max="60" step="1" value="3"></label></div><div id="aBin" class="result" aria-live="polite"></div></div><div data-diagram-slot="binomial-selections"><article class="diagram-card" data-diagram="binomial-selections">
