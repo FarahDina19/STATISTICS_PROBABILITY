@@ -581,6 +581,21 @@ function exNormal(level){
     if(type==='le'){steps.push({title:'Find the probability',explain:'P(X ≤ x) = Φ(z). Look up Φ(z) in the table.',hint:tableHint,fields:[exF('P(X ≤ x)',phi(z),4,0.001)]});}
     else{steps.push({title:'Look up the area',explain:'Look up Φ(z) in the table.',hint:tableHint,fields:[exF('Φ(z)',phi(z),4,0.001)]});steps.push({title:'Find the right-hand area',explain:'P(X ≥ x) = 1 − Φ(z).',hint:'The whole area is 1. Take away the left area.',fields:[exF('P(X ≥ x)',1-phi(z),4,0.001)]});}
   }
+  const nv=(marks,shade,bands,caption)=>({type:'normal',mu,sigma,marks,shade,bands,caption});
+  steps[0].visual=nv([],null,true,'The bell is centred on the mean μ. Each dashed band is one SD (σ) from the mean.');
+  if(type==='between'){
+    const marks=[{v:a,label:'a = '+a},{v:b,label:'b = '+b}];
+    steps[1].visual=nv(marks,null,true,'Turn each end into a z-score. Negative z means below the mean.');
+    steps[2].visual=nv(marks,[a,b],false,'The table gives the left area up to each end. The orange part is between a and b.');
+    steps[3].visual=nv(marks,[a,b],false,'The orange area is the answer: the right end minus the left end.');
+  }else if(type==='le'){
+    steps[1].visual=nv([{v:x,label:'x = '+x}],null,true,'z tells how many SDs x is from the mean.');
+    steps[2].visual=nv([{v:x,label:'x = '+x}],[-Infinity,x],false,'P(X ≤ x) is the orange area to the left of x.');
+  }else{
+    steps[1].visual=nv([{v:x,label:'x = '+x}],null,true,'z tells how many SDs x is from the mean.');
+    steps[2].visual=nv([{v:x,label:'x = '+x}],[-Infinity,x],false,'Φ(z) is the left area. The table gives this area.');
+    steps[3].visual=nv([{v:x,label:'x = '+x}],[x,Infinity],false,'P(X ≥ x) is the orange right area: the whole area minus the left area.');
+  }
   return {text,steps};
 }
 function exSequences(n,k){const out=[];for(let m=0;m<(1<<n);m++){let s='',c=0;for(let i=n-1;i>=0;i--){const b=(m>>i)&1;s+=b?'S':'F';c+=b;}if(c===k)out.push(s);}return out;}
@@ -601,6 +616,33 @@ function exBarChart(canvas,n,p,lo,hi){
   });
   g.textAlign='left';g.fillText('Bars: number of successes k (orange = asked about)',pad.l,12);
 }
+function exNormalChart(canvas,v){
+  const w=canvas.clientWidth;if(!w)return;
+  const h=200,d=window.devicePixelRatio||1;
+  canvas.width=w*d;canvas.height=h*d;
+  const g=canvas.getContext('2d');g.setTransform(d,0,0,d,0,0);
+  const {mu,sigma}=v,pad={l:16,r:16,t:30,b:34},base=h-pad.b,top=pad.t+12;
+  const lo=mu-4*sigma,span=8*sigma;
+  const X=x=>pad.l+(x-lo)/span*(w-pad.l-pad.r);
+  const Y=x=>base-(base-top)*Math.exp(-Math.pow((x-mu)/sigma,2)/2);
+  g.fillStyle='#f8faff';g.fillRect(0,0,w,h);
+  if(v.shade){
+    const s0=Math.max(v.shade[0],lo),s1=Math.min(v.shade[1],lo+span);
+    g.beginPath();g.moveTo(X(s0),base);
+    for(let i=0;i<=80;i++){const x=s0+(s1-s0)*i/80;g.lineTo(X(x),Y(x));}
+    g.lineTo(X(s1),base);g.closePath();g.fillStyle='#f59e0b';g.fill();
+  }
+  g.beginPath();
+  for(let i=0;i<=160;i++){const x=lo+span*i/160;if(i)g.lineTo(X(x),Y(x));else g.moveTo(X(x),Y(x));}
+  g.strokeStyle='#172033';g.lineWidth=2;g.stroke();
+  g.beginPath();g.moveTo(pad.l,base);g.lineTo(w-pad.r,base);g.lineWidth=1;g.stroke();
+  g.font='12px sans-serif';g.textAlign='center';
+  if(v.bands){[-2,-1,1,2].forEach(k=>{const x=mu+k*sigma;g.beginPath();g.setLineDash([3,4]);g.strokeStyle='#94a3b8';g.moveTo(X(x),base);g.lineTo(X(x),Y(x));g.stroke();g.setLineDash([]);g.fillStyle='#172033';g.fillText((k>0?'+':'−')+Math.abs(k)+'σ',X(x),base-6);});}
+  g.beginPath();g.strokeStyle='#7c3aed';g.lineWidth=2;g.moveTo(X(mu),base);g.lineTo(X(mu),Y(mu));g.stroke();
+  g.fillStyle='#172033';g.fillText('μ',X(mu),top-8);
+  (v.marks||[]).forEach(m=>{g.beginPath();g.setLineDash([5,4]);g.strokeStyle='#b91c1c';g.moveTo(X(m.v),base);g.lineTo(X(m.v),Y(m.v));g.stroke();g.setLineDash([]);g.fillStyle='#b91c1c';g.fillText(m.label,X(m.v),base+16);});
+  g.fillStyle='#172033';g.textAlign='left';g.fillText('Bell curve: values of X, centre = mean μ',pad.l,14);
+}
 function exRedraw(){EX.steps.forEach(st=>{if(st.draw)st.draw();});}
 function exEl(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;}
 function exBuildStep(s,i){
@@ -618,6 +660,7 @@ function exBuildStep(s,i){
   const vis=[];
   if(s.visual){
     if(s.visual.type==='chart'){const c=exEl('canvas');c.setAttribute('role','img');c.setAttribute('aria-label',s.visual.caption);c.style.height='200px';vis.push(c);draw=()=>exBarChart(c,s.visual.n,s.visual.p,s.visual.lo,s.visual.hi);}
+    else if(s.visual.type==='normal'){const c=exEl('canvas');c.setAttribute('role','img');c.setAttribute('aria-label',s.visual.caption);c.style.height='200px';vis.push(c);draw=()=>exNormalChart(c,s.visual);}
     else if(s.visual.text){vis.push(exEl('p','exlist',s.visual.text));}
     vis.push(exEl('p','small',s.visual.caption));
   }
