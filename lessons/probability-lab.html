@@ -13,7 +13,7 @@ main{padding-bottom:120px}.hero{background:linear-gradient(125deg,#30204de8,#172
 canvas{height:250px}.diagram-card h3{color:#f8fafc}
 .diagram-figure img{width:100%;height:auto}.lab-figure{margin:18px 0}.lab-figure img{display:block;width:100%;height:auto;border-radius:10px;background:#fff}.lab-figure figcaption{padding-top:10px;font-size:15px;line-height:1.6}
 .result,.result p,.tablewrap td{color:#15412a}
-.choices button[aria-pressed=true]{background:#4b34a3;border-color:#d8c4ff;color:#fff}.exstep input:disabled{opacity:.5}
+.exlist{font:600 17px/1.5 system-ui,sans-serif;color:#f8fafc;word-break:break-word}.choices button[aria-pressed=true]{background:#4b34a3;border-color:#d8c4ff;color:#fff}.exstep input:disabled{opacity:.5}
 </style><link rel="stylesheet" href="./probability-diagrams.css?v=2"></head><body>
 <header><div class="wrap"><div class="top"><div class="brand">◈ Probability<span>Lab</span></div><span class="badge">4.4 · 4.4.1–4.4.5</span></div><nav role="tablist" aria-label="Learning sections">
 <button type="button" role="tab" aria-selected="true" data-tab="intro">Intro</button>
@@ -553,6 +553,11 @@ function exBinomial(level){
   if(type==='exact'){steps.push({title:'Count the ways (ⁿCₖ)',explain:`How many ways can ${a} ${a===1?'success':'successes'} fit into ${n} tries?`,hint:'ⁿCₖ = n! / (k! × (n − k)!). Example: 5C2 = 10.',fields:[exF('ways',choose(n,a),0,0)]});}
   const finalHint={exact:'Multiply the ways by p for each success and by (1 − p) for each failure.',atmost:`Add P(X = 0) up to P(X = ${a}).`,atleast:`Add P(X = ${a}) up to P(X = ${n}).`,between:`Add P(X = ${a}) up to P(X = ${b}).`}[type];
   steps.push({title:'Find the probability',explain:type==='exact'?'Ways × p^k × (1 − p)^(n − k)':'Add the probabilities for each value in the range.',hint:finalHint,fields:[exF(type==='exact'?'P(X = k)':'Probability',prob,4,0.001)]});
+  const [lo,hi]=type==='between'?[a,b]:type==='atmost'?[0,a]:type==='atleast'?[a,n]:[a,a];
+  steps[0].visual={type:'chart',n,p,lo,hi,caption:'Each bar is one possible count. The orange bars are the counts this question asks about.'};
+  const ways=steps.find(s=>s.title.startsWith('Count the ways'));
+  if(ways)ways.visual=n<=5?{type:'text',text:exSequences(n,a).join('   '),caption:'S = success, F = failure. Each sequence with exactly k successes is one way.'}:{type:'text',text:'',caption:'With many tries, listing every sequence takes too long. Use the formula to count the ways.'};
+  steps[steps.length-1].visual={type:'chart',n,p,lo,hi,caption:'The orange bars add up to the answer.'};
   return {text,steps};
 }
 function exNormal(level){
@@ -578,8 +583,28 @@ function exNormal(level){
   }
   return {text,steps};
 }
+function exSequences(n,k){const out=[];for(let m=0;m<(1<<n);m++){let s='',c=0;for(let i=n-1;i>=0;i--){const b=(m>>i)&1;s+=b?'S':'F';c+=b;}if(c===k)out.push(s);}return out;}
+function exBarChart(canvas,n,p,lo,hi){
+  const w=canvas.clientWidth;if(!w)return;
+  const h=200,d=window.devicePixelRatio||1;
+  canvas.width=w*d;canvas.height=h*d;
+  const g=canvas.getContext('2d');g.setTransform(d,0,0,d,0,0);
+  const pad={l:28,r:12,t:16,b:32},bw=(w-pad.l-pad.r)/(n+1);
+  const vals=Array.from({length:n+1},(_,k)=>pmf(n,p,k)),max=Math.max(...vals);
+  g.fillStyle='#f8faff';g.fillRect(0,0,w,h);
+  g.font='13px sans-serif';g.textAlign='center';
+  vals.forEach((v,k)=>{
+    const x=pad.l+k*bw,y=h-pad.b-(v/max)*(h-pad.t-pad.b);
+    g.fillStyle=k>=lo&&k<=hi?'#f59e0b':'#7c5cff';
+    g.fillRect(x+3,y,bw-6,h-pad.b-y);
+    g.fillStyle='#172033';g.fillText(String(k),x+bw/2,h-pad.b+16);
+  });
+  g.textAlign='left';g.fillText('Bars: number of successes k (orange = asked about)',pad.l,12);
+}
+function exRedraw(){EX.steps.forEach(st=>{if(st.draw)st.draw();});}
 function exEl(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;}
 function exBuildStep(s,i){
+  let draw=null;
   const card=exEl('div','step exstep');
   const grid=exEl('div','controls');
   const inputs=s.fields.map(f=>{const lab=exEl('label','exfield');lab.append(exEl('span',null,f.label));const input=exEl('input');input.type='number';input.step='any';input.inputMode='decimal';input.setAttribute('aria-label',f.label);lab.append(input);grid.append(lab);return {f,input};});
@@ -590,8 +615,14 @@ function exBuildStep(s,i){
   const answer=exEl('p','small','Answer: '+s.fields.map(f=>`${f.label}: ${f.value.toFixed(f.dp)}`).join(', '));answer.hidden=true;
   const msg=exEl('div','quizfeedback');msg.setAttribute('aria-live','polite');
   const bar=exEl('div','actions');bar.append(check,hintBtn);
-  card.append(exEl('strong',null,`Step ${i+1}: ${s.title}`),exEl('p',null,s.explain),grid,bar,hint,msg,answer);
-  return {card,inputs,check,msg,answer,index:i,s,done:false};
+  const vis=[];
+  if(s.visual){
+    if(s.visual.type==='chart'){const c=exEl('canvas');c.setAttribute('role','img');c.setAttribute('aria-label',s.visual.caption);c.style.height='200px';vis.push(c);draw=()=>exBarChart(c,s.visual.n,s.visual.p,s.visual.lo,s.visual.hi);}
+    else if(s.visual.text){vis.push(exEl('p','exlist',s.visual.text));}
+    vis.push(exEl('p','small',s.visual.caption));
+  }
+  card.append(exEl('strong',null,`Step ${i+1}: ${s.title}`),exEl('p',null,s.explain),...vis,grid,bar,hint,msg,answer);
+  return {card,inputs,check,msg,answer,index:i,s,done:false,draw};
 }
 function exSetOpen(st,open){
   st.inputs.forEach(({input})=>input.disabled=!open);
@@ -615,6 +646,7 @@ function exNewQuestion(){
   box.append(card);
   EX.steps=q.steps.map((s,i)=>exBuildStep(s,i));
   EX.steps.forEach((st,i)=>{st.check.onclick=()=>exCheck(st);if(i>0)exSetOpen(st,false);box.append(st.card);});
+  exRedraw();
 }
 function exSync(){
   document.querySelectorAll('[data-ex-family]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.exFamily===EX.family)));
@@ -624,11 +656,11 @@ document.querySelectorAll('[data-ex-family]').forEach(b=>b.addEventListener('cli
 document.querySelectorAll('[data-ex-level]').forEach(b=>b.addEventListener('click',()=>{EX.level=b.dataset.exLevel;exSync();exNewQuestion();}));
 $('exNew').onclick=exNewQuestion;
 $('exReveal').onclick=()=>EX.steps.forEach(st=>st.answer.hidden=false);
-const labTabs=LabTabs.init({onShow:id=>{if(id==='binomial')renderBin();if(id==='normal')renderNormal();}});
+const labTabs=LabTabs.init({onShow:id=>{if(id==='binomial')renderBin();if(id==='normal')renderNormal();if(id==='exercises')exRedraw();}});
 document.querySelectorAll('[data-easy-quiz]').forEach(btn=>btn.addEventListener('click',()=>easyCheckQ(btn.dataset.easyQuiz)));
 $('easyBinomialBtn').onclick=easyCalcBinomial;$('easyZBtn').onclick=easyCalcZ;['bn','bp','bk'].forEach(id=>$(id).addEventListener('input',renderBin));['nm','ns','nx'].forEach(id=>$(id).addEventListener('input',renderNormal));['tableZ'].forEach(id=>$(id).addEventListener('input',zTable));['an','ap','aa','ab'].forEach(id=>$(id).addEventListener('input',renderAdvanced));['am','as','al','au'].forEach(id=>$(id).addEventListener('input',renderAdvanced));
 document.querySelectorAll('[data-tab]').forEach(tab=>tab.id=`tab-${tab.dataset.tab}`);
-window.addEventListener('resize',()=>{if($('binomial').classList.contains('active'))renderBin();if($('normal').classList.contains('active'))renderNormal();});
+window.addEventListener('resize',()=>{if($('exercises').classList.contains('active'))exRedraw();if($('binomial').classList.contains('active'))renderBin();if($('normal').classList.contains('active'))renderNormal();});
 mountDiagrams();renderBin();renderNormal();zTable();renderAdvanced();
 labTabs.start();
 exNewQuestion();
