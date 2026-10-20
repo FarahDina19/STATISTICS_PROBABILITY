@@ -21,13 +21,13 @@ function choose(n, k) {
 }
 
 const shots = Array.from({ length: 10 }, (_, i) => i < 7 ? 'Made' : 'Missed');
-const probabilities = Array.from({ length: 11 }, (_, k) => choose(10, k) * 0.7 ** k * 0.3 ** (10 - k));
+const probabilities = Array.from({ length: 11 }, (_, k) => choose(10, k) * 0.6 ** k * 0.4 ** (10 - k));
 assert.equal(shots.filter(s => s === 'Made').length, 7);
 assert.equal(shots.filter(s => s === 'Missed').length, 3);
-assert.equal(probabilities[7].toFixed(4), '0.2668');
+assert.equal(probabilities[7].toFixed(4), '0.2150');
 assert.ok(Math.abs(probabilities.reduce((a, b) => a + b, 0) - 1) < 1e-12);
 let basketball = text(480, 48, 'Basketball: exactly 7 makes in 10 shots', 30, 'text-anchor="middle"')
-  + text(480, 85, '10 independent shots • probability of a make p = 0.7', 22, 'text-anchor="middle"');
+  + text(480, 85, '10 independent shots • probability of a make p = 0.6', 22, 'text-anchor="middle"');
 shots.forEach((result, i) => {
   const x = 75 + 90 * i;
   basketball += `<g data-shot="${i + 1}" data-result="${result}"><circle cx="${x}" cy="135" r="27" fill="${result === 'Made' ? '#166534' : '#b91c1c'}"/>`
@@ -35,7 +35,7 @@ shots.forEach((result, i) => {
     + text(x, 185, `${i + 1}: ${result}`, 16, 'text-anchor="middle"') + '</g>';
 });
 basketball += text(480, 222, 'One possible outcome: 7 made + 3 missed = 10 shots', 22, 'text-anchor="middle"')
-  + text(480, 262, 'X = number of makes; X ∼ Bin(10, 0.7)', 22, 'text-anchor="middle"');
+  + text(480, 262, 'X = number of makes; X ∼ Bin(10, 0.6); average = 10 × 0.6 = 6', 22, 'text-anchor="middle"');
 for (let tick = 0; tick <= 3; tick++) {
   const y = 590 - tick * 90;
   basketball += `<path d="M85 ${y}H920" stroke="#cbd5e1"/>` + text(72, y + 6, (tick / 10).toFixed(1), 16, 'text-anchor="end"');
@@ -48,9 +48,9 @@ probabilities.forEach((probability, k) => {
     + text(x + 24, 617, k, 18, 'text-anchor="middle"');
 });
 basketball += text(480, 650, 'k = number of makes', 18, 'text-anchor="middle"')
-  + text(480, 693, 'P(X = 7) = C(10, 7) × 0.7⁷ × 0.3³ ≈ 0.2668', 26, 'text-anchor="middle"');
+  + text(480, 693, 'P(X = 7) = C(10, 7) × 0.6⁷ × 0.4³ ≈ 0.2150', 26, 'text-anchor="middle"');
 save('basketball-shots-2', 'Ten basketball shots: seven made, three missed',
-  'Exactly ten numbered shots, seven made and three missed. Binomial bars for n = 10, p = 0.7; P(X = 7) is approximately 0.2668. This pictured outcome is not guaranteed.', basketball);
+  'Exactly ten numbered shots, seven made and three missed. Binomial bars for n = 10, p = 0.6; P(X = 7) is approximately 0.2150. This pictured outcome is not guaranteed.', basketball);
 
 const sequences = Array.from({ length: 32 }, (_, i) =>
   i.toString(2).padStart(5, '0').replaceAll('0', 'T').replaceAll('1', 'H'));
@@ -127,4 +127,4 @@ normal += `<g data-tail-percent="${tail}">`
   + text(480, 675, '0.15% is a rough rule-of-thumb value; the normal-model tail is ≈ 0.135%.', 21, 'text-anchor="middle"');
 save('normal-bell-curve', 'Normal model: approximately 0.135 percent in each tail beyond three sigma',
   'The standard normal density has about 68.27%, 95.45%, and 99.73% within one, two, and three standard deviations. Each tail beyond three sigma is approximately 0.135%. The rounded 68–95–99.7 empirical rule instead gives roughly 0.15% per tail.', normal);
-console.log('Verified: 10 shots (7 made, 3 missed), P(X=7) ≈ 0.2668; 32 unique coin sequences, 10 with 3 heads, P(X=3) = 0.3125; normal tails ≈ 0.135% each.');
+console.log('Verified: 10 shots (7 made, 3 missed), P(X=7) ≈ 0.2150 (p = 0.6); 32 unique coin sequences, 10 with 3 heads, P(X=3) = 0.3125; normal tails ≈ 0.135% each.');
