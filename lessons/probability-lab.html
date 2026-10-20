@@ -73,6 +73,41 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     </div>
     <p><b>Difference:</b> simple probability answers one question. A distribution shows the whole picture, so you can answer many questions from it. For example, P(at least one head) = P(1) + P(2) = 2/4 + 1/4 = 3/4.</p>
   </div>
+  <div class="grid"><article class="diagram-card" data-diagram="distribution">
+    <div class="diagram-header"><span class="diagram-badge">2</span><h3>Simple probability vs distribution</h3></div>
+    <div class="diagram-figure">
+      <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" aria-label="Simple probability gives one number. A distribution gives the chance of every result, shown as bars for 0, 1 and 2 heads.">
+        <rect width="520" height="300" fill="#f7faff"/>
+        <text x="260" y="28" text-anchor="middle" font-size="18" font-family="Arial" fill="#172033">Two coin flips: count the heads</text>
+        <rect x="20" y="50" width="220" height="200" rx="12" fill="#fff4e0" stroke="#e0a33b"/>
+        <text x="130" y="80" text-anchor="middle" font-size="16" font-family="Arial" fill="#5a3d07">Simple probability</text>
+        <text x="130" y="106" text-anchor="middle" font-size="13" font-family="Arial" fill="#5a3d07">One event → one number</text>
+        <text x="130" y="150" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">Question: at least</text>
+        <text x="130" y="170" text-anchor="middle" font-size="14" font-family="Arial" fill="#172033">one head?</text>
+        <text x="130" y="210" text-anchor="middle" font-size="28" font-family="Arial" font-weight="bold" fill="#5a3d07">3/4</text>
+        <text x="130" y="234" text-anchor="middle" font-size="12" font-family="Arial" fill="#5a3d07">only one answer</text>
+        <rect x="280" y="50" width="220" height="200" rx="12" fill="#e3edff" stroke="#5782d8"/>
+        <text x="390" y="80" text-anchor="middle" font-size="16" font-family="Arial" fill="#1d2d4d">Distribution</text>
+        <text x="390" y="106" text-anchor="middle" font-size="13" font-family="Arial" fill="#1d2d4d">Every result → its chance</text>
+        <line x1="310" y1="222" x2="480" y2="222" stroke="#7d8fa8" stroke-width="2"/>
+        <rect x="318" y="162" width="36" height="60" fill="#5782d8"/>
+        <rect x="362" y="122" width="36" height="100" fill="#5782d8"/>
+        <rect x="406" y="162" width="36" height="60" fill="#5782d8"/>
+        <text x="336" y="154" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">1/4</text>
+        <text x="380" y="114" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">2/4</text>
+        <text x="424" y="154" text-anchor="middle" font-size="12" font-family="Arial" fill="#1d2d4d">1/4</text>
+        <text x="336" y="240" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">0 heads</text>
+        <text x="380" y="240" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">1 head</text>
+        <text x="424" y="240" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">2 heads</text>
+        <text x="260" y="278" text-anchor="middle" font-size="13" font-family="Arial" fill="#172033">Total of all bars = 1. Answer many questions from one table.</text>
+      </svg>
+    </div>
+    <div class="diagram-rule"><strong>What to notice</strong>
+      <ul class="diagram-list"><li>Simple probability: one event, one number.</li><li>Distribution: every possible result, each with its chance, and the chances add up to 1.</li><li>From a distribution you can get simple probabilities: P(at least one head) = 1/4 + 2/4 = 3/4.</li></ul>
+    </div>
+    <div class="diagram-prompt"><strong>Quick question:</strong> Using the distribution, what is P(exactly 2 heads)?</div>
+    <div class="diagram-feedback"><strong>Feedback:</strong> 1/4. Read the right bar: 2 heads has chance 1/4.</div>
+  </article></div>
   <div class="card"><h2>Quick memory check</h2><div class="formula">Binomial: X ∼ B(n, p) &nbsp; &nbsp; Normal: X ∼ N(μ, σ²)</div><p>B means “bin” (count of yes results). N means “normal” (a bell-shaped measurement).</p><div class="actions"><button type="button" data-go="binomial" class="primary">Start with binomial →</button></div></div>
 </section>
 <section id="easy" class="panel" role="tabpanel" aria-labelledby="tab-easy"><div class="eyebrow">Quick guide · Easy steps</div><h1>Probability made easy 🌱</h1><div class="grid">
