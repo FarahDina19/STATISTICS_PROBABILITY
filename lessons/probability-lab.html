@@ -16,18 +16,18 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 .exlist{font:600 17px/1.5 system-ui,sans-serif;color:#f8fafc;word-break:break-word}.exfield{max-width:200px}.exfield input{width:100%}.choices button[aria-pressed=true]{background:#4b34a3;border-color:#d8c4ff;color:#fff}.exstep input:disabled{opacity:.5}
 </style><link rel="stylesheet" href="./probability-diagrams.css?v=2"></head><body>
 <header><div class="wrap"><div class="top"><div class="brand">◈ Probability<span>Lab</span></div><span class="badge">4.4 · 4.4.1–4.4.5</span></div><nav role="tablist" aria-label="Learning sections">
-<button type="button" role="tab" aria-selected="true" data-tab="intro">Intro</button>
-<button type="button" role="tab" aria-selected="false" data-tab="easy">Easy</button>
-<button type="button" role="tab" aria-selected="false" data-tab="binomial">Binomial</button>
-<button type="button" role="tab" aria-selected="false" data-tab="normal">Normal</button>
-<button type="button" role="tab" aria-selected="false" data-tab="advanced">Advanced</button>
-<button type="button" role="tab" aria-selected="false" data-tab="exercises">Exercises</button>
-<button type="button" role="tab" aria-selected="false" data-tab="tips">Tips</button>
-<button type="button" role="tab" aria-selected="false" data-tab="summary">Summary</button>
+<button type="button" role="tab" aria-selected="true" data-tab="intro">1 Start</button>
+<button type="button" role="tab" aria-selected="false" data-tab="easy">2 Quick guide</button>
+<button type="button" role="tab" aria-selected="false" data-tab="binomial">3 Binomial</button>
+<button type="button" role="tab" aria-selected="false" data-tab="normal">4 Normal</button>
+<button type="button" role="tab" aria-selected="false" data-tab="advanced">5 Ranges</button>
+<button type="button" role="tab" aria-selected="false" data-tab="exercises">6 Practice</button>
+<button type="button" role="tab" aria-selected="false" data-tab="tips">7 Mistakes</button>
+<button type="button" role="tab" aria-selected="false" data-tab="summary">8 Summary</button>
 </nav></div></header>
 <main class="wrap">
 <section id="intro" class="panel active" role="tabpanel" aria-labelledby="tab-intro">
-  <div class="hero"><div class="eyebrow">Topic 4.4 · Binomial + Normal</div><h1>PROBABILITY<br>LEVEL UP! 🎲</h1><p>Start here. Two steps tell you which model to use.</p></div>
+  <div class="hero"><div class="eyebrow">Topic 4.4 · Binomial + Normal</div><h1>PROBABILITY<br>LEVEL UP! 🎲</h1><p>Start here. Work through tabs 1 to 8 in order. Each tab ends with a Next button. Two steps tell you which model to use.</p></div>
   <div class="grid">
     <div class="card"><h2>Step by step: pick a model</h2><div class="summary-list">
       <div class="step"><strong>Step 1: Are you counting or measuring?</strong><p><b>Counting</b> means how many times something happens: heads, faulty bulbs, made shots. Use <b>binomial</b>.</p><p><b>Measuring</b> means a length, time, weight or test score. Use <b>normal</b>.</p></div>
@@ -745,6 +745,14 @@ document.querySelectorAll('[data-ex-family]').forEach(b=>b.addEventListener('cli
 document.querySelectorAll('[data-ex-level]').forEach(b=>b.addEventListener('click',()=>{EX.level=b.dataset.exLevel;exSync();exNewQuestion();}));
 $('exNew').onclick=exNewQuestion;
 $('exReveal').onclick=()=>EX.steps.forEach(st=>st.answer.hidden=false);
+// Each tab ends with Back / Next buttons so a student can work through the lab in order.
+document.querySelectorAll('[role=tab][data-tab]').forEach((tab,i,all)=>{
+  const nav=document.createElement('div');nav.className='actions lesson-nav';
+  const go=(t,label,cls)=>{const b=document.createElement('button');b.type='button';b.className=cls;b.dataset.go=t.dataset.tab;b.textContent=label;nav.append(b);};
+  if(i>0)go(all[i-1],'← '+all[i-1].textContent,'button');
+  if(i<all.length-1)go(all[i+1],all[i+1].textContent+' →','primary');
+  $(tab.dataset.tab).append(nav);
+});
 const labTabs=LabTabs.init({onShow:id=>{if(id==='binomial')renderBin();if(id==='normal')renderNormal();if(id==='exercises')exRedraw();}});
 document.querySelectorAll('[data-easy-quiz]').forEach(btn=>btn.addEventListener('click',()=>easyCheckQ(btn.dataset.easyQuiz)));
 $('easyBinomialBtn').onclick=easyCalcBinomial;$('easyZBtn').onclick=easyCalcZ;['bn','bp','bk'].forEach(id=>$(id).addEventListener('input',renderBin));['nm','ns','nx'].forEach(id=>$(id).addEventListener('input',renderNormal));['tableZ'].forEach(id=>$(id).addEventListener('input',zTable));['an','ap','aa','ab'].forEach(id=>$(id).addEventListener('input',renderAdvanced));['am','as','al','au'].forEach(id=>$(id).addEventListener('input',renderAdvanced));
