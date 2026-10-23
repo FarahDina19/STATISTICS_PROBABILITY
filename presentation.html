@@ -458,6 +458,57 @@ const slides = [
     tip: '💡 PRO TIP: Look for "AND" → multiply | Look for "OR" → add'
   },
   {
+    type: 'section',
+    part: 'PART 5',
+    title: 'RULES FOR EVENTS',
+    subtitle: 'Complement, overlap and random variables'
+  },
+  {
+    type: 'calculation',
+    title: 'COMPLEMENT RULE 🔄',
+    problem: 'P(A) = 0.3. What is P(A\'), the probability that A does NOT happen?',
+    steps: [
+      { label: 'STEP 1: The whole space', text: 'Together, A and A\' cover everything, so P(A) + P(A\') = 1' },
+      { label: 'STEP 2: Rearrange', text: 'P(A\') = 1 − P(A)' },
+      { label: 'STEP 3: Calculate!', formula: 'P(A\') = 1 − 0.3 = 0.7' }
+    ],
+    tip: '💡 Pro tip: "NOT" questions are often quicker with the complement.'
+  },
+  {
+    type: 'calculation',
+    title: 'OVERLAP: THE ADDITION LAW ➕',
+    problem: '20 male and 40 female teachers. Half of the males and half of the females are local graduates. P(male OR local graduate)?',
+    steps: [
+      { label: 'STEP 1: Count the groups', text: 'Total = 60 teachers. Males = 20. Local graduates = 10 males + 20 females = 30' },
+      { label: 'STEP 2: Count the overlap', text: 'Male AND local graduate = 10 teachers, counted in both groups' },
+      { label: 'STEP 3: Add, then remove the overlap once', formula: 'P(M or L) = 20/60 + 30/60 − 10/60 = 40/60 = 2/3' }
+    ],
+    tip: '💡 Rule: P(A or B) = P(A) + P(B) − P(A and B). If A and B cannot both happen, P(A and B) = 0, so just add.'
+  },
+  {
+    type: 'calculation',
+    title: 'RANDOM VARIABLE 🎲',
+    problem: 'Flip two coins. Let X = the number of heads. Build the probability distribution.',
+    steps: [
+      { label: 'STEP 1: List the sample space', text: 'S = {HH, HT, TH, TT}, each with probability 1/4' },
+      { label: 'STEP 2: Give each outcome a value of X', text: 'HH → X = 2 · HT and TH → X = 1 · TT → X = 0' },
+      { label: 'STEP 3: Add the probabilities for each X', formula: 'P(X=0) = 0.25, P(X=1) = 0.50, P(X=2) = 0.25' }
+    ],
+    tip: '💡 Check: 0.25 + 0.50 + 0.25 = 1. A probability distribution always adds up to 1.'
+  },
+  {
+    type: 'practice',
+    title: 'YOU TRY IT! 🎯',
+    problem: 'The chance of rain tomorrow is 0.7. What is the chance it does NOT rain?',
+    options: [
+      { label: 'A) 0.3 ✓', correct: true },
+      { label: 'B) 0.7', correct: false },
+      { label: 'C) 1.7', correct: false },
+      { label: 'D) 0.07', correct: false }
+    ],
+    answer: 'Answer: A - Complement: 1 − 0.7 = 0.3'
+  },
+  {
     type: 'grid',
     title: 'PROBABILITY IRL 🌍',
     items: [

@@ -462,6 +462,17 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     <details><summary>Practice 2: delivery times, both sides</summary><p>Left area: P(X ≤ 35) = Φ(1) = 0.8413. Right area: P(X ≥ 35) = 1 − 0.8413 = 0.1587.</p><p>Between 25 and 35: z = −1 and z = 1, so Φ(1) − Φ(−1) = 0.8413 − 0.1587 = 0.6827.</p><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve-2.png" alt="Delivery time with mean 30 minutes and SD 5 minutes; the 35-minute cutoff gives z = 1." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>The 35-minute cutoff gives z = 1, so P(X ≤ 35) = Φ(1) ≈ 0.8413.</figcaption></figure><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve.png" alt="Shaded normal areas for below, above and between two cutoffs." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Left: Φ(a). Right: 1 − Φ(b). Between: Φ(b) − Φ(a).</figcaption></figure></details>
     <details><summary>Practice 3: which result is better?</summary><p>Compare each score with its own mean using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></details>
   </div>
+    <div class="card"><h2>More class examples (normal)</h2>
+      <p>Each example uses the same four steps: find z, read Φ(z) from the table, then change the area if the question asks for a tail or a range.</p>
+      <details><summary>Example A: mean 20, variance 4. Find P(X ≤ 24)</summary><p>Variance 4 means SD σ = √4 = 2.</p><p>z = (24 − 20) / 2 = 2. So P(X ≤ 24) = Φ(2) = <b>0.9772</b>.</p></details>
+      <details><summary>Example B: mean 20, variance 4. Find P(17 ≤ X ≤ 25)</summary><p>z = (17 − 20) / 2 = −1.5 and z = (25 − 20) / 2 = 2.5.</p><p>P = Φ(2.5) − Φ(−1.5) = 0.9938 − 0.0668 = <b>0.9270</b>.</p></details>
+      <details><summary>Example C: mean 20, variance 4. Find P(21 ≤ X ≤ 22)</summary><p>z = 0.5 and z = 1.</p><p>P = Φ(1) − Φ(0.5) = 0.8413 − 0.6915 = <b>0.1498</b>.</p></details>
+      <details><summary>Example D: mean 20, variance 4. Find P(13 ≤ X ≤ 18)</summary><p>z = (13 − 20) / 2 = −3.5 and z = (18 − 20) / 2 = −1.</p><p>P = Φ(−1) − Φ(−3.5) = 0.1587 − 0.0002 = <b>0.1585</b>.</p></details>
+      <details><summary>Example E: coffee packets, mean 168 g, SD 3 g. Percentage at least 172 g</summary><p>z = (172 − 168) / 3 = 1.33. Φ(1.33) = 0.9082.</p><p>P(X ≥ 172) = 1 − 0.9082 = 0.0918, so about <b>9.18%</b> of packets.</p></details>
+      <details><summary>Example F: coffee packets, mean 168 g, SD 3 g. Percentage below 170 g</summary><p>z = (170 − 168) / 3 = 0.67. Φ(0.67) = 0.7486.</p><p>About <b>74.86%</b> of packets weigh less than 170 g.</p></details>
+      <details><summary>Example G: coffee packets, mean 168 g, SD 3 g. Percentage between 166 g and 171 g</summary><p>z = (166 − 168) / 3 = −0.67 and z = (171 − 168) / 3 = 1.</p><p>P = Φ(1) − Φ(−0.67) = 0.8413 − 0.2514 = 0.5899, about <b>58.99%</b>.</p></details>
+      <details><summary>Example H: heights, mean 180 cm, SD 30 cm. Percentage shorter than 190 cm</summary><p>z = (190 − 180) / 30 = 0.33. Φ(0.33) = 0.6293.</p><p>About <b>62.93%</b> of people are shorter than you.</p></details>
+    </div>
 </section>
 <section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced">
   <div class="eyebrow">Advanced · Ranges of values</div>
