@@ -25,7 +25,52 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 .nt .hit-row{background:#dbeafe!important}
 .nt .hit-col{background:#fef3c7!important}
 .nt .hit-cell{background:#f59e0b!important;color:#111!important;font-weight:800}
-</style><link rel="stylesheet" href="./probability-diagrams.css?v=2"></head><body>
+</style><link rel="stylesheet" href="./probability-diagrams.css?v=2"><style id="ib-style">
+.ib{display:grid;gap:18px;margin-top:18px}
+.ib .card h2{margin-top:0}
+.ib-jump{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.ib-hero{background:linear-gradient(135deg,#245bdf,#7c5cff);color:#fff;border:none}
+.ib-hero h2{color:#fff;font-size:26px;margin:8px 0}
+.ib-hero p{margin:0 0 12px;opacity:.95}
+.ib-tag{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:#ffffff2e;border-radius:999px;padding:4px 10px}
+.ib-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ib-chip{background:#ffffff26;border-radius:999px;padding:6px 12px;font-size:14px}
+.ib-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;align-items:end;margin:10px 0}
+.ib-field{display:grid;gap:6px;font-size:14px}
+.ib-field input,.ib-field select{font:inherit;padding:8px 10px;border-radius:10px;border:1px solid #b9c9dd;background:#fff;color:#172033;width:100%}
+.ib-field input[type=range]{padding:0;accent-color:#7c5cff}
+.ib-btn{font:inherit;padding:8px 14px;border-radius:10px;border:1px solid #b9c9dd;background:#fff;color:#172033;cursor:pointer}
+.ib-btn[aria-pressed="true"]{background:#245bdf;border-color:#245bdf;color:#fff}
+.ib-qrow{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed #b9c9dd}
+.ib-yn{display:flex;flex-wrap:wrap;gap:8px}
+.ib-yn input{font:inherit;padding:8px 10px;border-radius:10px;border:1px solid #b9c9dd;background:#fff;color:#172033;width:140px}
+.ib-result,.ib-msg{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f0f6ff;color:#172033;font-size:15px;line-height:1.6}
+.ib-result.good,.ib-msg.good{background:#e8fff4;color:#0f5132}
+.ib-result.bad,.ib-msg.bad{background:#fdecec;color:#842029}
+.ib-seq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+.ib-tile{border:1px solid #dce5f0;border-radius:12px;padding:8px 4px;text-align:center;background:#fff;color:#172033;opacity:.5;transition:all .2s}
+.ib-tile.on{opacity:1;border-color:#7c5cff;box-shadow:0 0 0 3px #7c5cff33}
+.ib-sym{font-size:18px;letter-spacing:2px}
+.ib-note{font-size:14px;opacity:.8}
+.ib-bars{display:flex;align-items:flex-end;justify-content:space-around;gap:10px;height:240px;padding:10px 6px 0;border-bottom:2px solid #b9c9dd}
+.ib-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;max-width:90px}
+.ib-bar{width:100%;background:#b9c9dd;border-radius:10px 10px 0 0;transition:height .3s}
+.ib-bar.on{background:linear-gradient(#7c5cff,#245bdf)}
+.ib-val{font-size:13px;margin-bottom:4px}
+.ib-k{font-size:13px;margin-top:6px;opacity:.8}
+.ib-formula-live{margin-top:12px;padding:12px 14px;border-radius:12px;background:#e8fff4;color:#113a2b;font-weight:600;overflow-wrap:anywhere}
+.ib-table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0;background:#fff;color:#172033}
+.ib-table th,.ib-table td{border:1px solid #dce5f0;padding:8px;text-align:left;vertical-align:top}
+.ib-table th{background:#f0f6ff}
+.ib-svgwrap{background:#f7faff;border-radius:14px;padding:8px;margin-top:10px}
+.ib-svgwrap svg{width:100%;height:auto;display:block}
+.ib-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.ib-gallery figure{margin:0}
+.ib-gallery img{width:100%;height:auto;border-radius:12px;background:#fff;display:block}
+.ib-rule{background:#f7faff;color:#172033;border-radius:12px;padding:12px 14px;font-size:15px;border-left:5px solid #7c5cff}
+@media (max-width:600px){.ib-seq{grid-template-columns:repeat(2,minmax(0,1fr))}.ib-hero h2{font-size:22px}}
+</style>
+</head><body>
 <header><div class="wrap"><div class="top"><div class="brand">◈ Probability<span>Lab</span></div><span class="badge">4.4 · 4.4.1–4.4.5</span></div><nav role="tablist" aria-label="Learning sections">
 <button type="button" role="tab" aria-selected="true" data-tab="intro">1 Start</button>
 <button type="button" role="tab" aria-selected="false" data-tab="easy">2 Quick guide</button>
@@ -140,66 +185,13 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 <section id="binomial" class="panel" role="tabpanel" aria-labelledby="tab-binomial">
   <div class="eyebrow">4.4.1–4.4.2 · Counting yes results</div>
   <h1>4.4.1 Binomial: counting yes results</h1>
+  <div class="ib-jump"><button class="ib-btn" type="button" onclick="document.getElementById('ib-steps').scrollIntoView({behavior:'smooth'})">Langkah 1 hingga 5 ↓</button><button class="ib-btn" type="button" onclick="document.getElementById('ib-note').scrollIntoView({behavior:'smooth'})">Lukis &amp; latihan interaktif ↓</button></div>
   <div class="card"><h2>The question</h2><p>We flip a fair coin <b>3 times</b>. What is the chance of getting <b>exactly 2 heads</b>?</p><p>Follow the five steps. You can change the numbers in step 5.</p></div>
   <div class="card"><figure class="lab-figure"><img src="./probability-images/coin-head-tail.webp" alt="Syiling dengan dua sisi: HEAD (kepala) dan TAIL (ekor)" style="max-width:100%;height:auto;border-radius:12px;background:#fff">
       <figcaption>Setiap lambungan syiling mempunyai dua hasil: <b>HEAD</b> atau <b>TAIL</b>. Ini ialah contoh percubaan berjaya/gagal.</figcaption></figure>
   </div>
 
-  <div class="card"><h2>Objektif pembelajaran</h2>
-    <p>Pada akhir pembelajaran, pelajar boleh:</p>
-    <ol><li>Membezakan Binomial Distribution dan Normal Distribution.</li><li>Mengenal pasti nilai yang diperlukan dalam formula.</li><li>Menyelesaikan satu soalan asas bagi setiap taburan.</li><li>Membaca kebarangkalian daripada Z-table yang sesuai.</li></ol>
-  </div>
-
-  <div class="card"><h2>Bezakan dua taburan ini</h2>
-    <table><tr><th>Binomial Distribution</th><th>Normal Distribution</th></tr>
-    <tr><td>Mengira bilangan kejayaan</td><td>Mengira kebarangkalian bagi julat nilai</td></tr>
-    <tr><td>Bilangan percubaan tetap, <b>n</b></td><td>Data berterusan dan berbentuk loceng</td></tr>
-    <tr><td>Setiap percubaan mempunyai dua hasil: berjaya/gagal</td><td>Menggunakan min, <b>μ</b>, dan sisihan piawai, <b>σ</b></td></tr>
-    <tr><td>Contoh: tepat 2 produk rosak daripada 10</td><td>Contoh: kebarangkalian berat komponen kurang daripada 520 g</td></tr></table>
-    <p><b>Cara ingat:</b> Binomial = berapa kali berjaya? &nbsp;·&nbsp; Normal = berapa banyak data berada di kawasan ini?</p>
-    <h3>Pilih taburan</h3>
-    <pre class="note-pre" style="overflow:auto;padding:12px 14px;border-radius:12px;background:#f7faff;color:#172033;font:14px/1.45 monospace;border:1px solid #dce5f0">Baca ayat soalan
-   |
-   v
-Bilangan percubaan tetap dan hasil berjaya/gagal?
-   |-- Ya --&gt; BINOMIAL DISTRIBUTION
-   |-- Tidak / data berterusan
-          |
-          v
-Diberi min μ dan sisihan piawai σ serta andaian normal?
-   |-- Ya --&gt; NORMAL DISTRIBUTION
-   |-- Tidak --&gt; Semak maklumat dan jenis taburan</pre>
-  </div>
-
-  <div class="card"><h2>Binomial: faham melalui situasi</h2>
-    <p>Sebuah bengkel memeriksa <b>3 komponen</b>. Kebarangkalian setiap komponen berfungsi ialah <b>p = 0.8</b>. Cari kebarangkalian <b>tepat 2 komponen berfungsi</b>.</p>
-    <ul><li><b>Success (kejayaan):</b> komponen berfungsi.</li><li><b>Failure (kegagalan):</b> komponen tidak berfungsi.</li><li><b>n = 3</b>: jumlah komponen.</li><li><b>x = 2</b>: jumlah kejayaan yang diminta.</li><li><b>p = 0.8</b>: kebarangkalian berjaya.</li><li><b>q = 1 − p = 0.2</b>: kebarangkalian gagal.</li></ul>
-    <pre class="note-pre" style="overflow:auto;padding:12px 14px;border-radius:12px;background:#f7faff;color:#172033;font:14px/1.45 monospace;border:1px solid #dce5f0">Komponen:       1          2          3
-             ┌─────┐    ┌─────┐    ┌─────┐
-Hasil:       │  ✓  │    │  ✓  │    │  ✗  │
-             └─────┘    └─────┘    └─────┘
-Kebarangk.:    0.8        0.8        0.2
-
-✓ = berjaya       ✗ = gagal</pre>
-    <p>Susunan ✓ ✓ ✗ bukan satu-satunya susunan. Susunan ✓ ✗ ✓ dan ✗ ✓ ✓ juga mempunyai tepat dua kejayaan. Sebab itu kita gunakan pekali kombinasi, <b>nCx</b>.</p>
-    <h3>Formula Binomial</h3>
-    <div class="formula">P(X = x) = nCx × p<sup>x</sup> × (1 − p)<sup>n − x</sup></div>
-    <table><tr><th>Simbol</th><th>Maksud</th><th>Nilai contoh</th></tr>
-    <tr><td>n</td><td>Jumlah percubaan</td><td>3</td></tr>
-    <tr><td>x</td><td>Bilangan kejayaan yang diminta</td><td>2</td></tr>
-    <tr><td>p</td><td>Kebarangkalian berjaya</td><td>0.8</td></tr>
-    <tr><td>q = 1 − p</td><td>Kebarangkalian gagal</td><td>0.2</td></tr>
-    <tr><td>nCx</td><td>Bilangan susunan kejayaan</td><td>3C2 = 3</td></tr></table>
-    <h3>Contoh langkah demi langkah</h3>
-    <p><b>Langkah 1: Kenal pasti nilai.</b> n = 3, x = 2, p = 0.8, q = 0.2.</p>
-    <p><b>Langkah 2: Masukkan dalam formula.</b> P(X = 2) = 3C2 × (0.8)² × (0.2)<sup>3−2</sup> = 3 × 0.64 × 0.2 = 0.384</p>
-    <p><b>Jawapan:</b> P(X = 2) = 0.384 = <b>38.4%</b>. Maksudnya, kebarangkalian tepat dua komponen berfungsi ialah 38.4%.</p>
-    <h3>Checklist pelajar</h3>
-    <p>Sebelum mengira, isi dahulu: n = ____ &nbsp; x = ____ &nbsp; p = ____ &nbsp; q = 1 − p = ____</p>
-    <p><b>Tip:</b> Jangan terus masukkan nombor ke dalam formula sebelum mengenal pasti maksud n, x dan p.</p>
-  </div>
-
-  <div class="grid">
+  <div class="grid" id="ib-steps">
     <div class="card">
       <div class="step"><strong>Step 1: Count the tries (n)</strong><p>We flip 3 times, so <b>n = 3</b>.</p></div>
       <div class="step"><strong>Step 2: Find the “yes” chance (p)</strong><p>A fair coin gives heads half the time, so <b>p = 0.5</b>.</p></div>
@@ -332,61 +324,95 @@ Kebarangk.:    0.8        0.8        0.2
     </article></div><figure class="lab-figure"><img src="./probability-images/basketball-shots-2.svg" alt="Ten basketball shots with seven made and three missed, alongside the binomial probabilities for 10 shots with a 0.6 make probability." width="960" height="720" loading="lazy" decoding="async"><figcaption>Find the bar at k = 7 for the chance of exactly 7 makes.</figcaption></figure></details>
     <details><summary>Practice 3: quality control (20 bulbs, 5% faulty)</summary><p>Let X = number of faulty bulbs, so X ∼ B(20, 0.05). Find P(X = 1).</p><div class="step"><strong>Step 1:</strong> n = 20, p = 0.05, k = 1.</div><div class="step"><strong>Step 2:</strong> Ways: ²⁰C₁ = 20.</div><div class="step"><strong>Step 3:</strong> 20 × 0.05 × 0.95¹⁹ ≈ <b>0.3774</b>.</div><p>About 38% of batches have exactly one faulty bulb.</p></details>
   </div>
+  <div class="ib" id="ib-note">
+    <div class="card ib-hero">
+      <span class="ib-tag">Nota TVET · Binomial</span>
+      <h2>Berapa kali berjaya?</h2>
+      <p>Bezakan Binomial dan Normal, kenal pasti nilai dalam formula, selesaikan soalan asas, dan baca kebarangkalian dengan betul.</p>
+      <div class="ib-chips"><span class="ib-chip">n tetap</span><span class="ib-chip">2 hasil: berjaya / gagal</span><span class="ib-chip">p sama setiap kali</span><span class="ib-chip">percubaan bebas</span></div>
+    </div>
+
+    <div class="card">
+      <h2>1 · Pilih taburan</h2>
+      <p class="ib-note">Jawab tiga soalan. Taburan akan dipilih secara automatik.</p>
+      <div class="ib-qrow"><span>Bilangan percubaan tetap (n)?</span><span class="ib-yn"><button class="ib-btn" type="button" data-pick="a" data-v="y" aria-pressed="false">Ya</button><button class="ib-btn" type="button" data-pick="a" data-v="n" aria-pressed="false">Tidak</button></span></div>
+      <div class="ib-qrow"><span>Hasilnya hanya berjaya atau gagal?</span><span class="ib-yn"><button class="ib-btn" type="button" data-pick="b" data-v="y" aria-pressed="false">Ya</button><button class="ib-btn" type="button" data-pick="b" data-v="n" aria-pressed="false">Tidak</button></span></div>
+      <div class="ib-qrow"><span>Data berterusan berbentuk loceng, dengan min dan sisihan piawai?</span><span class="ib-yn"><button class="ib-btn" type="button" data-pick="c" data-v="y" aria-pressed="false">Ya</button><button class="ib-btn" type="button" data-pick="c" data-v="n" aria-pressed="false">Tidak</button></span></div>
+      <div class="ib-result" id="ib-pick" aria-live="polite">Jawab ketiga-tiga soalan.</div>
+    </div>
+
+    <div class="card">
+      <h2>2 · Bezakan dua taburan</h2>
+      <table class="ib-table">
+        <tr><th>Binomial</th><th>Normal</th></tr>
+        <tr><td>Mengira bilangan kejayaan</td><td>Mengira kebarangkalian bagi julat nilai</td></tr>
+        <tr><td>Bilangan percubaan tetap, <b>n</b></td><td>Data berterusan, berbentuk loceng</td></tr>
+        <tr><td>Dua hasil: berjaya / gagal</td><td>Guna min <b>μ</b> dan sisihan piawai <b>σ</b></td></tr>
+        <tr><td>Contoh: tepat 2 produk rosak daripada 10</td><td>Contoh: berat kurang daripada 520 g</td></tr>
+      </table>
+      <p><b>Cara ingat:</b> Binomial = berapa kali berjaya? · Normal = berapa banyak data di kawasan ini?</p>
+    </div>
+
+    <div class="card">
+      <h2>3 · Lihat setiap susunan</h2>
+      <p class="ib-note">Bengkel memeriksa <b>3 komponen</b>. Tukar p, dan pilih k (bilangan berfungsi). Tile yang bercahaya ialah susunan dengan k kejayaan.</p>
+      <div class="ib-row">
+        <label class="ib-field"><span>p (kebarangkalian berfungsi): <b id="ib-p-out">0.80</b></span><input type="range" id="ib-p" min="0" max="1" step="0.05" value="0.8"></label>
+        <div class="ib-field"><span>k (bilangan berfungsi)</span>
+          <div class="ib-yn"><button class="ib-btn" type="button" data-k="0" aria-pressed="false">0</button><button class="ib-btn" type="button" data-k="1" aria-pressed="false">1</button><button class="ib-btn" type="button" data-k="2" aria-pressed="true">2</button><button class="ib-btn" type="button" data-k="3" aria-pressed="false">3</button></div>
+        </div>
+      </div>
+      <div class="ib-seq" id="ib-seq"></div>
+      <div class="ib-bars" id="ib-bars"></div>
+      <div class="ib-formula-live" id="ib-calc"></div>
+    </div>
+
+    <div class="card">
+      <h2>4 · Formula dan checklist</h2>
+      <div class="formula">P(X = x) = nCx × p<sup>x</sup> × (1 − p)<sup>n − x</sup></div>
+      <table class="ib-table">
+        <tr><th>Simbol</th><th>Maksud</th><th>Contoh</th></tr>
+        <tr><td>n</td><td>Jumlah percubaan</td><td>3</td></tr>
+        <tr><td>x</td><td>Bilangan kejayaan yang diminta</td><td>2</td></tr>
+        <tr><td>p</td><td>Kebarangkalian berjaya</td><td>0.8</td></tr>
+        <tr><td>q = 1 − p</td><td>Kebarangkalian gagal</td><td>0.2</td></tr>
+      </table>
+      <p>Soalan: 3 komponen, p = 0.8. Cari P(tepat 2 berfungsi). Isi dahulu, kemudian semak.</p>
+      <div class="ib-row">
+        <label class="ib-field">n <input type="number" id="ib-cn" step="1" placeholder="?"></label>
+        <label class="ib-field">x <input type="number" id="ib-cx" step="1" placeholder="?"></label>
+        <label class="ib-field">p <input type="number" id="ib-cp" step="0.01" placeholder="?"></label>
+        <label class="ib-field">q = 1 − p <input type="text" id="ib-cq" readonly></label>
+      </div>
+      <button class="ib-btn" type="button" id="ib-check">Semak</button>
+      <div class="ib-msg" id="ib-check-out" aria-live="polite" hidden></div>
+      <div class="ib-formula-live"><b>Jawapan:</b> P(X = 2) = 3C2 × 0.8² × 0.2¹ = 0.384 = <b>38.4%</b></div>
+    </div>
+
+    <div class="card">
+      <h2>5 · Latihan</h2>
+      <details open><summary><b>Soalan 1:</b> Binomial atau Normal?</summary>
+        <div class="ib-qrow"><span>a. Daripada 8 produk, cari kebarangkalian tepat 2 produk rosak.</span><span class="ib-yn"><button class="ib-btn" type="button" data-ex="a" data-v="binomial" data-ans="binomial">Binomial</button><button class="ib-btn" type="button" data-ex="a" data-v="normal" data-ans="binomial">Normal</button></span></div>
+        <div class="ib-msg" id="ib-ex-a" aria-live="polite" hidden></div>
+        <div class="ib-qrow"><span>b. Berat komponen min 500 g, sisihan piawai 10 g. Cari P(berat &lt; 520 g).</span><span class="ib-yn"><button class="ib-btn" type="button" data-ex="b" data-v="binomial" data-ans="normal">Binomial</button><button class="ib-btn" type="button" data-ex="b" data-v="normal" data-ans="normal">Normal</button></span></div>
+        <div class="ib-msg" id="ib-ex-b" aria-live="polite" hidden></div>
+      </details>
+      <details open><summary><b>Soalan 2:</b> Binomial, p = 0.9</summary>
+        <p>Tiga komponen diuji secara bebas, p = 0.9. Cari P(tepat 2 berfungsi).</p>
+        <div class="ib-yn"><input type="number" id="ib-ans" step="0.001" placeholder="cth. 0.243"><button class="ib-btn" type="button" id="ib-ans-btn">Semak</button></div>
+        <div class="ib-msg" id="ib-ex-2" aria-live="polite" hidden></div>
+      </details>
+    </div>
+  </div>
+
 </section>
 <section id="normal" class="panel" role="tabpanel" aria-labelledby="tab-normal">
   <div class="eyebrow">4.4.3–4.4.5 · Measurements</div>
   <h1>4.4.3 Normal: measuring values</h1>
+  <div class="ib-jump"><button class="ib-btn" type="button" onclick="document.getElementById('in-steps').scrollIntoView({behavior:'smooth'})">Langkah 1 hingga 4 ↓</button><button class="ib-btn" type="button" onclick="document.getElementById('in-note').scrollIntoView({behavior:'smooth'})">Lukis &amp; latihan interaktif ↓</button></div>
   <div class="card"><h2>The question</h2><p>A delivery takes on average <b>30 minutes</b>, with a spread (SD) of <b>5 minutes</b>. A delivery takes <b>35 minutes</b>. How far is that from the average, and how often is a delivery this fast or faster?</p><p>Follow the four steps. You can change the numbers in each step.</p></div>
 
-  <div class="card"><h2>Normal: faham konsep dahulu</h2>
-    <p>Contoh masa menyiapkan kerja bengkel:</p>
-    <ul><li>Mean (min), <b>μ = 30</b> minit.</li><li>Standard deviation (sisihan piawai), <b>σ = 5</b> minit.</li><li>Nilai yang ditanya, <b>X = 35</b> minit.</li></ul>
-    <p>Min ialah pusat taburan. Sisihan piawai menerangkan sejauh mana data tersebar daripada min. <code>X = 35</code> berada satu sisihan piawai di atas min kerana 35 − 30 = 5.</p>
-    <figure class="lab-figure"><img src="./probability-images/normal-curve-mean.webp" alt="Lengkung normal dengan min μ di tengah" style="max-width:100%;height:auto;border-radius:12px;background:#fff">
-    <figcaption>Lengkung loceng simetri. Min <b>μ</b> ialah pusat taburan dan <b>X</b> ialah nilai yang diukur.</figcaption></figure>
-    <pre class="note-pre" style="overflow:auto;padding:12px 14px;border-radius:12px;background:#f7faff;color:#172033;font:14px/1.45 monospace;border:1px solid #dce5f0">                 Taburan Normal (Normal Distribution)
-
-                         .-&#x27;&#x27;&#x27;&#x27;-.
-                      .-&#x27;        &#x27;-.
-                    .&#x27;              &#x27;.
-                  .&#x27;                  &#x27;.
-_________________/__________|__________\________________
-                         μ = 30       X = 35
-                                      μ + 1σ
-
-                         σ = 5</pre>
-  </div>
-
-  <div class="card"><h2>Formula Z-score</h2>
-    <div class="formula">Z = (X − μ) / σ</div>
-    <table><tr><th>Simbol</th><th>Maksud</th></tr>
-    <tr><td>X</td><td>Nilai yang ditanya</td></tr>
-    <tr><td>μ</td><td>Mean / min</td></tr>
-    <tr><td>σ</td><td>Standard deviation / sisihan piawai</td></tr>
-    <tr><td>Z</td><td>Jarak nilai daripada min dalam unit sisihan piawai</td></tr></table>
-        <figure class="lab-figure"><img src="./probability-images/normal-curve-mu-30.png" alt="Lengkung normal dengan min 30, nilai paksi dari 15 hingga 45" style="max-width:100%;height:auto;border-radius:12px;background:#fff">
-    <figcaption>Min μ = 30. Contoh penghantaran: X = 35 berada di sebelah kanan min, dalam satu sisihan piawai.</figcaption></figure>
-    <h3>Contoh langkah demi langkah</h3>
-    <p><b>Soalan:</b> Jika μ = 30, σ = 5, cari P(X &lt; 35).</p>
-    <p><b>Langkah 1: Kira Z.</b> Z = (35 − 30) / 5 = 5 / 5 = 1.00</p>
-    <p><b>Langkah 2: Cari Z = 1.00 dalam Z-table.</b> Jika Z-table memberi luas terkumpul di sebelah kiri, P(Z &lt; 1.00) = 0.8413.</p>
-    <p><b>Jawapan:</b> P(X &lt; 35) = 0.8413 = <b>84.13%</b>. Maksudnya, kira-kira 84.13% nilai berada di bawah 35 minit, dengan andaian data mengikut taburan normal.</p>
-    <p><b>Penting:</b> Tidak semua Z-table mempunyai format sama. Ada jadual yang menunjukkan luas dari min hingga Z. Semak tajuk atau nota pada jadual sebelum membaca nilai.</p>
-  </div>
-
-  <div class="card"><h2>Kenal pasti jenis soalan Normal</h2>
-    <pre class="note-pre" style="overflow:auto;padding:12px 14px;border-radius:12px;background:#f7faff;color:#172033;font:14px/1.45 monospace;border:1px solid #dce5f0">LESS THAN: P(X &lt; a)        GREATER THAN: P(X &gt; a)
-Cari luas di kiri          Cari luas di kanan
-
-BETWEEN: P(a &lt; X &lt; b)
-Cari luas antara dua nilai</pre>
-    <p>Jika Z-table memberi luas di sebelah kiri:</p>
-    <ul><li><b>Less than:</b> P(Z &lt; z) = nilai jadual.</li><li><b>Greater than:</b> P(Z &gt; z) = 1 − P(Z &lt; z).</li><li><b>Between:</b> P(a &lt; Z &lt; b) = P(Z &lt; b) − P(Z &lt; a).</li></ul>
-    <p>Bagi nilai Z negatif, ikut tanda dan format Z-table yang digunakan. Jangan abaikan tanda negatif.</p>
-    <p><b>Cara memilih formula dalam peperiksaan:</b> (1) Bilangan percubaan tetap dan berjaya/gagal? Pertimbangkan Binomial. (2) Data berterusan dengan min, sisihan piawai dan andaian normal? Gunakan Normal. (3) Baca kata kunci: <i>exactly</i> (tepat), <i>less than</i> (kurang daripada), <i>greater than</i> (lebih daripada), <i>between</i> (antara).</p>
-  </div>
-
-  <div class="grid">
+  <div class="grid" id="in-steps">
     <div class="card">
       <div class="step"><strong>Step 1: Know the mean (μ) and SD (σ)</strong><p>The <b>mean</b> is the centre of the bell. The <b>SD</b> is how wide the bell is.</p><p>For the delivery example: μ = 30 and σ = 5.</p></div>
       <div class="step"><strong>Rule of thumb</strong><p>About <b>68%</b> of values are within 1 SD of the mean, <b>95%</b> within 2 SDs, and <b>99.7%</b> within 3 SDs.</p></div>
@@ -578,6 +604,58 @@ Cari luas antara dua nilai</pre>
       <details><summary>Example G: coffee packets, mean 168 g, SD 3 g. Percentage between 166 g and 171 g</summary><p>z = (166 − 168) / 3 = −0.67 and z = (171 − 168) / 3 = 1.</p><p>P = Φ(1) − Φ(−0.67) = 0.8413 − 0.2514 = 0.5899, about <b>58.99%</b>.</p></details>
       <details><summary>Example H: heights, mean 180 cm, SD 30 cm. Percentage shorter than 190 cm</summary><p>z = (190 − 180) / 30 = 0.33. Φ(0.33) = 0.6293.</p><p>About <b>62.93%</b> of people are shorter than you.</p></details>
     </div>
+  <div class="ib" id="in-note">
+    <div class="card ib-hero">
+      <span class="ib-tag">Nota TVET · Normal</span>
+      <h2>Berapa banyak data di kawasan ini?</h2>
+      <p>Min μ ialah pusat loceng dan sisihan piawai σ ialah lebarnya. Tukar X kepada Z, kemudian baca Z-table.</p>
+      <div class="ib-chips"><span class="ib-chip">data berterusan</span><span class="ib-chip">simetri, berbentuk loceng</span><span class="ib-chip">Z = (X − μ) / σ</span></div>
+    </div>
+
+    <div class="card">
+      <h2>1 · Lukis lengkung &amp; kira</h2>
+      <p class="ib-note">Contoh bengkel: μ = 30 minit, σ = 5 minit. Tukar nilai untuk lihat lengkung berubah.</p>
+      <div class="ib-row">
+        <label class="ib-field">μ (min) <input type="number" id="in-mu" value="30" step="1"></label>
+        <label class="ib-field">σ (sisihan piawai) <input type="number" id="in-sd" value="5" step="0.5" min="0.1"></label>
+        <label class="ib-field">Jenis soalan <select id="in-mode"><option value="lt">kurang daripada (less than)</option><option value="gt">lebih daripada (greater than)</option><option value="bt">antara (between)</option></select></label>
+        <label class="ib-field">X <input type="number" id="in-x" value="35" step="1"></label>
+        <label class="ib-field" id="in-x2wrap" hidden>X kedua <input type="number" id="in-x2" value="40" step="1"></label>
+      </div>
+      <div class="ib-svgwrap"><svg id="in-svg" viewBox="0 0 560 260" role="img" aria-label="Lengkung normal dengan kawasan yang dilorek mengikut soalan"></svg></div>
+      <div class="ib-result" id="in-out" aria-live="polite"></div>
+      <p class="ib-note" id="in-z-text"></p>
+    </div>
+
+    <div class="card">
+      <h2>2 · Jenis soalan</h2>
+      <div class="ib-gallery">
+        <div class="ib-rule"><b>kurang daripada</b><br>Baca terus dari Z-table: P(Z &lt; z).</div>
+        <div class="ib-rule"><b>lebih daripada</b><br>1 − P(Z &lt; z).</div>
+        <div class="ib-rule"><b>antara a dan b</b><br>P(Z &lt; b) − P(Z &lt; a).</div>
+      </div>
+      <p class="ib-note">Z negatif: ikut tanda dan format Z-table. Jangan abaikan tanda negatif. Semak dahulu sama ada Z-table memberi luas dari kiri atau dari min.</p>
+    </div>
+
+    <div class="card">
+      <h2>3 · Rujukan visual</h2>
+      <div class="ib-gallery">
+        <figure><img src="./probability-images/normal-curve-mean.webp" alt="Lengkung normal dengan min μ di tengah" loading="lazy"><figcaption class="ib-note">Min μ ialah pusat taburan. X ialah nilai yang diukur.</figcaption></figure>
+        <figure><img src="./probability-images/normal-curve-mu-30.png" alt="Lengkung normal dengan min 30" loading="lazy"><figcaption class="ib-note">μ = 30. X = 35 berada di kanan min, satu sisihan piawai.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4 · Latihan</h2>
+      <details open><summary><b>Soalan 3:</b> Cari nilai Z</summary>
+        <p>Diberi μ = 50, σ = 10 dan X = 60. Cari nilai Z.</p>
+        <div class="ib-yn"><input type="number" id="in-ex3" step="0.01" placeholder="cth. 1.00"><button class="ib-btn" type="button" id="in-ex3-btn">Semak</button></div>
+        <div class="ib-msg" id="in-ex-out" aria-live="polite" hidden></div>
+      </details>
+      <p class="ib-note">Jika soalan seterusnya minta P(X &lt; 60) dan jadual beri luas kiri, P(Z &lt; 1.00) = 0.8413.</p>
+    </div>
+  </div>
+
 </section>
 <section id="advanced" class="panel" role="tabpanel" aria-labelledby="tab-advanced">
   <div class="eyebrow">Advanced · Ranges of values</div>
@@ -1144,6 +1222,205 @@ const NT_ROWS=[
     practice.append(box);
   });
   function num_(input){return input.value.trim()===''?NaN:Number(input.value);}
+})();
+</script>
+<script id="ib-script">
+(function () {
+  const $ = id => document.getElementById(id);
+
+  // ---------- Binomial ----------
+  const N = 3;
+  const comb = (n, k) => { let r = 1; for (let i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; };
+  const pmf = (k, p) => comb(N, k) * Math.pow(p, k) * Math.pow(1 - p, N - k);
+  const seqs = [0, 1, 2, 3, 4, 5, 6, 7].map(m => [m & 4 ? 1 : 0, m & 2 ? 1 : 0, m & 1 ? 1 : 0]);
+  const st = { p: 0.8, k: 2, pick: {} };
+
+  function renderSeq() {
+    const q = 1 - st.p;
+    $('ib-seq').innerHTML = seqs.map(s => {
+      const c = s.reduce((a, b) => a + b, 0);
+      const pr = Math.pow(st.p, c) * Math.pow(q, N - c);
+      return '<div class="ib-tile' + (c === st.k ? ' on' : '') + '"><div class="ib-sym">' +
+        s.map(v => (v ? '✓' : '✗')).join(' ') + '</div><div class="ib-note">' + pr.toFixed(3) + '</div></div>';
+    }).join('');
+  }
+
+  function renderBars() {
+    $('ib-bars').innerHTML = [0, 1, 2, 3].map(k => {
+      const v = pmf(k, st.p);
+      return '<div class="ib-col"><div class="ib-val">' + v.toFixed(3) + '</div>' +
+        '<div class="ib-bar' + (k === st.k ? ' on' : '') + '" style="height:' + Math.max(v * 170, 2) + 'px"></div>' +
+        '<div class="ib-k">k = ' + k + '</div></div>';
+    }).join('');
+    const q = 1 - st.p, k = st.k, v = pmf(k, st.p);
+    $('ib-calc').innerHTML = 'P(X = ' + k + ') = ' + N + 'C' + k + ' × (' + st.p.toFixed(2) + ')<sup>' + k + '</sup> × (' +
+      q.toFixed(2) + ')<sup>' + (N - k) + '</sup> = <b>' + v.toFixed(4) + '</b> (' + (v * 100).toFixed(2) + '%)';
+  }
+
+  function renderBinomial() {
+    $('ib-p-out').textContent = st.p.toFixed(2);
+    renderSeq();
+    renderBars();
+  }
+
+  $('ib-p').addEventListener('input', e => { st.p = +e.target.value; renderBinomial(); });
+  document.querySelectorAll('[data-k]').forEach(b => b.addEventListener('click', () => {
+    st.k = +b.dataset.k;
+    document.querySelectorAll('[data-k]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    renderBinomial();
+  }));
+
+  // Step 1: choose the distribution
+  document.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => {
+    st.pick[b.dataset.pick] = b.dataset.v;
+    document.querySelectorAll('[data-pick="' + b.dataset.pick + '"]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const r = $('ib-pick'), a = st.pick.a, bb = st.pick.b, c = st.pick.c;
+    if (!a || !bb || !c) { r.className = 'ib-result'; r.textContent = 'Jawab ketiga-tiga soalan.'; return; }
+    if (a === 'y' && bb === 'y' && c === 'n') {
+      r.className = 'ib-result good';
+      r.textContent = 'Binomial Distribution. Kira bilangan kejayaan dalam n percubaan tetap.';
+    } else if (c === 'y' && a === 'n') {
+      r.className = 'ib-result good';
+      r.textContent = 'Normal Distribution. Ukur nilai berterusan dengan min dan sisihan piawai.';
+    } else {
+      r.className = 'ib-result bad';
+      r.textContent = 'Semak semula. Binomial perlukan n tetap dan hasil berjaya/gagal. Normal perlukan data berterusan berbentuk loceng.';
+    }
+  }));
+
+  // Step 4: checklist
+  $('ib-cp').addEventListener('input', () => {
+    const p = parseFloat($('ib-cp').value);
+    $('ib-cq').value = isNaN(p) ? '' : (1 - p).toFixed(2);
+  });
+  $('ib-check').addEventListener('click', () => {
+    const n = +$('ib-cn').value, x = +$('ib-cx').value, p = +$('ib-cp').value;
+    const m = $('ib-check-out');
+    const ok = n === 3 && x === 2 && Math.abs(p - 0.8) < 1e-9;
+    m.hidden = false;
+    m.className = 'ib-msg ' + (ok ? 'good' : 'bad');
+    m.textContent = ok
+      ? 'Betul! n = 3, x = 2, p = 0.8, q = 0.2.'
+      : 'Belum tepat. n = jumlah komponen (3), x = bilangan berfungsi yang diminta (2), p = kebarangkalian berfungsi (0.8).';
+  });
+
+  // Step 5: exercises
+  document.querySelectorAll('[data-ex]').forEach(b => b.addEventListener('click', () => {
+    const id = 'ib-ex-' + b.dataset.ex, out = $(id);
+    const ok = b.dataset.v === b.dataset.ans;
+    out.hidden = false;
+    out.className = 'ib-msg ' + (ok ? 'good' : 'bad');
+    out.textContent = ok
+      ? 'Betul. ' + (b.dataset.ex === 'a'
+        ? 'Bilangan percubaan tetap dan hasil berjaya/gagal, jadi Binomial.'
+        : 'Data berterusan dengan min dan sisihan piawai, jadi Normal.')
+      : 'Belum tepat. Semak semula soalan dan kata kunci.';
+  }));
+  $('ib-ans-btn').addEventListener('click', () => {
+    const v = parseFloat($('ib-ans').value), out = $('ib-ex-2');
+    const ok = Math.abs(v - 0.243) < 0.0005;
+    out.hidden = false;
+    out.className = 'ib-msg ' + (ok ? 'good' : 'bad');
+    out.textContent = ok
+      ? 'Betul! P(X = 2) = 3C2 × 0.9² × 0.1¹ = 3 × 0.81 × 0.1 = 0.243 (24.3%).'
+      : 'Belum tepat. Guna P(X = 2) = 3C2 × 0.9² × 0.1¹.';
+  });
+
+  // ---------- Normal ----------
+  function erf(x) {
+    const sign = x < 0 ? -1 : 1;
+    x = Math.abs(x);
+    const t = 1 / (1 + 0.3275911 * x);
+    const y = 1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return sign * y;
+  }
+  const phi = z => 0.5 * (1 + erf(z / Math.SQRT2));
+  const pdf = (x, mu, sd) => Math.exp(-0.5 * Math.pow((x - mu) / sd, 2)) / (sd * Math.sqrt(2 * Math.PI));
+
+  function draw(mu, sd, lo, hi, marks) {
+    const L = 20, R = 540, base = 220, top = 20;
+    const a = mu - 4 * sd, b = mu + 4 * sd;
+    const X = x => L + (x - a) / (b - a) * (R - L);
+    const maxY = pdf(mu, mu, sd);
+    const Y = y => base - y / maxY * (base - top);
+
+    const pts = [];
+    for (let i = 0; i <= 120; i++) {
+      const x = a + (b - a) * i / 120;
+      pts.push(X(x).toFixed(1) + ',' + Y(pdf(x, mu, sd)).toFixed(1));
+    }
+    let shade = '';
+    const s0 = Math.max(lo, a), s1 = Math.min(hi, b);
+    if (s1 > s0) {
+      const area = [];
+      for (let i = 0; i <= 80; i++) {
+        const x = s0 + (s1 - s0) * i / 80;
+        area.push(X(x).toFixed(1) + ',' + Y(pdf(x, mu, sd)).toFixed(1));
+      }
+      shade = '<path d="M' + X(s0).toFixed(1) + ',' + base + ' L' + area.join(' L') + ' L' + X(s1).toFixed(1) + ',' + base +
+        ' Z" fill="#7c5cff66"/>';
+    }
+    const lines = marks.map(m =>
+      '<line x1="' + X(m.x).toFixed(1) + '" x2="' + X(m.x).toFixed(1) + '" y1="' + top + '" y2="' + base +
+      '" stroke="' + m.c + '" stroke-dasharray="5 4" stroke-width="2"/>' +
+      '<text x="' + X(m.x).toFixed(1) + '" y="' + (base + 22) + '" text-anchor="middle" font-size="14" font-weight="700" fill="' + m.c + '">' + m.t + '</text>'
+    ).join('');
+    $('in-svg').innerHTML =
+      '<line x1="' + L + '" x2="' + R + '" y1="' + base + '" y2="' + base + '" stroke="#57677e"/>' +
+      shade +
+      '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#16804b" stroke-width="3"/>' +
+      lines;
+  }
+
+  function renderNormal() {
+    const mu = +$('in-mu').value, sd = +$('in-sd').value, x = +$('in-x').value, x2 = +$('in-x2').value;
+    const mode = $('in-mode').value;
+    $('in-x2wrap').hidden = mode !== 'bt';
+    const out = $('in-out');
+    if (!(sd > 0)) { out.className = 'ib-result bad'; out.textContent = 'σ mesti lebih daripada 0.'; return; }
+
+    const z1 = (x - mu) / sd, z2 = (x2 - mu) / sd;
+    const f = v => v.toFixed(2);
+    let prob, text, lo = -Infinity, hi = Infinity, marks = [{ x: mu, c: '#245bdf', t: 'μ = ' + mu }, { x: x, c: '#c23442', t: 'X = ' + x }];
+
+    if (mode === 'lt') {
+      prob = phi(z1); hi = x;
+      text = 'P(X < ' + x + ') = Φ(' + f(z1) + ') = ' + prob.toFixed(4);
+    } else if (mode === 'gt') {
+      prob = 1 - phi(z1); lo = x;
+      text = 'P(X > ' + x + ') = 1 − Φ(' + f(z1) + ') = ' + prob.toFixed(4);
+    } else {
+      lo = Math.min(x, x2); hi = Math.max(x, x2);
+      const zl = (lo - mu) / sd, zh = (hi - mu) / sd;
+      prob = Math.max(0, phi(zh) - phi(zl));
+      text = 'P(' + lo + ' < X < ' + hi + ') = Φ(' + f(zh) + ') − Φ(' + f(zl) + ') = ' + prob.toFixed(4);
+      marks.push({ x: x2, c: '#c23442', t: 'X = ' + x2 });
+    }
+
+    out.className = 'ib-result';
+    out.innerHTML = 'Z = (X − μ) / σ = (' + x + ' − ' + mu + ') / ' + sd + ' = <b>' + f(z1) + '</b>' +
+      (mode === 'bt' ? ' dan Z = <b>' + f(z2) + '</b>' : '') + '<br>' + text +
+      ' = <b>' + (prob * 100).toFixed(2) + '%</b>';
+    $('in-z-text').textContent = 'X = ' + x + ' berada ' + Math.abs(z1).toFixed(2) + ' sisihan piawai ' +
+      (z1 >= 0 ? 'di atas' : 'di bawah') + ' min.';
+    draw(mu, sd, lo, hi, marks);
+  }
+
+  ['in-mu', 'in-sd', 'in-x', 'in-x2'].forEach(id => $(id).addEventListener('input', renderNormal));
+  $('in-mode').addEventListener('change', renderNormal);
+
+  $('in-ex3-btn').addEventListener('click', () => {
+    const v = parseFloat($('in-ex3').value), out = $('in-ex-out');
+    const ok = Math.abs(v - 1) < 0.005;
+    out.hidden = false;
+    out.className = 'ib-msg ' + (ok ? 'good' : 'bad');
+    out.textContent = ok
+      ? 'Betul! Z = (60 − 50) / 10 = 1.00. Dengan Z-table: P(Z < 1.00) = 0.8413.'
+      : 'Belum tepat. Z = (X − μ) / σ = (60 − 50) / 10.';
+  });
+
+  renderBinomial();
+  renderNormal();
 })();
 </script>
 </body></html>
