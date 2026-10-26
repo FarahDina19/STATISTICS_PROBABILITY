@@ -69,6 +69,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 .ib-gallery img{width:100%;height:auto;border-radius:12px;background:#fff;display:block}
 .ib-rule{background:#f7faff;color:#172033;border-radius:12px;padding:12px 14px;font-size:15px;border-left:5px solid #7c5cff}
 @media (max-width:600px){.ib-seq{grid-template-columns:repeat(2,minmax(0,1fr))}.ib-hero h2{font-size:22px}}
+.ib-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-weight:600}.ib-flow span{background:#ffffff26;border-radius:12px;padding:8px 12px;font-size:15px}.ib-flow small{display:block;font-weight:400;font-size:12px;opacity:.85}.ib-arrow{background:none!important;padding:0 2px!important;font-size:20px}
 </style>
 </head><body>
 <header><div class="wrap"><div class="top"><div class="brand">◈ Probability<span>Lab</span></div><span class="badge">4.4 · 4.4.1–4.4.5</span></div><nav role="tablist" aria-label="Learning sections">
@@ -256,8 +257,8 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
   <div class="card"><details><summary>Why is it ⁿCₖ? (optional)</summary><p>ⁿCₖ counts the ways to choose which k tries are “yes”. For 3 tries with 2 yes results, ³C₂ = 3: HHT, HTH and THH.</p><p>By definition 0! = 1, so ⁿC₀ = 1 (no yes results) and ⁿCₙ = 1 (all yes results).</p></details></div>
 
   <div class="card"><h2>More practice (open when ready)</h2>
-    <details><summary>Practice 1: 5 coin flips</summary><p>Same five steps. There are 10 ways to get 3 heads out of 32 outcomes, so P(X = 3) = 10/32 = 0.3125.</p><figure class="lab-figure"><img src="./probability-images/five-fair-coin-flips.svg" alt="All 32 sequences of five fair coin flips, with the ten containing exactly three heads outlined." width="960" height="720" loading="lazy" decoding="async"><figcaption>The 10 outlined sequences each have 3 heads.</figcaption></figure></details>
-    <details><summary>Practice 2: basketball (10 shots, 60% each)</summary><p>X = number of baskets in 10 shots. p = 0.6 means the player makes about 6 out of every 10 shots. We want P(X = 7): the chance of <b>exactly 7</b> baskets.</p><div class="step"><strong>Where does p = 0.6 come from?</strong><p>p is the chance of one basket. Look at the player's record: if they scored 60 baskets in their last 100 shots, then p = 60 ÷ 100 = 0.6. In this question, p is given to you.</p></div><div class="step"><strong>Why not 0.6?</strong><p>0.6 is the chance that <b>one</b> shot goes in. We want the chance that <b>all 10 shots together</b> give exactly 7 baskets.</p></div><div class="step"><strong>Step 1: One possible order</strong><p>Take one order: 7 baskets, then 3 misses. Chance = 0.6 × 0.6 × … (7 times) × 0.4 × 0.4 × 0.4 = 0.6⁷ × 0.4³ ≈ 0.0018. This is very small.</p></div><div class="step"><strong>Step 2: Count the orders</strong><p>The 7 baskets can sit in different shots. There are <b>120</b> orders with exactly 7 baskets (¹⁰C₇ = 120).</p></div><div class="step"><strong>Step 3: Add them up</strong><p>Every order has the same chance, 0.0018. So 120 × 0.0018 ≈ <b>0.2150</b>.</p></div><p>So there is about a <b>21.5%</b> chance of exactly 7 baskets. The average is 6, so 7 is a little above average.</p><p><b>Try it:</b> What is P(X = 8)?</p><details><summary>Check your answer</summary><p>P(X = 8) = ¹⁰C₈ × 0.6⁸ × 0.4² = 45 × 0.6⁸ × 0.4² ≈ 0.1209.</p></details><div data-diagram-slot="expected-count"><article class="diagram-card" data-diagram="expected-count">
+    <details open><summary>Practice 1: 5 coin flips</summary><p>Same five steps. There are 10 ways to get 3 heads out of 32 outcomes, so P(X = 3) = 10/32 = 0.3125.</p><figure class="lab-figure"><img src="./probability-images/five-fair-coin-flips.svg" alt="All 32 sequences of five fair coin flips, with the ten containing exactly three heads outlined." width="960" height="720" loading="lazy" decoding="async"><figcaption>The 10 outlined sequences each have 3 heads.</figcaption></figure></details>
+    <details open><summary>Practice 2: basketball (10 shots, 60% each)</summary><p>X = number of baskets in 10 shots. p = 0.6 means the player makes about 6 out of every 10 shots. We want P(X = 7): the chance of <b>exactly 7</b> baskets.</p><div class="step"><strong>Where does p = 0.6 come from?</strong><p>p is the chance of one basket. Look at the player's record: if they scored 60 baskets in their last 100 shots, then p = 60 ÷ 100 = 0.6. In this question, p is given to you.</p></div><div class="step"><strong>Why not 0.6?</strong><p>0.6 is the chance that <b>one</b> shot goes in. We want the chance that <b>all 10 shots together</b> give exactly 7 baskets.</p></div><div class="step"><strong>Step 1: One possible order</strong><p>Take one order: 7 baskets, then 3 misses. Chance = 0.6 × 0.6 × … (7 times) × 0.4 × 0.4 × 0.4 = 0.6⁷ × 0.4³ ≈ 0.0018. This is very small.</p></div><div class="step"><strong>Step 2: Count the orders</strong><p>The 7 baskets can sit in different shots. There are <b>120</b> orders with exactly 7 baskets (¹⁰C₇ = 120).</p></div><div class="step"><strong>Step 3: Add them up</strong><p>Every order has the same chance, 0.0018. So 120 × 0.0018 ≈ <b>0.2150</b>.</p></div><p>So there is about a <b>21.5%</b> chance of exactly 7 baskets. The average is 6, so 7 is a little above average.</p><p><b>Try it:</b> What is P(X = 8)?</p><details><summary>Check your answer</summary><p>P(X = 8) = ¹⁰C₈ × 0.6⁸ × 0.4² = 45 × 0.6⁸ × 0.4² ≈ 0.1209.</p></details><div data-diagram-slot="expected-count"><article class="diagram-card" data-diagram="expected-count">
       <div class="diagram-header"><span class="diagram-badge">3</span><h3>10 component icons: one possible result, not the mean</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg" aria-label="Ten shot icons showing one possible outcome versus expected count">
@@ -287,7 +288,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="diagram-prompt"><strong>Quick question:</strong> Is 7 made a certain result?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> No. 6 is the most likely single result, but 7 or 5 can also happen. E(X) = 6 is an average, not a sure result.</div>
     </article></div><figure class="lab-figure"><img src="./probability-images/basketball-shots-2.svg" alt="Ten basketball shots with seven made and three missed, alongside the binomial probabilities for 10 shots with a 0.6 make probability." width="960" height="720" loading="lazy" decoding="async"><figcaption>Find the bar at k = 7 for the chance of exactly 7 makes.</figcaption></figure></details>
-    <details><summary>Practice 3: quality control (20 bulbs, 5% faulty)</summary><p>Let X = number of faulty bulbs, so X ∼ B(20, 0.05). Find P(X = 1).</p><div class="step"><strong>Step 1:</strong> n = 20, p = 0.05, k = 1.</div><div class="step"><strong>Step 2:</strong> Ways: ²⁰C₁ = 20.</div><div class="step"><strong>Step 3:</strong> 20 × 0.05 × 0.95¹⁹ ≈ <b>0.3774</b>.</div><p>About 38% of batches have exactly one faulty bulb.</p></details>
+    <details open><summary>Practice 3: quality control (20 bulbs, 5% faulty)</summary><p>Let X = number of faulty bulbs, so X ∼ B(20, 0.05). Find P(X = 1).</p><div class="step"><strong>Step 1:</strong> n = 20, p = 0.05, k = 1.</div><div class="step"><strong>Step 2:</strong> Ways: ²⁰C₁ = 20.</div><div class="step"><strong>Step 3:</strong> 20 × 0.05 × 0.95¹⁹ ≈ <b>0.3774</b>.</div><p>About 38% of batches have exactly one faulty bulb.</p></details>
   </div>
   <div class="ib" id="ib-note">
     <div class="card ib-hero">
@@ -365,6 +366,32 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
   <div class="ib-jump"><button class="ib-btn" type="button" onclick="document.getElementById('in-steps').scrollIntoView({behavior:'smooth'})">Langkah 1 hingga 4 ↓</button><button class="ib-btn" type="button" onclick="document.getElementById('in-note').scrollIntoView({behavior:'smooth'})">Lukis &amp; latihan interaktif ↓</button></div>
   <div class="card"><h2>The question</h2><p>A delivery takes on average <b>30 minutes</b>, with a spread (SD) of <b>5 minutes</b>. A delivery takes <b>35 minutes</b>. How far is that from the average, and how often is a delivery this fast or faster?</p><p>Follow the four steps. You can change the numbers in each step.</p></div>
 
+  <div class="ib" id="in-note">
+    <div class="card ib-hero">
+      <span class="ib-tag">Nota TVET · Normal</span>
+      <h2>Berapa banyak data di kawasan ini?</h2>
+      <p>Min μ ialah pusat loceng dan sisihan piawai σ ialah lebarnya. Tukar X kepada Z, kemudian baca Z-table.</p>
+      <div class="ib-flow"><span>X<small>nilai</small></span><span class="ib-arrow">→</span><span>Z = (X − μ) / σ<small>z-score</small></span><span class="ib-arrow">→</span><span>Φ(z)<small>luas kiri, dari Z-table</small></span><span class="ib-arrow">→</span><span>Jawapan<small>kebarangkalian</small></span></div>
+    </div>
+
+    <div class="card">
+      <h2>1 · Lukis lengkung &amp; kira</h2>
+      <p class="ib-note">Contoh bengkel: μ = 30 minit, σ = 5 minit. Tukar nilai untuk lihat lengkung berubah.</p>
+      <div class="ib-row">
+        <label class="ib-field">μ (min) <input type="number" id="in-mu" value="30" step="1"></label>
+        <label class="ib-field">σ (sisihan piawai) <input type="number" id="in-sd" value="5" step="0.5" min="0.1"></label>
+        <label class="ib-field">Jenis soalan <select id="in-mode"><option value="lt">kurang daripada (less than)</option><option value="gt">lebih daripada (greater than)</option><option value="bt">antara (between)</option></select></label>
+        <label class="ib-field">X <input type="number" id="in-x" value="35" step="1"></label>
+        <label class="ib-field" id="in-x2wrap" hidden>X kedua <input type="number" id="in-x2" value="40" step="1"></label>
+      </div>
+      <div class="ib-svgwrap"><svg id="in-svg" viewBox="0 0 560 260" role="img" aria-label="Lengkung normal dengan kawasan yang dilorek mengikut soalan"></svg></div>
+      <div class="ib-result" id="in-out" aria-live="polite"></div>
+      <p class="ib-note" id="in-z-text"></p>
+      <p class="ib-note">Z negatif: ikut tanda dan format Z-table. Semak dahulu sama ada Z-table memberi luas dari kiri atau dari min.</p>
+    </div>
+
+  </div>
+
   <div class="grid" id="in-steps">
     <div class="card">
       <div class="step"><strong>Step 1: Know the mean (μ) and SD (σ)</strong><p>The <b>mean</b> is the centre of the bell. The <b>SD</b> is how wide the bell is.</p><p>For the delivery example: μ = 30 and σ = 5.</p></div>
@@ -399,6 +426,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     <div class="card"><h3>What the z-score means</h3><p>z = 0 is the mean. z = 1 is one SD above it. z = −1 is one SD below it.</p><p>Once you have z, the table gives the chance of a value that is that small or smaller.</p></div>
   </div>
 
+  <div class="card"><details><summary>Show the full standard normal table</summary><p>Find the row (z to one decimal), then the column (the second decimal).</p><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></details></div>
   <div class="grid">
     <div class="card">
       <div class="step"><strong>Step 3: Read the table</strong><p>The table gives <b>Φ(z)</b>: the chance of a value <b>at or below</b> z. Look at z = 1.00 for the delivery example:</p></div>
@@ -433,7 +461,6 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     </article></div>
   </div>
 
-  <div class="card"><details><summary>Show the full standard normal table</summary><p>Find the row (z to one decimal), then the column (the second decimal).</p><div class="tablewrap" id="zTable" tabindex="0" aria-label="Scrollable standard normal cumulative probability table"></div></details></div>
   <div class="grid">
     <div class="card">
       <div class="eyebrow">Step 3 in detail</div>
@@ -514,7 +541,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
   </div>
 
   <div class="card"><h2>More practice (open when ready)</h2>
-    <details><summary>Practice 1: test scores (mean 70, SD 5)</summary><p>Find z for a score of 75: z = (75 − 70) / 5 = 1. So 75 is one SD above the mean.</p><div data-diagram-slot="raw-z"><article class="diagram-card" data-diagram="raw-z">
+    <details open><summary>Practice 1: test scores (mean 70, SD 5)</summary><p>Find z for a score of 75: z = (75 − 70) / 5 = 1. So 75 is one SD above the mean.</p><div data-diagram-slot="raw-z"><article class="diagram-card" data-diagram="raw-z">
       <div class="diagram-header"><span class="diagram-badge">2</span><h3>Raw values and z-scores</h3></div>
       <div class="diagram-figure">
         <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" aria-label="Raw value and z-score axes showing standardization">
@@ -543,52 +570,21 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="diagram-prompt"><strong>Quick question:</strong> What is z for x=75 if μ=70 and σ=5?</div>
       <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: 75 − 70 = 5. Step 2: 5 ÷ 5 = 1. So 75 is 1 SD above the mean.</div>
     </article></div><figure class="lab-figure"><img src="./probability-images/raw-score-to-z-score.png" alt="Converting a raw score to a z-score: a score of 85 with mean 70 and SD 10 gives z = 1.5." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Another example: a score of 85 with mean 70 and SD 10 gives z = 1.5.</figcaption></figure></details>
-    <details><summary>Practice 2: delivery times, both sides</summary><p>Left area: P(X ≤ 35) = Φ(1) = 0.8413. Right area: P(X ≥ 35) = 1 − 0.8413 = 0.1587.</p><p>Between 25 and 35: z = −1 and z = 1, so Φ(1) − Φ(−1) = 0.8413 − 0.1587 = 0.6827.</p><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve-2.png" alt="Delivery time with mean 30 minutes and SD 5 minutes; the 35-minute cutoff gives z = 1." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>The 35-minute cutoff gives z = 1, so P(X ≤ 35) = Φ(1) ≈ 0.8413.</figcaption></figure><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve.png" alt="Shaded normal areas for below, above and between two cutoffs." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Left: Φ(a). Right: 1 − Φ(b). Between: Φ(b) − Φ(a).</figcaption></figure></details>
-    <details><summary>Practice 3: which result is better?</summary><p>Compare each score with its own mean using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></details>
+    <details open><summary>Practice 2: delivery times, both sides</summary><p>Left area: P(X ≤ 35) = Φ(1) = 0.8413. Right area: P(X ≥ 35) = 1 − 0.8413 = 0.1587.</p><p>Between 25 and 35: z = −1 and z = 1, so Φ(1) − Φ(−1) = 0.8413 − 0.1587 = 0.6827.</p><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve-2.png" alt="Delivery time with mean 30 minutes and SD 5 minutes; the 35-minute cutoff gives z = 1." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>The 35-minute cutoff gives z = 1, so P(X ≤ 35) = Φ(1) ≈ 0.8413.</figcaption></figure><figure class="lab-figure"><img src="./probability-images/area-under-normal-curve.png" alt="Shaded normal areas for below, above and between two cutoffs." width="1448" height="1086" loading="lazy" decoding="async"><figcaption>Left: Φ(a). Right: 1 − Φ(b). Between: Φ(b) − Φ(a).</figcaption></figure></details>
+    <details open><summary>Practice 3: which result is better?</summary><p>Compare each score with its own mean using z.</p><div class="step"><strong>Test 1:</strong> score 75, mean 70, SD 5. z = (75 − 70) / 5 = 1.00</div><div class="step"><strong>Test 2:</strong> score 45, mean 40, SD 4. z = (45 − 40) / 4 = 1.25</div><p>Test 2 is better, because its score is further above its own mean.</p></details>
   </div>
     <div class="card"><h2>More class examples (normal)</h2>
       <p>Each example uses the same four steps: find z, read Φ(z) from the table, then change the area if the question asks for a tail or a range.</p>
-      <details><summary>Example A: mean 20, variance 4. Find P(X ≤ 24)</summary><p>Variance 4 means SD σ = √4 = 2.</p><p>z = (24 − 20) / 2 = 2. So P(X ≤ 24) = Φ(2) = <b>0.9772</b>.</p></details>
-      <details><summary>Example B: mean 20, variance 4. Find P(17 ≤ X ≤ 25)</summary><p>z = (17 − 20) / 2 = −1.5 and z = (25 − 20) / 2 = 2.5.</p><p>P = Φ(2.5) − Φ(−1.5) = 0.9938 − 0.0668 = <b>0.9270</b>.</p></details>
-      <details><summary>Example C: mean 20, variance 4. Find P(21 ≤ X ≤ 22)</summary><p>z = 0.5 and z = 1.</p><p>P = Φ(1) − Φ(0.5) = 0.8413 − 0.6915 = <b>0.1498</b>.</p></details>
-      <details><summary>Example D: mean 20, variance 4. Find P(13 ≤ X ≤ 18)</summary><p>z = (13 − 20) / 2 = −3.5 and z = (18 − 20) / 2 = −1.</p><p>P = Φ(−1) − Φ(−3.5) = 0.1587 − 0.0002 = <b>0.1585</b>.</p></details>
-      <details><summary>Example E: coffee packets, mean 168 g, SD 3 g. Percentage at least 172 g</summary><p>z = (172 − 168) / 3 = 1.33. Φ(1.33) = 0.9082.</p><p>P(X ≥ 172) = 1 − 0.9082 = 0.0918, so about <b>9.18%</b> of packets.</p></details>
-      <details><summary>Example F: coffee packets, mean 168 g, SD 3 g. Percentage below 170 g</summary><p>z = (170 − 168) / 3 = 0.67. Φ(0.67) = 0.7486.</p><p>About <b>74.86%</b> of packets weigh less than 170 g.</p></details>
-      <details><summary>Example G: coffee packets, mean 168 g, SD 3 g. Percentage between 166 g and 171 g</summary><p>z = (166 − 168) / 3 = −0.67 and z = (171 − 168) / 3 = 1.</p><p>P = Φ(1) − Φ(−0.67) = 0.8413 − 0.2514 = 0.5899, about <b>58.99%</b>.</p></details>
-      <details><summary>Example H: heights, mean 180 cm, SD 30 cm. Percentage shorter than 190 cm</summary><p>z = (190 − 180) / 30 = 0.33. Φ(0.33) = 0.6293.</p><p>About <b>62.93%</b> of people are shorter than you.</p></details>
+      <details open><summary>Example A: mean 20, variance 4. Find P(X ≤ 24)</summary><p>Variance 4 means SD σ = √4 = 2.</p><p>z = (24 − 20) / 2 = 2. So P(X ≤ 24) = Φ(2) = <b>0.9772</b>.</p></details>
+      <details open><summary>Example B: mean 20, variance 4. Find P(17 ≤ X ≤ 25)</summary><p>z = (17 − 20) / 2 = −1.5 and z = (25 − 20) / 2 = 2.5.</p><p>P = Φ(2.5) − Φ(−1.5) = 0.9938 − 0.0668 = <b>0.9270</b>.</p></details>
+      <details open><summary>Example C: mean 20, variance 4. Find P(21 ≤ X ≤ 22)</summary><p>z = 0.5 and z = 1.</p><p>P = Φ(1) − Φ(0.5) = 0.8413 − 0.6915 = <b>0.1498</b>.</p></details>
+      <details open><summary>Example D: mean 20, variance 4. Find P(13 ≤ X ≤ 18)</summary><p>z = (13 − 20) / 2 = −3.5 and z = (18 − 20) / 2 = −1.</p><p>P = Φ(−1) − Φ(−3.5) = 0.1587 − 0.0002 = <b>0.1585</b>.</p></details>
+      <details open><summary>Example E: coffee packets, mean 168 g, SD 3 g. Percentage at least 172 g</summary><p>z = (172 − 168) / 3 = 1.33. Φ(1.33) = 0.9082.</p><p>P(X ≥ 172) = 1 − 0.9082 = 0.0918, so about <b>9.18%</b> of packets.</p></details>
+      <details open><summary>Example F: coffee packets, mean 168 g, SD 3 g. Percentage below 170 g</summary><p>z = (170 − 168) / 3 = 0.67. Φ(0.67) = 0.7486.</p><p>About <b>74.86%</b> of packets weigh less than 170 g.</p></details>
+      <details open><summary>Example G: coffee packets, mean 168 g, SD 3 g. Percentage between 166 g and 171 g</summary><p>z = (166 − 168) / 3 = −0.67 and z = (171 − 168) / 3 = 1.</p><p>P = Φ(1) − Φ(−0.67) = 0.8413 − 0.2514 = 0.5899, about <b>58.99%</b>.</p></details>
+      <details open><summary>Example H: heights, mean 180 cm, SD 30 cm. Percentage shorter than 190 cm</summary><p>z = (190 − 180) / 30 = 0.33. Φ(0.33) = 0.6293.</p><p>About <b>62.93%</b> of people are shorter than you.</p></details>
     </div>
-  <div class="ib" id="in-note">
-    <div class="card ib-hero">
-      <span class="ib-tag">Nota TVET · Normal</span>
-      <h2>Berapa banyak data di kawasan ini?</h2>
-      <p>Min μ ialah pusat loceng dan sisihan piawai σ ialah lebarnya. Tukar X kepada Z, kemudian baca Z-table.</p>
-      <div class="ib-chips"><span class="ib-chip">data berterusan</span><span class="ib-chip">simetri, berbentuk loceng</span><span class="ib-chip">Z = (X − μ) / σ</span></div>
-    </div>
-
-    <div class="card">
-      <h2>1 · Lukis lengkung &amp; kira</h2>
-      <p class="ib-note">Contoh bengkel: μ = 30 minit, σ = 5 minit. Tukar nilai untuk lihat lengkung berubah.</p>
-      <div class="ib-row">
-        <label class="ib-field">μ (min) <input type="number" id="in-mu" value="30" step="1"></label>
-        <label class="ib-field">σ (sisihan piawai) <input type="number" id="in-sd" value="5" step="0.5" min="0.1"></label>
-        <label class="ib-field">Jenis soalan <select id="in-mode"><option value="lt">kurang daripada (less than)</option><option value="gt">lebih daripada (greater than)</option><option value="bt">antara (between)</option></select></label>
-        <label class="ib-field">X <input type="number" id="in-x" value="35" step="1"></label>
-        <label class="ib-field" id="in-x2wrap" hidden>X kedua <input type="number" id="in-x2" value="40" step="1"></label>
-      </div>
-      <div class="ib-svgwrap"><svg id="in-svg" viewBox="0 0 560 260" role="img" aria-label="Lengkung normal dengan kawasan yang dilorek mengikut soalan"></svg></div>
-      <div class="ib-result" id="in-out" aria-live="polite"></div>
-      <p class="ib-note" id="in-z-text"></p>
-      <p class="ib-note">Z negatif: ikut tanda dan format Z-table. Semak dahulu sama ada Z-table memberi luas dari kiri atau dari min.</p>
-    </div>
-
-    <div class="card">
-      <h2>2 · Rujukan visual</h2>
-      <div class="ib-gallery">
-        <figure><img src="./probability-images/normal-curve-mean.webp" alt="Lengkung normal dengan min μ di tengah" loading="lazy"><figcaption class="ib-note">Min μ ialah pusat taburan. X ialah nilai yang diukur.</figcaption></figure>
-        <figure><img src="./probability-images/normal-curve-mu-30.png" alt="Lengkung normal dengan min 30" loading="lazy"><figcaption class="ib-note">μ = 30. X = 35 berada di kanan min, satu sisihan piawai.</figcaption></figure>
-      </div>
-    </div>
-
+  <div class="ib" id="in-practice">
     <div class="card">
       <h2>3 · Latihan</h2>
       <details open><summary><b>Soalan 3:</b> Cari nilai Z</summary>
