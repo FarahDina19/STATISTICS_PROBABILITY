@@ -239,39 +239,6 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="outcomes"><div class="outcome"><strong>1</strong><span>0 heads</span></div><div class="outcome"><strong>3</strong><span>1 head</span></div><div class="outcome"><strong>3</strong><span>2 heads</span></div><div class="outcome"><strong>1</strong><span>3 heads</span></div></div>
       <p>Each outcome has chance 1/8, so P(X = 2) = 3/8 = 0.375.</p>
     </div>
-    <div data-diagram-slot="probability-bars"><article class="diagram-card" data-diagram="probability-bars">
-      <div class="diagram-header"><span class="diagram-badge">2</span><h3>Probability table and bars</h3></div>
-      <div class="diagram-figure">
-        <svg viewBox="0 0 520 270" xmlns="http://www.w3.org/2000/svg" aria-label="Binomial probability table and bar chart for three fair coin flips">
-          <rect width="520" height="270" fill="#f7faff"/>
-          <g font-family="Arial" font-size="15" fill="#172033">
-            <rect x="40" y="38" width="180" height="160" fill="#ffffff" stroke="#b9c9dd"/>
-            <text x="130" y="58" text-anchor="middle" font-size="16" font-weight="700">Table</text>
-            <text x="80" y="86">k</text><text x="140" y="86">P(X=k)</text>
-            <text x="80" y="110">0</text><text x="140" y="110">1/8</text>
-            <text x="80" y="134">1</text><text x="140" y="134">3/8</text>
-            <text x="80" y="158">2</text><text x="140" y="158">3/8</text>
-            <text x="80" y="182">3</text><text x="140" y="182">1/8</text>
-            <text x="365" y="58" text-anchor="middle" font-size="16" font-weight="700">Bar</text>
-            <line x1="270" y1="204" x2="475" y2="204" stroke="#172033"/>
-            <rect x="285" y="176" width="28" height="28" fill="#7c5cff"/>
-            <rect x="335" y="120" width="28" height="84" fill="#7c5cff"/>
-            <rect x="385" y="120" width="28" height="84" fill="#7c5cff"/>
-            <rect x="435" y="176" width="28" height="28" fill="#7c5cff"/>
-            <g text-anchor="middle" font-size="12">
-              <text x="299" y="223">0</text><text x="349" y="223">1</text><text x="399" y="223">2</text><text x="449" y="223">3</text>
-              <text x="299" y="170">0.125</text><text x="349" y="114">0.375</text><text x="399" y="114">0.375</text><text x="449" y="170">0.125</text>
-              <text x="374" y="245">k (heads)</text>
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="diagram-rule"><strong>What to notice</strong>
-        <ul class="diagram-list"><li>Each bar is one number of heads, k.</li><li>All the bars add up to 1.</li><li>The tallest bar is the most likely number of heads.</li></ul>
-      </div>
-      <div class="diagram-prompt"><strong>Quick question:</strong> What is P(X=1), and why are the bars for k=1 and k=2 the same height?</div>
-      <div class="diagram-feedback"><strong>Feedback:</strong> Step 1: P(X=1) has 3 sequences, so 3/8. Step 2: P(X=2) also has 3 sequences, so 3/8. The two bars match because p = 0.5.</div>
-    </article></div>
   </div>
 
   <div class="grid">
@@ -282,10 +249,8 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <p><b>Try it:</b> change n, p or k.</p>
       <div class="controls"><label>n (tries)<input id="bn" type="number" min="0" max="60" step="1" value="3"></label><label>p (yes chance)<input id="bp" type="number" min="0" max="1" step="0.01" value="0.5"></label><label>k (yes count)<input id="bk" type="number" min="0" max="60" step="1" value="2"></label></div>
       <p id="bError" class="error" role="status"></p>
-      <div id="bFlow"></div>
       <div id="bResult" class="result" aria-live="polite"></div>
     </div>
-    <div class="card"><h3>Bar chart</h3><p>Each bar is one possible count. The tallest bar is the most likely count. All bars add up to 1.</p><canvas id="binChart" role="img" aria-label="Binomial distribution chart"></canvas><p id="bSummary"></p></div>
   </div>
 
   <div class="card"><details><summary>Why is it ⁿCₖ? (optional)</summary><p>ⁿCₖ counts the ways to choose which k tries are “yes”. For 3 tries with 2 yes results, ³C₂ = 3: HHT, HTH and THH.</p><p>By definition 0! = 1, so ⁿC₀ = 1 (no yes results) and ⁿCₙ = 1 (all yes results).</p></details></div>
@@ -769,22 +734,6 @@ function renderBin(){
   if(!binValid(n,p)||!Number.isInteger(k)||k<0||k>n){$('bError').textContent='Use whole-number n from 0 to 60, p from 0 to 1, and a whole-number k in range.';return;}
   $('bError').textContent='';let prob=pmf(n,p,k);
   $('bResult').innerHTML=`P(X = ${k}) = C(${n}, ${k}) × ${p}<sup>${k}</sup> × ${(1-p).toFixed(2)}<sup>${n-k}</sup> = ${fmt(prob,4)}`;
-  let out='';for(let i=0;i<=n;i++)out+=`<div class="step"><strong>k=${i}</strong><span>${fmt(pmf(n,p,i),4)}</span></div>`;
-  $('bFlow').innerHTML=out;
-  if($('binomial').classList.contains('active')){
-    const {g,w,h}=surface('binChart'),pad={l:30,r:20,t:30,b:36},barW=(w-pad.l-pad.r)/(n+1),gap=Math.min(8,barW*.25);
-    const max=Math.max(...Array.from({length:n+1},(_,i)=>pmf(n,p,i))),labelStep=Math.max(1,Math.ceil(28/barW));
-    g.clearRect(0,0,w,h);g.font='12px sans-serif';g.textAlign='center';
-    for(let i=0;i<=n;i++){
-      const val=pmf(n,p,i),x=pad.l+i*barW+gap/2,y=h-pad.b-(val/max)*(h-pad.t-pad.b);
-      g.fillStyle=i===k?'#f59e0b':'#7c5cff';g.fillRect(x,y,barW-gap,h-pad.b-y);
-      g.fillStyle='#1f2d4d';
-      if(i%labelStep===0||i===k)g.fillText(String(i),pad.l+(i+.5)*barW,h-pad.b+16);
-      if(barW>=40)g.fillText(fmt(val,3),pad.l+(i+.5)*barW,Math.max(16,y-6));
-    }
-    g.fillText('k',w/2,h-8);g.textAlign='left';g.fillText('Probability',12,20);
-  }
-  $('bSummary').textContent=`For n=${n}, p=${p}, the bars sum to 1; the bar at k=${k} is the exact probability.`;
 }
 function renderNormal(){
   const m=num('nm'),s=num('ns'),x=num('nx');
