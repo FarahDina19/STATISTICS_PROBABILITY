@@ -142,6 +142,14 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
   <h1>4.4.1 Binomial: counting yes results</h1>
   <div class="card"><h2>The question</h2><p>We flip a fair coin <b>3 times</b>. What is the chance of getting <b>exactly 2 heads</b>?</p><p>Follow the five steps. You can change the numbers in step 5.</p></div>
 
+  <div class="card"><h2>Penerangan ringkas (Bahasa Melayu)</h2>
+    <p><b>Binomial</b> digunakan untuk <b>mengira bilangan kejayaan</b> daripada bilangan percubaan yang tetap. Ciri-cirinya: bilangan percubaan <b>n</b> tetap; setiap percubaan hanya ada dua hasil, <b>berjaya atau gagal</b>; kebarangkalian berjaya <b>p</b> sama bagi setiap percubaan; dan percubaan <b>bebas</b> antara satu sama lain.</p>
+    <p><b>Ingat:</b> Binomial = berapa kali berjaya?</p>
+    <div class="formula">P(X = x) = nCx × p<sup>x</sup> × (1 − p)<sup>n − x</sup>, dengan q = 1 − p</div>
+    <details><summary>Contoh: 3 komponen, p = 0.8, cari P(tepat 2 berfungsi)</summary><p>n = 3, x = 2, p = 0.8, q = 0.2.</p><p>P(X = 2) = 3C2 × (0.8)² × (0.2)¹ = 3 × 0.64 × 0.2 = <b>0.384 (38.4%)</b>.</p><p>Susunan ✓✓✗, ✓✗✓ dan ✗✓✓ ialah tiga susunan yang berbeza. Sebab itu kita guna nCx.</p></details>
+    <p><b>Checklist:</b> isi dahulu n, x, p dan q sebelum mengira.</p>
+  </div>
+
   <div class="grid">
     <div class="card">
       <div class="step"><strong>Step 1: Count the tries (n)</strong><p>We flip 3 times, so <b>n = 3</b>.</p></div>
@@ -280,6 +288,16 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
   <div class="eyebrow">4.4.3–4.4.5 · Measurements</div>
   <h1>4.4.3 Normal: measuring values</h1>
   <div class="card"><h2>The question</h2><p>A delivery takes on average <b>30 minutes</b>, with a spread (SD) of <b>5 minutes</b>. A delivery takes <b>35 minutes</b>. How far is that from the average, and how often is a delivery this fast or faster?</p><p>Follow the four steps. You can change the numbers in each step.</p></div>
+
+  <div class="card"><h2>Penerangan ringkas (Bahasa Melayu)</h2>
+    <p><b>Normal</b> digunakan untuk <b>data berterusan</b> seperti masa, berat dan tinggi, yang berbentuk <b>loceng</b> dan simetri. Ia diterangkan oleh <b>min μ</b> (pusat loceng) dan <b>sisihan piawai σ</b> (lebar loceng).</p>
+    <p><b>Ingat:</b> Normal = berapa banyak data berada di kawasan ini?</p>
+    <div class="formula">Z = (X − μ) / σ</div>
+    <p>Z ialah jarak nilai X daripada min dalam unit sisihan piawai. Selepas itu, baca kebarangkalian daripada Z-table.</p>
+    <details><summary>Contoh: μ = 30, σ = 5, cari P(X &lt; 35)</summary><p>Z = (35 − 30) / 5 = 1.00.</p><p>Z-table (luas di sebelah kiri): P(Z &lt; 1.00) = <b>0.8413 (84.13%)</b>.</p><p>Maksudnya, kira-kira 84.13% penghantaran selesai dalam 35 minit.</p></details>
+    <p><b>Jenis soalan:</b> <i>kurang daripada</i> = baca terus dari jadual; <i>lebih daripada</i> = 1 − nilai jadual; <i>antara a dan b</i> = nilai(b) − nilai(a).</p>
+    <p><b>Amaran:</b> Semak format Z-table dahulu. Ada jadual yang memberi luas dari min, bukan dari kiri.</p>
+  </div>
 
   <div class="grid">
     <div class="card">
