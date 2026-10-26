@@ -342,19 +342,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     </div>
 
     <div class="card">
-      <h2>2 · Bezakan dua taburan</h2>
-      <table class="ib-table">
-        <tr><th>Binomial</th><th>Normal</th></tr>
-        <tr><td>Mengira bilangan kejayaan</td><td>Mengira kebarangkalian bagi julat nilai</td></tr>
-        <tr><td>Bilangan percubaan tetap, <b>n</b></td><td>Data berterusan, berbentuk loceng</td></tr>
-        <tr><td>Dua hasil: berjaya / gagal</td><td>Guna min <b>μ</b> dan sisihan piawai <b>σ</b></td></tr>
-        <tr><td>Contoh: tepat 2 produk rosak daripada 10</td><td>Contoh: berat kurang daripada 520 g</td></tr>
-      </table>
-      <p><b>Cara ingat:</b> Binomial = berapa kali berjaya? · Normal = berapa banyak data di kawasan ini?</p>
-    </div>
-
-    <div class="card">
-      <h2>3 · Lihat setiap susunan</h2>
+      <h2>2 · Lihat setiap susunan</h2>
       <p class="ib-note">Bengkel memeriksa <b>3 komponen</b>. Tukar p, dan pilih k (bilangan berfungsi). Tile yang bercahaya ialah susunan dengan k kejayaan.</p>
       <div class="ib-row">
         <label class="ib-field"><span>p (kebarangkalian berfungsi): <b id="ib-p-out">0.80</b></span><input type="range" id="ib-p" min="0" max="1" step="0.05" value="0.8"></label>
@@ -368,7 +356,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     </div>
 
     <div class="card">
-      <h2>4 · Formula dan checklist</h2>
+      <h2>3 · Formula dan checklist</h2>
       <div class="formula">P(X = x) = nCx × p<sup>x</sup> × (1 − p)<sup>n − x</sup></div>
       <table class="ib-table">
         <tr><th>Simbol</th><th>Maksud</th><th>Contoh</th></tr>
@@ -390,7 +378,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     </div>
 
     <div class="card">
-      <h2>5 · Latihan</h2>
+      <h2>4 · Latihan</h2>
       <details open><summary><b>Soalan 1:</b> Binomial atau Normal?</summary>
         <div class="ib-qrow"><span>a. Daripada 8 produk, cari kebarangkalian tepat 2 produk rosak.</span><span class="ib-yn"><button class="ib-btn" type="button" data-ex="a" data-v="binomial" data-ans="binomial">Binomial</button><button class="ib-btn" type="button" data-ex="a" data-v="normal" data-ans="binomial">Normal</button></span></div>
         <div class="ib-msg" id="ib-ex-a" aria-live="polite" hidden></div>
@@ -625,20 +613,11 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
       <div class="ib-svgwrap"><svg id="in-svg" viewBox="0 0 560 260" role="img" aria-label="Lengkung normal dengan kawasan yang dilorek mengikut soalan"></svg></div>
       <div class="ib-result" id="in-out" aria-live="polite"></div>
       <p class="ib-note" id="in-z-text"></p>
+      <p class="ib-note">Z negatif: ikut tanda dan format Z-table. Semak dahulu sama ada Z-table memberi luas dari kiri atau dari min.</p>
     </div>
 
     <div class="card">
-      <h2>2 · Jenis soalan</h2>
-      <div class="ib-gallery">
-        <div class="ib-rule"><b>kurang daripada</b><br>Baca terus dari Z-table: P(Z &lt; z).</div>
-        <div class="ib-rule"><b>lebih daripada</b><br>1 − P(Z &lt; z).</div>
-        <div class="ib-rule"><b>antara a dan b</b><br>P(Z &lt; b) − P(Z &lt; a).</div>
-      </div>
-      <p class="ib-note">Z negatif: ikut tanda dan format Z-table. Jangan abaikan tanda negatif. Semak dahulu sama ada Z-table memberi luas dari kiri atau dari min.</p>
-    </div>
-
-    <div class="card">
-      <h2>3 · Rujukan visual</h2>
+      <h2>2 · Rujukan visual</h2>
       <div class="ib-gallery">
         <figure><img src="./probability-images/normal-curve-mean.webp" alt="Lengkung normal dengan min μ di tengah" loading="lazy"><figcaption class="ib-note">Min μ ialah pusat taburan. X ialah nilai yang diukur.</figcaption></figure>
         <figure><img src="./probability-images/normal-curve-mu-30.png" alt="Lengkung normal dengan min 30" loading="lazy"><figcaption class="ib-note">μ = 30. X = 35 berada di kanan min, satu sisihan piawai.</figcaption></figure>
@@ -646,7 +625,7 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
     </div>
 
     <div class="card">
-      <h2>4 · Latihan</h2>
+      <h2>3 · Latihan</h2>
       <details open><summary><b>Soalan 3:</b> Cari nilai Z</summary>
         <p>Diberi μ = 50, σ = 10 dan X = 60. Cari nilai Z.</p>
         <div class="ib-yn"><input type="number" id="in-ex3" step="0.01" placeholder="cth. 1.00"><button class="ib-btn" type="button" id="in-ex3-btn">Semak</button></div>
@@ -737,24 +716,9 @@ canvas{height:250px}.diagram-card h3{color:#f8fafc}
 <section id="exercises" class="panel" role="tabpanel" aria-labelledby="tab-exercises">
   <div class="eyebrow">Exercises · Fill in the boxes</div>
   <h1>Practice: one step at a time</h1>
-  <div class="card"><h2>Latihan ringkas (dari nota)</h2>
-    <details open><summary>Soalan 1: Kenal pasti taburan</summary>
-      <p>Nyatakan Binomial atau Normal.</p>
-      <p>a. Daripada 8 produk, cari kebarangkalian tepat 2 produk rosak.</p>
-      <p>b. Berat komponen mempunyai min 500 g dan sisihan piawai 10 g. Cari kebarangkalian berat kurang daripada 520 g.</p>
-      <details><summary>Skema jawapan</summary><p>a. Binomial.</p><p>b. Normal, dengan andaian taburan normal.</p></details>
-    </details>
-    <details open><summary>Soalan 2: Binomial</summary>
-      <p>Kebarangkalian sebuah komponen berfungsi ialah p = 0.9. Tiga komponen diuji secara bebas. Cari kebarangkalian tepat 2 komponen berfungsi.</p>
-      <p>Diberi: n = 3, x = 2, p = 0.9, q = 0.1. Gunakan P(X = 2) = 3C2 (0.9)² (0.1)¹.</p>
-      <details><summary>Skema jawapan</summary><p>P(X = 2) = 3 × 0.81 × 0.1 = 0.243</p><p>Jawapan: 0.243 = <b>24.3%</b>.</p></details>
-    </details>
-    <details open><summary>Soalan 3: Normal</summary>
-      <p>Diberi μ = 50, σ = 10 dan X = 60. Cari nilai Z.</p>
-      <p>Z = (X − μ) / σ</p>
-      <details><summary>Skema jawapan</summary><p>Z = (60 − 50) / 10 = <b>1.00</b></p><p>Jika soalan seterusnya meminta P(X &lt; 60) dan jadual memberi luas terkumpul di kiri, maka P(Z &lt; 1.00) = 0.8413.</p></details>
-    </details>
-    <p><b>Penutup:</b> Binomial: berapa kali kejayaan berlaku? &nbsp;·&nbsp; Normal: berapa luas kebarangkalian di sekitar sesuatu nilai? Jangan hafal formula sahaja. Kenal pasti jenis soalan dahulu, tulis nilai yang diberi, kemudian baru kira.</p>
+  <div class="card"><h2>Latihan dari nota</h2>
+    <p>Latihan ini sudah ada dalam bentuk interaktif dengan maklum balas segera:</p>
+    <div class="ib-jump"><button class="ib-btn" type="button" data-go="binomial">Binomial: Soalan 1 dan 2 ↗</button><button class="ib-btn" type="button" data-go="normal">Normal: Soalan 3 ↗</button></div>
   </div>
   <div class="card"><h2>Choose what to practise</h2>
     <div class="choices" role="group" aria-label="Topic"><button type="button" data-ex-family="binomial" aria-pressed="true">Binomial</button><button type="button" data-ex-family="normal" aria-pressed="false">Normal</button></div>
